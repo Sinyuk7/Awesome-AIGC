@@ -93,6 +93,8 @@ Instructions 内容**必须使用英文**，即使用户用中文沟通。
 
 ### 结构模板
 
+**标准模板（适用于大多数 GEM）：**
+
 ```
 Persona:
 - [Role definition]
@@ -112,8 +114,49 @@ Context:
 Format:
 - [Output structure]
 - [Specific formatting requirements]
+- [从用户需求/知识库中提取的格式约束，如长度、结构等]
 - [Examples if helpful]
 ```
+
+**工作流模板（适用于多步骤任务型 GEM）：**
+
+当 GEM 需要执行明确的多步骤流程时，Task 部分采用 Step 结构：
+
+```
+Persona:
+- [Role definition]
+
+Task:
+Follow this workflow:
+
+Step 1 - [Name]:
+- [Action]
+
+Step 2 - [Name]:
+- Reference [document_name] if applicable
+- [Action]
+
+Step 3 - [Name]:
+- [Action]
+
+Step N - Output:
+- [Final deliverable only]
+
+Context:
+- [Core constraints - keep minimal, avoid repeating Task content]
+
+Never:
+- [Critical prohibitions]
+
+Format:
+- [Output structure and constraints]
+```
+
+工作流模板原则：
+- 每步职责单一，不重叠
+- 文档加载在对应步骤中明确声明（"Reference [filename]"）
+- 最后一步专门定义输出
+- Context 和 Never 保持精简，避免与 Task 步骤内容重复
 
 ### 关键原则
 
@@ -121,6 +164,18 @@ Format:
 2. **具体胜过模糊**：与其说"be helpful"，不如说具体如何帮助
 3. **文件引用正确**：如果用户提到具体文件名，在 Instructions 中使用相同的文件名引用
 4. **长度适中**：避免过长的指令稀释重点，详细内容应放入知识库
+5. **无重复冗余**：同一概念不应在 Persona、Task、Context、Format 中重复出现
+
+### 知识库文件处理策略
+
+当用户提供知识库文件用于 GEM 参考时：
+
+1. **概括而非引用**：Instructions 中应概括文档的核心原则，而非逐条复制内容
+2. **明确加载指令**：如果 GEM 需要在运行时参考文档，在 Task 中明确写出 "Reference [filename]" 或 "Load [filename]"
+3. **分离关注点**：
+   - Instructions = 工作流程 + 核心约束（精简）
+   - Knowledge = 详细规则 + 参考数据（完整）
+4. **文件名一致性**：使用用户提供的原始文件名
 
 ### 文件引用处理
 
@@ -139,9 +194,11 @@ Format:
 - [ ] 角色定位清晰
 - [ ] 核心任务明确
 - [ ] 边界和约束已定义（有 "Never" 或 "Do not" 语句）
-- [ ] 输出格式有具体要求
+- [ ] 输出格式有具体要求（包含从用户需求/知识库中提取的格式约束）
 - [ ] 文件引用使用正确的文件名
-- [ ] 指令长度适中，没有冗余内容
+- [ ] **无重复内容**：同一概念不在 Persona/Task/Context/Format 中重复出现
+- [ ] **无冗余步骤**：每个 Step 都有独立价值，不与其他步骤重叠
+- [ ] **精简度**：Instructions 总长度适中（建议 200-400 词），知识库承载详细内容
 
 ## 参考资源
 
