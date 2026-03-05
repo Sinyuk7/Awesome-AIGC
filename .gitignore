@@ -16,3 +16,5 @@
 # Temporary files
 *.tmp
 *.temp
+# Skill testing workspace
+.codemaker/skills/*-workspace/
