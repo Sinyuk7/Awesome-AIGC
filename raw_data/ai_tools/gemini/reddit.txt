@@ -1,0 +1,1505 @@
+My Guide/Workflow for Gems
+Discussion
+Greetings to all.
+
+I use Gemini a heck load and I actually found my best way to create Gems through Deep Research.
+
+Step 1 Give a generic prompt to Gemini. The prompt should ask Gemini to improve itself, or deliver (whatever convenient) a deep research prompt which makes it research extensively and resourcefully over dynamics of Gem engineering, collect at least 60 (not any special number) niche or non-niche gem instructions philosophies/terms/theories, analyse the whole internet such as reddit/GitHub/websites/youtube/Google's/general or so and blah blah and at last give detailed instructions for a gem maker gem (Here you can optimise according to needs).
+
+Step 2 Once the file generates, open/export it, and print 2 PDFs: One being the full, and the other being the specific pages of those 60+ philosophies/theories.
+
+Step 3 Repeat the previous steps with three changes: Ask/recieve for a research on prompt engineering (extensive blah blah) with prompt theories/philosophies instead of gem, don't have a prompt engineering gem included (or do depends on you), and print the single PDF (or both part if you got the prompt gem. It's not essential to get because you can generate that through the gem maker gem or simple gemini now).
+
+Step 4 Create the gem maker gem. Copy paste or ask Gemini to modify/extract from the PDF. Give the gem the full PDFs of both as instructions.
+
+Fiddling: If you missed something or output isn't incomplete or desired, you can just repeat these steps but having the prompt improver gem for step 1. You can loop through this as many times you want.
+
+Tip: What I am also doing is, I use the logic in the first steps but for the gem I want to make. Say I ask the gem maker to create a gem that teaches Python. Then I use the prompt engineer and do the same step 1 but asking for deep research to research on how can a gem and prompt and general python things be maximised and optimised, how can gem utilise internet and all maximum, and things like that. Then using that file (and the subject books/resources) and the prompt guide file as knowledge piece.
+
+
+Upvote
+5
+
+Downvote
+
+4
+Go to comments
+
+
+Share
+u/tencentcloud2026 avatar
+tencentcloud2026
+•
+Promoted
+
+Clawdbot is going viral!Learing To deploy in seconds with one click
+Apply Now
+tencentcloud.com
+Thumbnail image: Clawdbot is going viral!Learing To deploy in seconds with one click
+Join the conversation
+Sort by:
+
+Best
+
+Search Comments
+Expand comment search
+Comments Section
+stiveooo
+•
+2mo ago
+True, its best when a gem makes a gem.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+stiveooo
+•
+2mo ago
+what about working directly in opal?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Hedge_hog_816
+OP
+•
+2mo ago
+•
+Edited 2mo ago
+I actually myself need to see and know where that is better, or what difference it does. I use Gems because I am very lazy at prompts + using specific ones for specific tasks gives a kick. Never been too curious to check that. But it should work ig.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+stiveooo
+•
+2mo ago
+you dont make apps in ai studio?
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+
+What are Gems actually good for?
+I'm using Gemini Pro, but I fail to grasp what are Gems good for. I'm asking because I usually simply upload my documents to Gemini or NotebookLM, ask what I need and I'm given a (more or less) useful answer. I know I can use particular conversations for particular themes to keep things tidy and Gemini sharp. But although I've read the faq and seen the examples, I fail to grasp what's the actual advantage of using Gems over Gemini or NotebookLM. What do you think?
+
+
+Upvote
+88
+
+Downvote
+
+75
+Go to comments
+
+
+1
+
+Share
+u/Grammarly avatar
+Grammarly
+•
+Promoted
+
+Trusted by 40M+ people who use Grammarly to write with confidence. Try Grammarly for free today.
+Download
+grammarly.com
+Thumbnail image: Trusted by 40M+ people who use Grammarly to write with confidence. Try Grammarly for free today.
+Join the conversation
+Sort by:
+
+Best
+
+Search Comments
+Expand comment search
+Comments Section
+Catses
+•
+9mo ago
+For me a gem is useful for when you need a very specific structure for a response and need to be able to revisit it multiple times. You could achieve much the same thing by prompting in the same way, but this saves some time.
+
+For example for work I have a social policy gem which is instructed to form responses with specific priorities and relate back to organisational strategy documents. I could achieve the same thing in a new conversation but I'd have to write out the full prompt and upload all those strategy documents every time which seems convoluted.
+
+So in my case it allows me to have a conversation preloaded with a specific context and document store that I can revisit and get predictable output from.
+
+
+
+Upvote
+50
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+manapause
+•
+9mo ago
+This is a great use case thank you for sharing
+
+
+Upvote
+5
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+FactorHour2173
+•
+9mo ago
+Oddly enough, I ran into the issue where my gem told me that the files we upload into our gem are not actually able to be referenced. Specifically, I asked it to give me a plan for a certain task based on a couple files in its knowledge base. It told me it does not have access to them, and that I must upload them into the chat conversation for it to see it and respond accordingly.
+
+So it made me think, “what is the purpose of creating a knowledge base if I cannot access its knowledge base that I uploaded?”. I must be using the gem wrong.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Comfortable-Two4955 avatar
+Comfortable-Two4955
+•
+6mo ago
+You need to learn to prompt it correctly. Don't ask Gemini for help. It will say it can't do it. I tried to have it get a Google Doc because I know it can. I asked how I should prompt to do this. It told me it could not read titles of docs and I needed to to give content to reference. That did not work and I needed "broader" context. 
+
+I learned on my own later that "@doc title" is what is need to be done to have it grab an entire Google Doc or reference anything inside. 
+
+Even after asking "how to prompt" it lied and made shit up. This program wastes so much time making anything that should be efficient, a loss of time needed. 
+
+If all these programs are like this, your job is safe for now. My cat is a better "helpful assistant."
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+bradrhine
+•
+9mo ago
+I ran into the same issue and could not make sense of it. Glad it wasn't just me!
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/fottimadreJohn avatar
+fottimadreJohn
+•
+9mo ago
+I would like to see the answers because I can't see the benefit of using a gem over a regular chat
+
+
+
+Upvote
+14
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/butthole_nipple avatar
+butthole_nipple
+•
+9mo ago
+If you like to do multiple chats with the same data attached via rag like you do with Claude projects or chat to PT projects then they're very good and I use those all the time
+
+
+
+Upvote
+6
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/the_examined_life avatar
+the_examined_life
+•
+9mo ago
+You can and you can attach drive docs which makes gems really powerful and more useful than other solutions like GPTs. Drive docs are live and collaborative, attach them to meeting notes docs or a daily journal etc
+
+
+
+Upvote
+6
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/spvcejam avatar
+spvcejam
+•
+9mo ago
+this right here. This is what makes Gems vastly superior to most alternatives. You can have a prompt point to a living document, essentially.
+
+but to your point Gem's don't really add any new features to the LLM it just facilitates efficiency at the moment. They're going to upgrade Gems even more very soon and create a database where we can share them.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/BobbyBobRoberts avatar
+BobbyBobRoberts
+•
+9mo ago
+Can you attach documents to gems? I had only seen info that suggested it was about reusing complex prompts. But if I could add docs for deeper context, that would be awesome.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+youdontknowsqwat
+•
+9mo ago
+If you attach a Google Doc to a Gem it will view it as a "live" document so no need to upload a new version each time for updated tas real time information.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/butthole_nipple avatar
+butthole_nipple
+•
+9mo ago
+You definitely can. The "new gem" field is basically the exact same thing as "new project" in Chatgpt or Claude
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+busterbus2
+•
+9mo ago
+Just saves you time. For instance, I have one that is specific to Google Sheets formulas so I basically just type "take cell c2 make it a percentile of d3...etc." and it knows to pump out a formula.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+aeyrtonsenna
+•
+9mo ago
+No benefit for basic use. If you have a complex, repeated request and prefer to put it into a gem instead of typing it each time the it makes perfect sense but you can as well attach a document with the same.
+
+
+Upvote
+8
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/WhereWindsMeet_ avatar
+u/WhereWindsMeet_
+•
+Promoted
+
+心跳加速的戰鬥，結合令人屏息的探索體驗——這就是劃時代的動作 RPG！
+Download
+wherewindsmeetgame.com
+Thumbnail image: 心跳加速的戰鬥，結合令人屏息的探索體驗——這就是劃時代的動作 RPG！
+[deleted]
+•
+9mo ago
+I have been using them for help with specific ongoing projects. I like to upload some project documents, background documents and what not with a detailed description of the work. That way I can have multiple chats and not have to give a bunch of background information at the start of each.
+
+
+
+Upvote
+8
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Abeds_BananaStand avatar
+Abeds_BananaStand
+•
+9mo ago
+Yea that’s a great use case I do as well. I used to always type in the context but this made it much easier
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+milkarcane
+•
+9mo ago
+One of my personal usecase : generate prompts for Imagen. I give it the official Google prompting guide link, some rules and personal preferences, and ask it to wait for a description of what I'd like to generate. I give it a chaotic description and Gemini sort all the details in the correct order for maximum effiency and even add details like techniques or FXs to enhance the overall visual impact. Then, I feed the prompt to Imagen, see the result, and ask the Gem for finetuning. Basically, I almost always generate 3D renderings so instead of repeating myself everytime, the Gem knows exactly what to do and suggest.
+
+
+
+Upvote
+8
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+VanJeans
+•
+9mo ago
+That's pretty awesome, any chance on an example of the prompt?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+milkarcane
+•
+9mo ago
+You mean a prompt for Imagen or the prompt I use for the Gem?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+[deleted]
+•
+9mo ago
+u/Steve15-21 avatar
+Steve15-21
+•
+9mo ago
+It is ideal for repetitive tasks or outputs that require a structured format. I use it frequently at work, for example when I need to analyze a website for its metrics or its competitors. It provides the output in a very organized manner, which I can use consistently. I just need to provide the URL of the website.
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/sirbreezy avatar
+sirbreezy
+•
+9mo ago
+Can you elaborate on what you have it set up to do to analyze websites, and if there’s a specific Gem you are using? I didn’t realize the LLMs could create data on website metrics so I’m curious
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/GitKraken avatar
+u/GitKraken
+•
+Promoted
+
+Level up your Git game with GitKraken Desktop – Download now on Windows, Mac & Linux
+Download
+gitkraken.com
+Clickable image which will reveal the video player: Level up your Git game with GitKraken Desktop – Download now on Windows, Mac & Linux
+Collapse video player
+
+0:00 / 0:00
+
+
+
+
+ozone6587
+•
+9mo ago
+I use it so that I can get tailored outputs. For anything medical, I have to fight with the model to give me a straight answer. But with a properly prompted Gem, I can ask questions and get straight answers in an easier way.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+TurboFool
+•
+9mo ago
+We built a phantom third player for a tabletop game my wife and I were demoing that required three people. I explained the core mechanics of the game in a Gem, explained that I wanted the Gem to pick a random number between 1 and 12, weighted toward lower numbers, and then pick that many numbers between 1 and 12, and to keep them secret. Then I would ask it either if a specific number was in its list, or to reveal a single number that it hadn't yet revealed. From then on I could just open that gem every time, give it the commands I asked for, and it would do as I said without having to re-explain the game and rules every time.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+AntwerpPeter
+•
+9mo ago
+I use it for programming. This to avoid that I always have to state the programming language, database used, database tables, plug ins, goal of the tool. When Gemini starts to trail off I just start a new fresh chat with that Gem.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+TangeloThick9216
+•
+9mo ago
+•
+Edited 9mo ago
+I use a gem to help tailor my resume based on JD.
+
+You could do it with notebookLM - but gems are better because:
+
+Gem has my resume, career worksheet, and a running list of projects which are all Google docs added to its instructions (files area)
+
+this allows me to make edits/changes to the docs in drive without needing to reupload anytime I make changes. This works only for Google sheets/docs and only for gems atm.
+
+I have a specific format for each JD I send to help me decide if it's worth applying for.
+
+Basically copy/past JD
+
+Analyzes the JD against Google docs/sheets in drive via instructions
+
+Summary of role
+
+company
+
+obvious list of Red flags or concerns
+
+It asks if I wanna pursue it further
+
+If yes, then helps me tailor accordingly.
+
+I start a new conversation from the Gem for each JD in case I want to tweak the role/format differently on a per JD basis.
+
+I have it do other nuance stuff, but essentially gems are good for repetitive tasks and specific formats of output you want.
+
+Gems also doesn't use saved info feature ('saved info' Is essentially info that is added to the front of all your prompts you type in the conversation which is why it always remembers that info cause it's sent with each prompt
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+baseddez
+•
+4mo ago
+Does yours automaticvcally generate the file? Ive been trying to figure out how to get mine to do the entire file based on my template, so I dont have to copy and paste constantly.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/bebek_ijo avatar
+bebek_ijo
+•
+9mo ago
+with gems you can use 2.5 pro, notebooklm cant, i think gems is a crappy version of a simple agent compared to others
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Landaree_Levee
+•
+9mo ago
+To reuse instructions and uploaded knowledge bases. They’re basically the equivalent of Projects in OpenAI’ ChatGPT and Anthropic’s Claude.
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+riverdancemcqueen
+•
+9mo ago
+Repeat use. I gave it my c.v, a job spec I was applying for and a bunch of resources with technical and other questions and just used it 15 minutes a day. Had it explain answers I struggled on or to grade my score. Worked really well, smashed interview and turned down the job 😂😂
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+DDronzer
+•
+6mo ago
+Can you give me a guide on how to create this interview gem
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Medium_Apartment_747 avatar
+Medium_Apartment_747
+•
+9mo ago
+For shit that you repeatedly ask over and over again, especially if it needs context.
+
+Some examples:
+
+IRS tax code gem (includes IRS handbook) Building code agent French language tutor Daily assistant planner
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+drlongtrl
+•
+9mo ago
+When I switched from Windows to Linux, and then to a quite device specific Linux, I created a gem specifically to help me out with "day to day grievances" I might have, comint to terms with the new OS.
+
+I set the gem up so that it understands itself as an expert in specifically that distro and device I was using but also as someone who is well versed in explaining stuff to new users. I also put in relevant technical details and included that I prefer step by step answers. I also included the request to ask further questions, should my innitial problem description be insufficient.
+
+This leads to a very pleasant experience, where I can just open a new chat with this gem, ask my question and withing a fairly short conversatiion, I´ll have reached my goal. Much easier that way, than having to "explain" everything all over again, any time I want to know something about my linux machine.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Leo_Janthun
+•
+9mo ago
+That was a very helpful explanation, thank you. So when you're setting it up you prompt it to remember that info for that particular gem?
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+drlongtrl
+•
+9mo ago
+Yes. In that long prompt that you "prime" your gem with, I included all the instructions and also baseline information I wanted it to base all responses on. I even went so far as to first have it generate a rough prompt on its own and then used that gem itself to further refine the base prompt itself to better fit my needs.
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+MinosAristos
+•
+9mo ago
+I like to use gems for saving context that I'll be coming back to again and again but won't want my default chats to use. For example when I was learning to drive I made a gem that had the correct rule book for my country in the files, knew I was learning manual transmission in this specific model of car, etc
+
+That way I don't need to repeat that context every time in a new chat
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/23andmebutnotactuall avatar
+23andmebutnotactuall
+•
+9mo ago
+I use it to construct work emails. I gave it parameters to follow to keep it in line with the workflow, which has significantly boosted my efficiency, it honestly does it so well, a slight advanced version of this would pretty much be able to do my whole job by itself, which is scary for the future of people in the industry of course but very good considering how far it has come.
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/steve1401 avatar
+steve1401
+•
+9mo ago
+They’re incredibly useful. You can create tailored reasoning. For example I have a general SEO gem that I’ve spent time telling it how to behave and react to questions, the nature of the answers I want etc. Means I can often provide a minimal prompt because it already knows the core requirements.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+PoopFandango
+•
+9mo ago
+I've got one that I can give a URL or photo of a recipe, and it'll extract the ingredients and recipe from it (online recipes these days seem to inevitably include a good portion of the author's life story before the recipe starts), and format it all in Markdown so I can paste it straight into my Obsidian vault. Sure I could use the general chat for it but because it's pre-prompted, I can just give it the URL or photo without any preamble and it just does the business.
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Item_Kooky avatar
+Item_Kooky
+•
+8mo ago
+This sounds great can you give the info you instructed for the gem to use for this thanks or a summary similar thjks
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+resentimental
+•
+9mo ago
+I fire up specialized gems for specialized tasks. You can attach 10 files directly to the gem prompt like reference info or writing samples etc and create a powerfully customized specialist in that knowledge, or persona or whatever it's going to specialize in, then every new gem window has that base info and acts the same. You can take it further with manual logging, attaching a Google doc with history to the gem so switching to a new chat window is seamless.
+
+Gems are amazing, one of my fave AI features
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+HeWhoRoams
+•
+9mo ago
+I think the point of a repeatable and specific response has been made, but my primary gem is a prompt optimizer. When I really want to dig into something, I drop my prompt in there, and yadda yadda yadda, an improved prompt spits out that I than start a new chat with
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Spiritual_Cup2057 avatar
+Spiritual_Cup2057
+•
+9mo ago
+Creating one specifically for web development has been very useful. The biggest bonus Is they remember the chats, code and data within the gem.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+MrJaffaCake
+•
+9mo ago
+Its great if you work on different projects that ask for different tone, sources, complexity of answers, and professionalism. For example, im working on a project for a client with a specific tone, rules, branding documentation etc. Having a gem that knows all of that so I can prompt it for new ideas while keeping all of that in mind is great. I also have a Gem that is focused on game development in Godot, so even though I have a main chat where I work on code, I can also start a new one and ask for ideas or possible solutions for a problem while keeping the project specifics that are in the Gem in mind.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/FlashyDevelopment avatar
+FlashyDevelopment
+•
+9mo ago
+I have a gem for travel itineraries where I put in all my hotel requests, attraction and food preferences and upload past ones so its already knows what I like/want when it makes one for a new place. Like instead of telling it all kinds of stuff I dont want to do over and over (like climb a mountain) it already knows and wont bother recommending it.
+
+I also have one for school where I explain what the major and classes Im in so it already knows the theme of the conversation so it can explain things to me properly (like im an idiot). I also upload that one past lab reports and whatnot so it knows structures of reports I'm looking for
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Jan0y_Cresva
+•
+9mo ago
+It’s basically as close as you can get to a “system prompt” as an end user.
+
+If you want Gemini to always behave as a ______ or respond as _______, that’s where it comes in handy. Instead of having to remind it every single prompt and follow-up prompt.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+KindheartednessMost6
+•
+9mo ago
+I have 2 gems with details of my guitars and amplifiers, including the pdf manuals for the amps.
+
+I use it if I am searching for a particular guitar sound. I specify the band and sing and it gives me a good starting position on the amp and which guitar is the closest.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+SirWobblyOfSausage
+•
+9mo ago
+War .. huh
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/adilp avatar
+adilp
+•
+9mo ago
+I don't want to keep writing the same prompt over and over. I copy my code diff in clipboard and just have to paste it in the gem chat to get a code review
+
+I don't want to keep writing instructions like focus on major concerns and just take note of nit picks etc
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Abeds_BananaStand avatar
+Abeds_BananaStand
+•
+9mo ago
+It’s helpful when you want to do something in situations like:
+
+-specific format in the output
+
+-reference specific files consistently
+
+-common/repeatable scenarios and context. For example: “I work as a marketer at a b2b tech company. My goal is to get more people to attend my upcoming webinar. Here is some key info about my business and audience…” now you won’t have to re establish your personal job and goals every time
+
+Some scenarios I use it for-
+
+Helping me structure notes after using a transcript via google meet and Gemini transcription
+
+Webinar and marketing campaigns
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Abeds_BananaStand avatar
+Abeds_BananaStand
+•
+9mo ago
+Another tip, once you have a scenario where you plan to create a gem of you do the prompt like normal and get a result you like, at the end ask Gemini how do I turn this into a prompt ? Ask for instructions to feed into the gem and it’ll help you develop it
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/falehsub avatar
+falehsub
+•
+9mo ago
+I have a Gem to improve my prompts.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Leo_Janthun
+•
+9mo ago
+Can you explain?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/falehsub avatar
+falehsub
+•
+9mo ago
+I write my simple prompt to the Gem and it will improve the prompt using prompt engineering.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/themadman0187 avatar
+themadman0187
+•
+9mo ago
+can you provide this please? Id love it!
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/buff_samurai avatar
+buff_samurai
+•
+9mo ago
+It’s for when you use LLM to do a series of tasks based on a single prompt but do not want to rewrite the whole prompt every single time.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Chemical_Meaning_471 avatar
+Chemical_Meaning_471
+•
+9mo ago
+Gems instructions are similar in essence to userstyle in Claude. Gems also has Knowledge. In Claude, userstyle helps me a lot when writing research. I have formulated in detail what language structures should be used to write and it works.
+
+But there is a serious limitation with Gems:
+
+I cannot use the Deep Research mode.
+
+At the same time, the Deep Research feature was recently added together with user files. And Gems still has this strange limitation. After all, if the problem is within the tokens of the general knowledge chat + Gems, then they can be considered as a total token amount, as in Claude?
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+[deleted]
+•
+9mo ago
+I tried creating a few gems on my iPhone, but I wasn’t satisfied with the results. Instead, I switched to using text replacement in iOS settings with my actual prompts. For example, I set up “/amp” to expand to “articulate my point” – this quickly transforms my rough thoughts into proper notes.
+
+I never had any luck with a knowledge base in gems
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Green-Smoke4376 avatar
+Green-Smoke4376
+•
+9mo ago
+I have several:
+
+One expert in APA7 referencing (and man he's a humourless hardcase)
+
+One study support who can switch between two modes and helps me either brainstorm or edit
+
+One therapist who's surprisingly wise
+
+And then a bunch of other fun stuff like a dude who turns anything into Shakespearean language
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+[deleted]
+•
+9mo ago
+I’ve programmed the gems to do exactly what I want. I thought they would be good practice for what I’m trying g to do but I really want to share that as a chat bot. I have ai studio but no idea how to make the gem into a shareable bot.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Rough_Bathroom_4664 avatar
+Rough_Bathroom_4664
+•
+9mo ago
+I wanna ask how can i remove cheess champ from sidebar? I really don't need that shows on my interface everyday.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Regular_Leather590 avatar
+Regular_Leather590
+•
+7mo ago
+I personally use it for a specific task. I have a gem created that churns out a Product spec, challenges me in my thought process, and gives me strategic feedback. I have another gem, Summarize Buddy, created for a specific project, that summarises a transcript.
+i find it useful, but i landed here to understand what else can I do apart from these things.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Comfortable-Two4955 avatar
+Comfortable-Two4955
+•
+6mo ago
+•
+Edited 6mo ago
+I used GEMs for the first time yesterday vs the "regular chat." I'm creating a timeline and the GEMs description seemed to be a great option. 
+
+First, I was confused because it works just like the regular chats so I could not understand why I was using it (OP touched on this).
+
+Second, I asked it to reference some emails (I gave date range and names) and asked for a summarization. I separately asked for a specific email (the first one of this timeline) and gave exact date mentioning I do not know the exact address of who I sent it to (I could have looked but this defeats the purpose the program). I did this anticipating it might not be found without a specific prompt to it. I even mentioned if that email cannot be found I will provide full address and to just left me know.
+
+I'm still learning how to prompt Gemini to do what I need it to do. Example "@Title" to grab a specific Google doc. [Another frustrating story]
+
+The summary did not include this email.  When I brought it up it apologized and told me it didn't know the email address and could find it. 
+
+Third, there were MANY prior nuisance problems but this was the last straw. I asked it to provide me with the ENTIRE response from an email from a specific person and date. It fabricated it's own version of this email and presented it like it was the actual email. (To, From, Date, Email Address, Subject Line, Content, Ending Disclaimers). 
+
+This was from an email I received 4 months ago. I knew the content, but not every word. This fabricated email was good enough to make me second guess myself and check. 
+
+Wow!!!! I was just gaslighted by a lying, lazy, can't function on it's most basic "helpful AI assistant" level. All it knows how to do is lie, apologize, admit it failed, , acknowledge my frustration, and promises to never do it again. Then it does the exact same thing with the next prompt. 
+
+My white board with dry erase marker functions better. At least that doesn't waste my time. And after I asked it what is the value of paying a monthly fee for the upgraded program it told me "There is no value."
+
+I then asked for a list of similar AI programs that would better suit my needs (this was an aggravated rhetorical question) and it provided a list of every LLM AI that exists. 
+
+I'm cutting my losses and bailing out. 
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/SR_RSMITH avatar
+SR_RSMITH
+OP
+•
+6mo ago
+OP here. I finally found used for Gems. I’m no real expert, but did you actually save those emails and fed Gemini or the Gem with them? Or were you referencing them from Gmail for example?
+
+Anyway, they’re good for repetitive tasks, as in “stuff you may do again and would like to have a pre-set prompt which you don’t want to write every time and for which you can add some custom documents or a small database”.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Comfortable-Two4955 avatar
+Comfortable-Two4955
+•
+6mo ago
+Any regular chat can also be revisited. As long as you keep using the same one. So, still works like Gems.
+
+I had Gemini access my email and provide a summary. An hour later, I asked it to provide me the complete full email of one it accessed. It fabricated one instead of giving the exact one. A fabrication so good that I had to go back and look for myself.
+
+People will eventually start getting in trouble for using this technology. Because if they are relying on it for any kind of accuracy (let alone complete fabrications) people will get fucked - think legal documents drafted, medical charts, etc.
+
+This technology is not good enough for the REAL world as it is today. But, it's all about profit. There is a disclaimer at the bottom of every chat telling you "Gemini can make mistakes, so double-check it." The developers are off the hook. Should say, "For entertainment purposes only"
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Skwiidy
+•
+6mo ago
+I've found gems extremely useful for structured youtube summaries. Paste a link and get the same formatted output and info extracted from a video without the fuss.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/SR_RSMITH avatar
+SR_RSMITH
+OP
+•
+6mo ago
+Great idea, thanks!
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Smetana5
+•
+3mo ago
+Кто-нибудь знает, дает ли платная подписка google ai plus загружать в gem больше файлов, чем 10?
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+AdExpress5748
+•
+3mo ago
+I was playing around with Gems the other day, I made one to write emails in my specific style, one to recommend me music based on what styles I like and what bands I already listen to, one for recipes and shopping lists and for fun I made one that just talks like a Valley girl and one that was constantly suspicious and reading too far into everything I typed 😅

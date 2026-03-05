@@ -1,27 +1,3 @@
-Get started with Gems in Gemini Apps
-
-
-Welcome to the getting started guide for Gems. Here you'll find tips to customize Gemini Apps responses with Gems.
-
-What are Gems?
-Gems are customized versions of Gemini that help you tackle repetitive tasks or get deep expertise in new areas. When you chat with a Gem, Gemini will tailor responses to save time on repeat goals and guidelines in your Gemini web app and Gemini mobile app prompts.
-
-What you'll learn
-Learn how to:
-
-Use Gems
-Customize premade Gems
-Write instructions for custom Gems.
-What you'll need
-To create and use Gems with a personal Google Account, you must also be 13 (or the applicable age in your country) or over.
-
-Note: Some features are not yet available in the Gemini mobile app. Requirements will be listed in each section of the Gems guide.
-
-In this guide
-
-How to use Gems	Get a quick start with premade Gems
-
-Get started with Gems in Gemini Apps
 Tips for creating custom Gems
 Next: Related resources
 
@@ -157,3 +133,5 @@ Choose a file to upload for your Gem.
 To upload a file from your device: Click Upload files .
 To add a file from your Google Drive: Click Drive .
 To add files from your Drive, you need to have Keep Activity on and connect Google Workspace to Gemini Apps. If it’s not connected, you'll get the option to connect it. Learn about your data and the Google Workspace extension.
+
+

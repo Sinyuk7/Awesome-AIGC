@@ -1,0 +1,70 @@
+Get started with Gems in Gemini Apps
+How to use Gems
+Next: Get a quick start with premade Gems
+
+
+With Gems, you can create specific and repeatable instructions for Gemini to follow.
+
+How Gems can be helpful
+By creating a Gem with all of the info about your goals and preferences, or using a premade Gem designed for a certain action, the Gem is a shortcut every time you want to explore a topic with similar instructions. You can create different Gems for your unique needs and reuse them to simplify your prompts and questions in Gemini Apps.
+
+
+
+
+Examples
+With Gems, you can get responses that follow custom instructions like:
+
+Workout requirements. Create a Gem that includes any physical limitations and time limits to make sure Gemini maximizes your time and provides suitable movements for each new workout.
+Diet preferences. Create a Gem that has specific ingredients to include, or a diet to follow like vegan or high protein, every time you ask for a new recipe.
+Gardening specifications. Create a Gem based on your garden's climate and light exposure to get relevant ideas whenever you ask Gemini gardening questions.
+
+Give feedback about this article
+
+Get started with Gems in Gemini Apps
+Get a quick start with premade Gems
+Next: Tips for creating custom Gems
+
+Gemini Apps comes with premade Gems to get started right away or customize for your needs.
+
+On this page, learn how to:
+	Chat with a premade Gem as is
+	Customize a premade Gem
+
+Chat with a premade Gem as is
+Where you can chat with a premade Gem:
+	The Gemini web app
+	The Gemini mobile app
+	The Gemini side panel in Google Workspace
+Premade Gems offer help for a range of topics, from brainstorming and coding to career coaching.
+
+Computer AndroidiPhone & iPad
+To get started with a premade Gem:
+
+On your computer, go to gemini.google.com.
+On the left, click Explore Gems.
+Under “Premade by Google,” select the Gem you want to try out.
+Enter your prompt.
+Click Submit .
+Try it in the Gemini web app
+
+Tip: Premade Gems already have instructions for the specific topic you select. When you provide a simple prompt, Gemini may ask follow up questions to further customize the response.
+
+Customize a premade Gem
+Where you can customize a premade Gem:
+	The Gemini web app
+You can copy some premade Gems as a starting point and customize it for your specific needs.
+
+On your computer, go to gemini.google.com.
+On the left, click Explore Gems.
+Under “Premade by Google,” find the Gem you want to customize and click Make a copy .
+Edit the Gem’s name.
+Review and edit the Gem’s instructions to better fit your needs.
+Click Save.
+Try it in the Gemini web app
+
+
+Examples
+Copy the Career guide Gem and add details about your unique skills or career goals.
+Copy the Writing editor Gem and add a specific writing style guide, like AP or MLA style, for the Gem to follow.
+Copy the Brainstormer Gem and add info about your brainstorming goals, like an audience age range for story ideas or a decade for party theme ideas.
+Tip: Not all premade Gems can be customized. If you don't have the "Make a copy" option, the Gem can't be copied or customized.
