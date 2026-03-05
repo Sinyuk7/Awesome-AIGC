@@ -1,0 +1,376 @@
+<context_package id="cp_2026-03-02T15:55:00Z" locale="zh-CN">
+    <instructions priority="100">
+        <![CDATA[
+- Use <documents> as background knowledge and evidence only.
+- Follow priority: policy > procedure > reference > evidence.
+- Cite using: refer to <document id="...">.
+- Do not invent missing facts. Use evidence verbatim when needed.
+        ]]>
+    </instructions>
+
+    <documents>
+        <document id="doc_midjourney_prompt_engineering" role="procedure" priority="85" title="Midjourney 图片提示词构造规范与实战技巧" status="active" version="1.0.0" date="2026-03-02" source="internal_wiki" language="zh-CN">
+            <![CDATA[
+# Summary
+- 提供 Midjourney V6/V7 图片生成提示词的构造规范、优化方法与实战技巧。
+- 覆盖从原始输入（文本意图 / 参考图片）到结构化提示词的完整转化流程。
+- 包含三段式架构标准、镜头语言控制、参数调优策略、风格一致性维护，以及全身照生成等特定场景的专用协议。
+- 适用于所有使用 Midjourney V6/V6.1/V7 进行图像生成的场景。
+
+# Applicability
+- 适用于：使用 Midjourney 进行静态图像生成（文生图 / 图生图 / 风格迁移 / 角色一致性）的所有场景。
+- 不适用于：视频生成；与 Midjourney 无关的其他 AI 图像生成平台；模型底层训练与微调。
+
+# Definitions
+- Token：提示词被模型解析后的最小语义单元。V6+ 模型按句法结构而非关键词密度处理 Token。
+- 语义锚定 (Semantic Anchoring)：通过精准词汇组合激活模型潜空间中特定视觉结构的方法。
+- 肖像偏差 (Portrait Bias)：模型因训练数据分布导致的默认生成半身像或特写的倾向。
+- 风格出血 (Style Bleeding)：媒介描述词意外影响整个画面风格的现象。
+- 语义稀释 (Semantic Dilution)：过多细节描述导致镜头被迫拉近、宏观构图指令失效的现象。
+- 鞋子理论 (The Shoes Theory)：通过描述脚部细节强制模型生成全身构图的技术。
+- 多重提示 (Multi-Prompting)：使用双冒号 :: 分割提示词并分配权重的语法机制。
+- --sref (Style Reference)：风格参考参数，迁移参考图的色彩、笔触、光影。
+- --cref (Character Reference)：角色参考参数，锁定角色的面部、发型、服装。
+- --oref (Omni Reference)：V7 全能参考参数，统一替代 --sref 和 --cref。
+
+# Requirements
+
+## R1: 自然语言优先，禁用垃圾词
+- V6/V7 架构已从"关键词汤"模式转向自然语言理解模式。禁止使用 "4k", "8k", "photorealistic", "ultra-detailed", "award-winning", "masterpiece", "trending on artstation" 等冗余描述。
+- 这些词在 V6+ 模型中作为噪声稀释有效 Token 的权重，导致图像一致性下降。
+- 替代方案：将抽象质量要求转化为具体物理属性。用 "Shot on 35mm film, f/1.8 aperture, depth of field" 替代 "Cinematic lighting, realistic"。
+
+## R2: 三段式架构标准
+提示词必须遵循以下结构，顺序不可颠倒：
+
+```
+[参考图像 URLs] + [文本描述核心] + [后缀参数]
+```
+
+### 参考图像 (Image Prompts)
+- 必须位于提示词最前端，作为像素级视觉锚点。
+- 必须是直接的图像链接，支持格式：.png, .gif, .webp, .jpg, .jpeg。
+- 放置于其他位置会导致解析错误或被当作文本处理。
+
+### 文本描述 (Text Prompts)
+- 核心指令区域，遵循"倒金字塔"权重原则：越靠前权重越高。
+
+### 参数 (Parameters)
+- 必须位于提示词最后，用于调节生成器的数学约束。
+- 参数与文本之间、参数标识与值之间必须有空格。
+
+## R3: 文本描述的内部序列
+在文本描述模块内部，按以下顺序组织内容：
+
+1. **主体 (Subject)**：核心名词短语。使用具体实体名词（"Siberian Tiger" 而非 "Cat"，"Cerulean blue" 而非 "Blue"）。避免模糊复数，使用集合名词（"a clowder of cats"）或确切数量词（"three cats"）防止实体融合。
+
+2. **媒介 (Medium)**：艺术形式（"Oil painting", "Polaroid photo", "3D render"）。尽早定义媒介可防止风格出血。
+
+3. **环境 (Environment)**：使用动态介词定义空间关系（"sitting on a bench", "in a neon-lit alley"）。
+
+4. **光影 (Lighting)**：物理照明条件（"Rembrandt lighting", "Golden hour", "Softbox lighting", "Volumetric lighting"）。
+
+5. **色彩 (Color)**：调色板与色调映射。
+
+6. **情绪/氛围 (Mood)**：情感基调。
+
+7. **构图 (Composition)**：镜头角度与取景范围。
+
+## R4: 镜头语言控制
+
+### 景别术语
+| 术语 | 视觉效果 | 适用场景 |
+|------|----------|----------|
+| Extreme Close-Up (ECU) | 聚焦极小局部，背景完全虚化 | 眼睛、纹理、珠宝细节 |
+| Close-Up | 框取头部和颈部 | 面部表情（Midjourney 默认倾向） |
+| Medium Shot | 框取腰部以上 | 上半身动作和手势 |
+| Cowboy Shot | 框取大腿中部以上 | 展示肢体又保留面部细节 |
+| Full Body Shot | 从头到脚完整展示 | 穿搭、角色设计（需配合竖屏和脚部描述） |
+| Wide Shot | 主体完全可见，环境占主导 | 建立空间关系 |
+| Extreme Wide Shot | 主体极其渺小 | 史诗感、孤独感、宏大叙事 |
+
+### 摄像机角度
+| 术语 | 心理效应 | 配合关键词 |
+|------|----------|------------|
+| Low Angle / Worm's Eye View | 力量感、压迫感、英雄主义 | "Dominant", "Towering", "from below" |
+| High Angle / Bird's Eye View | 渺小、脆弱、展示布局 | "Overhead Shot", "Top down" |
+| Eye-Level | 自然、无失真、亲切 | 人像、亲历感场景 |
+| Dutch Angle | 紧张、动态、不安 | 动作场面、恐怖氛围 |
+| POV (Point of View) | 沉浸式第一人称视角 | 配合 "Looking at..." |
+
+### 光学镜头
+| 术语 | 效果 | 适用场景 |
+|------|------|----------|
+| Wide angle lens / 24mm | 透视变形，近大远小 | 高张力、广角填充 |
+| Fisheye Lens | 极端桶形畸变，视野极宽 | 滑板摄影、夸张艺术 |
+| Telephoto Lens / 85mm | 压缩空间，浅景深 | 极简风格、人像特写 |
+| Macro Lens | 微观世界 | 昆虫、水滴、微缩模型 |
+| Anamorphic lens | 横向镜头炫光，椭圆形光斑 | 电影质感 |
+
+## R5: 核心参数调优规则
+
+### 宽高比 (--ar)
+- 支持任意整数比。极端比例（> 20:1）可能导致边缘伪影。
+- 常用标准：1:1（默认）、16:9（横向）、9:16（竖向）、2:3（人像）、21:9（超宽）。
+- 拍摄全身人像必须使用竖向比例（--ar 9:16 或 --ar 2:3）。
+
+### 风格化 (--stylize / --s)
+- 范围：0-1000，默认 100。
+- --s 0-50：高保真模式，严格遵循提示词。适用于文本渲染、Logo 设计、UI 设计。
+- --s 100：平衡模式。
+- --s 250-1000：高艺术模式，模型自行添加光影和细节，可能忽略部分提示词约束。
+- 生成文本时强制设置 --stylize 50 或更低。
+
+### 原始模式 (--style raw)
+- 二进制开关。去除模型自带的"美学滤镜"，强制字面解释。
+- 用于写实摄影和精准文本渲染。使画面更锐利，透视更真实。
+
+### 混乱度 (--chaos / --c)
+- 范围：0-100，默认 0。
+- --c 0：四张图非常相似。
+- --c 50+：四张图风格、构图迥异，适合头脑风暴和创意探索。
+
+### 怪诞 (--weird / --w)
+- 范围：0-3000，默认 0。
+- 引入非主流、超现实或不合逻辑的审美。区别于 Chaos 的构图变化，Weird 改变内容逻辑。
+- 适用于超现实主义、梦核风格。
+
+### 图像权重 (--iw)
+- 范围：0-3，默认 1。
+- --iw 3：参考图主导生成，可能覆盖文本指令。
+- 用于强制模型高度遵循参考图的构图布局。
+
+## R6: 多重提示与权重分配
+使用双冒号 :: 进行语义切割与权重分配。
+
+### 概念分离
+- `Space ship` = 太空飞船（单一概念）
+- `Space:: ship` = "太空"概念 + "船"概念的混合
+
+### 权重分配
+- 语法：`Word::Value`
+- 权重是相对的：`Cyberpunk::2 City::1` 表示赛博朋克风格的重要性是城市的两倍。
+- `A::10 B::10` 等同于 `A::1 B::1`。
+- V6 支持小数权重（::1.5, ::0.25）。
+
+### 负权重
+- 用于柔和抑制元素，比 --no 更具可调性。
+- 示例：`Tulip field::1 Red::-0.5`（生成郁金香田，但降低红色出现频率）。
+- 约束：所有权重之和必须为正数。
+
+### 滑块法
+- 通过权重微调氛围配比。
+- 示例：`Cyberpunk city::1 Fog::0.3 Neon::0.8 Rain::0.5`
+
+## R7: 风格一致性策略
+
+### 风格参考 (--sref)
+- 功能：迁移参考图的色彩、笔触、光影，不迁移主体内容。
+- 多风格融合：`--sref URL1 URL2`，模型混合多个 URL 的风格向量。
+- 随机风格：使用 `--sref random` 获取随机风格代码，可作为永久风格代码复用。
+- 风格权重 (--sw)：范围 0-1000。--sw 1000 强制最大化风格 adherence，--sw 50 仅保留淡淡色调。
+
+### 角色一致性 (--cref)
+- 功能：锁定角色的面部、发型、服装。
+- 角色权重 (--cw)：
+  - --cw 100（默认）：锁定脸+发型+衣服。
+  - --cw 0：仅锁定脸部。这是给角色"换装"的核心技巧。
+- 真理之源：始终使用一张高质量、光线均匀的角色设定图作为参考源。
+- 语义增强：即使使用了参考图，仍需在文本提示中重申关键特征（如 "neon blue hair"），防止高动态场景下的特征丢失。
+
+### V7 全能参考 (--oref)
+- 统一替代或增强 --cref 和 --sref。
+- 全能权重 (--ow)：范围 0-1000。
+  - --ow 0-100：提取语义特征（如"红衣人"），姿态背景自由。
+  - --ow 400+：强一致性锁定，保留纹理、配饰等像素级细节。
+
+## R8: 文本渲染规则
+- 使用双引号 " " 包裹需要生成的文本。必须区分大小写。
+- 载体匹配：将文本放置在逻辑上合理的载体上（"written on a neon sign", "billboard", "sticky note"），避免 "floating text"。
+- 低风格化：强制设置 --stylize 50 或更低，或使用 --style raw，防止文字被"艺术化"为不可读字形。
+- 修复错误：使用 "Vary (Strong)" 或 "Vary Region" 工具局部重绘修正拼写错误。
+
+## R9: 负面提示词 (--no) 使用规则
+- 语法：`--no element1, element2, element3`
+- 用于排除不需要的元素。
+- 示例：`--no portrait, headshot, close-up, cropped legs, cut off feet, distant, empty background`
+
+# Procedure
+
+## Step 1: 分析原始输入并确定生成模式
+1. 判断输入类型：纯文本意图 → 文生图模式；已有参考图片 → 图生图模式。
+2. 文生图模式：按 R3 的七层序列完整填写所有层级。
+3. 图生图模式：参考图片已锁定主体外观和环境基调，文本重心转移至动作描述和构图调整。
+
+## Step 2: 选择画幅比例
+1. 根据主体形态和用途选择合适的宽高比。
+2. 人物全身像：使用 --ar 9:16 或 --ar 2:3。
+3. 横向场景：使用 --ar 16:9 或 --ar 21:9。
+4. 正方形构图：使用默认 --ar 1:1。
+
+## Step 3: 按三段式架构组装提示词
+1. 如有参考图，将 URL 放在最前端。
+2. 按主体→媒介→环境→光影→色彩→情绪→构图的顺序组织文本描述。
+3. 将所有参数放在提示词最后。
+
+## Step 4: 参数调优
+1. 根据任务类型选择 --stylize 值：
+   - 精确控制/文本渲染：--s 0-50
+   - 常规生成：--s 100
+   - 艺术创作：--s 250-750
+2. 需要写实效果时添加 --style raw。
+3. 需要探索多样性时增加 --chaos 值。
+4. 需要超现实效果时增加 --weird 值。
+
+## Step 5: 迭代优化
+1. 检视生成结果，识别问题区域。
+2. 使用 Vary (Subtle) 进行微调，保持整体结构。
+3. 使用 Vary (Strong) 进行较大变化。
+4. 使用 Vary Region 局部重绘修复特定区域。
+5. 使用 Zoom Out 扩展画布范围。
+6. 使用 Pan 向特定方向扩展画布。
+
+## Step 6: 质量检查
+对每个生成结果按以下维度验证：
+1. 提示词依从性：主体、媒介、环境、光影是否符合预期。
+2. 构图准确性：景别、角度、画幅是否正确。
+3. 细节完整性：是否存在肢体崩坏、多余手指、裁剪异常。
+4. 文本准确性（如适用）：文字是否清晰可读、拼写正确。
+
+# Exceptions
+
+## E1: 全身照切脚问题
+- 条件：使用 "Full Body Shot" 但生成结果切掉脚部或腿部。
+- 处理：
+  1. 必须使用竖向画幅（--ar 9:16 或 --ar 2:3）。
+  2. 应用"鞋子理论"：在提示词中描述脚部细节（"wearing red high heels", "detailed combat boots"）或地面互动（"standing on wet pavement"）。
+  3. 添加负面提示词：`--no close-up, portrait, headshot, cropped, cut off`。
+  4. 使用 Zoom Out 功能补全被切掉的部分。
+
+## E2: 16:9 横幅全身像的几何悖论
+- 条件：需要在 16:9 横向画幅中生成全身人像。
+- 处理：
+  1. 使用"先竖后横"工作流：先用 --ar 9:16 生成完美的竖向全身图，再使用 Custom Zoom 转换为 --ar 16:9。
+  2. 强制广角透视：使用 "Wide angle lens", "24mm lens", "Foreshortening" 关键词。
+  3. 使用对角线构图：让角色头部位于一角，脚部位于对角，最大化利用画幅空间。
+  4. 使用 X 形/宽距站姿：双腿极度张开占据画面下方两角。
+
+## E3: 风格出血
+- 条件：媒介描述词（如 "Pencil sketch"）意外影响整个画面。
+- 处理：
+  1. 将媒介词放在提示词最前。
+  2. 使用权重切割：`Pencil sketch:: of a cat...`
+  3. 使用 --sref 隔离风格。
+
+## E4: 语义稀释导致构图失效
+- 条件：描述了大量面部细节后，"全身照"指令失效。
+- 处理：想要宏大构图时，克制对微小细节的描写，转而描写姿态、轮廓和环境。描述环境的词汇量应多于描述主体的词汇量。
+
+## E5: 肢体崩坏
+- 条件：极端广角透视下手脚变形或多余手指。
+- 处理：不要因局部崩坏废弃整张构图完美的图。使用 Vary Region 框选崩坏区域，在提示词中强调解剖结构（如 "clenched fist"），重新生成局部。
+
+## E6: 权重计算错误
+- 条件：使用多重提示时权重总和为零或负数。
+- 处理：确保所有权重之和为正数。`Cat::5 Dog::5` 等同于 `Cat::1 Dog::1`，保持数值简洁。
+
+# Examples
+
+## Example 1: 从模糊意图到结构化提示词（商业摄影）
+- Input（原始意图）: "一个漂亮的女孩穿着红裙子，电影感"
+- Output（结构化提示词）:
+  ```
+  A sophisticated woman wearing an elegant red velvet dress, standing in a lush English garden. Warm sunset light backlights her hair, creating a halo effect. Shot on 35mm film, f/1.8 aperture, depth of field, soft butterfly lighting --ar 2:3 --style raw --v 6.1
+  ```
+- Notes: "漂亮"转化为具体的服装材质描述；"电影感"转化为具体的光学参数（35mm, f/1.8）和光影描述（sunset light, butterfly lighting）。
+
+## Example 2: 全身像生成（鞋子理论应用）
+- Input（原始意图）: "生成一个战士的全身像"
+- Output（结构化提示词）:
+  ```
+  Full body shot, low angle, a powerful female warrior in ornate silver armor, dynamic battle stance, detailed leather combat boots stepping on cracked stone ground, flowing red cape, dramatic rim lighting --ar 9:16 --s 150 --no close-up, portrait, cropped
+  ```
+- Notes: 使用竖向画幅 9:16；描述脚部细节 "detailed leather combat boots" 和地面互动 "stepping on cracked stone ground"；添加负面提示词排除特写。
+
+## Example 3: 16:9 横幅高填充率全身像
+- Input（原始意图）: "16:9 横幅中的全身暗黑魔女"
+- Output（第一步 - 竖向底图）:
+  ```
+  Extreme low angle shot, wide angle 24mm lens, Dutch angle, aggressive foreshortening, a powerful witch suspended in mid-air, body rotated diagonally across the frame, long legs stretching towards the viewer, detailed thigh-high leather boots, massive witch hat filling the top frame, flowing tattered cape, volumetric moonlight, gothic architecture background --ar 9:16 --style raw --v 6.1
+  ```
+- Output（第二步 - Custom Zoom 转换）:
+  ```
+  点击 Custom Zoom，修改 --ar 为 16:9，Zoom 值设为 1.5，添加环境描述 "wide gothic cathedral background, dramatic clouds"
+  ```
+- Notes: 先竖后横工作流确保全身完整；使用广角镜头和低角度增强张力；对角线构图最大化利用横向画幅。
+
+## Example 4: 权重分配控制场景主次
+- Input（原始意图）: "赛博朋克城市中有一个小机器人"
+- Output（结构化提示词）:
+  ```
+  Cyberpunk city landscape ::3 Small robot in distance ::1, neon signs, rain-slicked streets, volumetric fog --ar 16:9 --c 20
+  ```
+- Notes: 通过给予城市景观 3 倍权重，强制模型将算力集中在环境构建上，机器人成为画面次要元素。
+
+## Example 5: 角色一致性换装
+- Input（原始意图）: "让之前生成的角色换一套衣服"
+- Output（结构化提示词）:
+  ```
+  [Character URL] A woman with neon blue hair wearing a black leather jacket and ripped jeans, urban street background, golden hour lighting --cref [Character Reference URL] --cw 0 --ar 2:3
+  ```
+- Notes: 使用 --cw 0 仅锁定脸部，允许更换服装；在文本中重申关键特征 "neon blue hair" 防止特征丢失。
+
+## Example 6: 风格迁移与复用
+- Input（原始意图）: "用某种特定的艺术风格生成不同场景"
+- Output（发现风格）:
+  ```
+  A castle on a cliff --sref random --ar 16:9
+  ```
+- Output（复用风格代码）:
+  ```
+  A dragon flying over mountains --sref 123456 --sw 800 --ar 16:9
+  ```
+- Notes: 使用 --sref random 发现理想风格后，记录返回的数字代码，在后续生成中复用以保持一致风格。
+
+## Example 7: 文本渲染
+- Input（原始意图）: "生成一个霓虹灯招牌写着 OPEN"
+- Output（结构化提示词）:
+  ```
+  A neon sign written "OPEN" glowing in pink and blue, rainy night street, reflections on wet pavement, cinematic atmosphere --s 30 --style raw --ar 16:9
+  ```
+- Notes: 使用双引号包裹文本；将文本放在合理载体（neon sign）上；使用低风格化值（--s 30）和 --style raw 确保文字清晰。
+
+## Example 8: 滑块法微调氛围
+- Input（原始意图）: "调整赛博朋克场景的雾气和霓虹强度"
+- Output（基础版）:
+  ```
+  Cyberpunk city ::1 Fog ::0.3 Neon ::0.8 Rain ::0.5 --ar 16:9
+  ```
+- Output（加重雾气版）:
+  ```
+  Cyberpunk city ::1 Fog ::0.7 Neon ::0.5 Rain ::0.5 --ar 16:9
+  ```
+- Notes: 通过调整小数权重精细控制各元素的视觉比重，如同音频混音。
+
+## Example 9: 二次元/动漫风格
+- Input（原始意图）: "生成动漫风格的可爱女孩"
+- Output（结构化提示词）:
+  ```
+  A cute anime girl with pink twin tails, wearing a frilly dress, holding a magic wand, pastel flower garden background, soft lighting --niji 6 --style cute --ar 2:3
+  ```
+- Notes: 使用 --niji 6 而非基础模型；使用 --style cute 获取萌系美学；Niji 模型对日本假名和汉字有更好的渲染能力。
+
+## Example 10: 后期修复工作流
+- Input（原始状况）: 生成的全身像切掉了脚踝
+- Output（修复步骤）:
+  1. 点击 Zoom Out 1.5x 或 2x，AI 会向下扩展填充腿部和脚部。
+  2. 如需同时调整比例：点击 Custom Zoom，修改提示词添加 "full body, shoes"，并修改比例为 --ar 9:16。
+  3. 如存在手指崩坏：使用 Vary Region 框选手部，输入 "detailed hand with five fingers, natural pose"。
+  4. 如主体过于居中：使用 Pan Right 在右侧增加画布，将主体挤到左侧实现三分法构图。
+
+# References
+- 无外部引用。
+            ]]>
+        </document>
+    </documents>
+</context_package>

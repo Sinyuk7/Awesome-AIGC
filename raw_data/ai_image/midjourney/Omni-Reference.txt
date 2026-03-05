@@ -1,0 +1,224 @@
+# Parameter: `--oref` (Omni-Reference)
+
+---
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+Omni-reference (or `--oref`) helps you get roughly the same character, animal, building, or object etc across jobs. Midjourney uses a semantic understanding of the image to transfer attributes of it. Control this transfer with the `--ow N` parameter (omni-reference weight), with values of `N` from `1-1000`. The default is `100`.
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What is Omni-reference (--oref)?**
+
+</aside>
+
+Omni-reference (or `--oref`) helps you get roughly the same character or object across jobs. It allows you to stabilize not just characters, but also… anything? Everything? Think buildings, animals, distinct objects, unique shapes.
+
+Basically, the `--oref` parameter lets you create a subject based on an image you provide via URL (or attachment, if you use the web).  It’s helpful for keeping visual consistency, especially if the prompt includes some stabilizing or anchoring phrases. But, be aware, at time of writing, it can’t be used in the Full Editor (because that’s still v6.1 behind the curtain).
+
+<aside>
+💡
+
+The promptcraft challenge with `oref`: Midjourney is semantically aware of the thing in your attachment and will try to use it *archetypally* in the new image. For example, if your attached image is boots, Midjourney will struggle if you ask for a boat or a hat in the shape of that boot. It will try to treat the boots as boots. *Repurposing objects against their archetype is not easy*. To do it, you’ll need to drop `--ow` to values well below the default of `100` and try some tricks.
+
+</aside>
+
+<aside>
+<img src="/icons/info-alternate_blue.svg" alt="/icons/info-alternate_blue.svg" width="40px" />
+
+## Deep Dive and Examples
+
+</aside>
+
+⭐ Open all toggle sections below for more info!
+⭐ Keep them ALL open if you’re using AI to read/explain this page.
+⭐ Desktop shortcut to expand/close all: `Ctrl + Alt + T` (Windows), `Cmd + Opt + T` (Mac)
+
+### 📦 Example of a pretty standard prompt using `--oref` .
+
+Notice how we anchor the details.
+
+`A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png`
+
+![This is the `--oref` used in the prompt.](attachment:62c4ccac-d517-4f78-b3d3-8b407ef5c3c3:image.png)
+
+This is the `--oref` used in the prompt.
+
+This is the image produced by the prompt and the `--oref`.
+
+![This is the output of the prompt + `--oref`.](attachment:8e2c0d61-6161-4b30-b456-4d505f3b1972:image.png)
+
+This is the output of the prompt + `--oref`.
+
+### 📦 Distinctive features work best with oref.
+
+The more distinctive the features, the better the results. 
+
+**✅ Attributes that work well with `--oref`:**
+
+**Big signature features:** teal curly hair, pink sunglasses, floor-length trench coat, green backpack
+
+**❌ Attributes that don’t work well with `--oref`:**
+
+**Small or complex details:** a silver pendant necklace with eight small pyramid-shaped jewels, a leather jacket with the left sleeve missing that says "ZOOM" across the back, an undercut hairstyle with infinity symbols shaved onto the temples
+
+<aside>
+💡
+
+Character or object *details* may still change due to randomness and the play of other style and vibe modifiers. To address this, explore anchoring or stabilizing important traits directly in the prompt.
+
+</aside>
+
+### Weight values of all kinds are important when using oref.
+
+Explore combining ALL the transfer tools for richer results. And explore *removing or reducing* these very same things if you are struggling to make your oref appear “as-is” in the output.
+
+| Tool | Result | How to Preserve Oref |
+| --- | --- | --- |
+| Style Reference `--sref` | *Bring in the style.* | Reduce `--sw` to preserve oref. |
+| Omni Reference `--oref` | *Bring in the face or shape.* | Increase `--ow` to preserve oref. |
+| `image prompt` | *Bring in the composition.* | Reduce `--iw` to preserve oref. |
+| Profiles & Mood Boards `--p` | *Bring in a vibe.* | Reduce `--s` to preserve oref. |
+
+### 📦 Different kinds of prompting do different things with oref.
+
+There are three key ways to handle prompting with `--oref`. You can anchor the details (pose, expression, emotion, costume, props, scene, action) to maintain control, use a lighter touch and let `--oref` handle most of it, or provide just the scene and let `--oref` do ALL the work based on its semantic understanding of the contents of the reference image.
+
+In all three cases, the prompt will blend with whatever attributes Midjourney identifies from the `--oref` image(s) you provide. Your prompt can anchor important details of your character or object, or it can be hands-off, allowing the `--oref` image(s) to guide the details fully.
+
+### ⚓ Method #1: Anchoring / Stabilizing
+
+*If you want to control the canvas, this is your method. This is when your prompt reinforces signature attributes from the reference image and explicitly poses the character or positions the object, aggressively if necessary. We recommend using the default value of `--ow` for people (100) but a low value of `--ow` for objects (20) if you are trying to repurpose shapes.* 
+
+```
+A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png 
+
+Surreal photography. Abigail stands in the forest wearing jeans, a t-shirt, and sandals. She wears a tall leather boot-shaped hat on her head, a hat made from a vintage boot, it's got laces, shaped like an old military engineering boot, on her head, as a boot-shaped hat. --oref https://s.mj.run/eAdna9ES5pM
+
+```
+
+![image.png](attachment:a5fbc71c-34b5-4f36-88b6-9e79a0b35a84:image.png)
+
+### 👤 Method #2:  "Someone."
+
+*If you want to give Midjourney more control, this is your method. This is when you write a “hands-off” prompt letting `--oref` do the work. Notice the prompt does NOT reinforce signature details. It just references the character or object generically. This allows Midjourney to blend and imagine more on its own. We recommend using a higher value of `--ow` for people or objects to reinforce details if you’re doing this kind of prompting.*
+
+```
+Someone waits in line at the bank.  --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png --ow 400
+
+Some stuff sits on the docks. --oref https://s.mj.run/eAdna9ES5pM --ow 1000
+```
+
+![image.png](attachment:cc552a93-1dc6-4e35-bca9-26712a120023:image.png)
+
+![image.png](attachment:269af09e-5b55-45ad-820d-8d368b8d9dee:image.png)
+
+### 🖼️ Method #3: Scene-only.
+
+A third approach is available if your `--oref` image already contains the pose and other desired details. You describe only the setting, surroundings, context, or background. Midjourney will blend the referenced character or object into the described scene. If results seem incoherent, try increasing the stylize (`--s`) value and/or experimental (`--exp`) values, e.g., `--s 800 --exp 80`
+
+*Notice the prompt doesn't mention the character or object explicitly, trusting Midjourney to place it intelligently, relying on its semantic understanding of the reference image.*
+
+```
+An empty cornfield beneath an ominous stormy sky. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png --s 800 --exp 80 --ow 400
+```
+
+### 📦 Semantics, archetypes, and omni reference weight (`--ow` )
+
+This takes a minute to understand. So bear with me.
+
+When you feed Midjourney an image using `--oref`, it's not just copying pixels. It's actually trying to understand **what the hell it's looking at.** It's figuring out—*semantically*, that is—what makes a "chair" a chair or a "dog" a dog, instead of seeing just shapes, colors, and blobs.
+
+So if your reference is a picture of a banana wearing sunglasses, Midjourney isn’t just seeing "yellow curved thing + dark plastic thingies." It’s trying to grasp the concept: “Oh, a *banana* wearing *sunglasses*.” 
+
+Here’s evidence of the fact Midjourney has a semantic understanding of your attached image. Squint at the attachment. See that? I’ll give you a moment.
+
+![Image provided by community member `colect`](attachment:65f6c945-e90c-4767-96c8-943bc7b92711:image.png)
+
+Image provided by community member `colect`
+
+The problem is that this semantic understanding can *trap* Midjourney into depicting only the best-known, least-original appearances of things. *Bananas don't wear sunglasses. Sunglasses aren't worn by bananas.* So, left to its own devices, Midjourney may just put a banana on the table next to some sunglasses. That's the archetype. Archetypes are powerful. And your prompt is probably fighting to do something non-archetypal. That's hard. That’s also art, right? That's why we have to drop `--ow` below 100, *to pry Midjourney's fingers off the archetype.*
+
+The attributes Midjourney identifies from your reference image(s) blend with the prompt to create the final output. Control this transfer roughly using the `--ow N` parameter (weight), with values of `N` from `1-1000`. The default is `100`.
+
+- ⬆️ Higher values (max `--ow 1000`) will create more archetypal adherence, which doesn’t mean more loyalty to the details of your image. It means more loyalty to the *semantic understanding* Midjourney has of your image.
+- ➡️ A value of `--ow 100` (default) picks up roughly everything as-is, nice balance.
+- ⬇️ Lower values (below 100) mean less archetypal adherence, so more creativity allowed.
+
+![image.png](attachment:27ce7bf1-b929-4f64-bee3-6e1b6e2eddbb:image.png)
+
+### 📦 Aspect ratios matter with `--oref.`
+
+1. **Size matters.** 
+    
+    **Make the object or person the correct size in your ref image. If you want it smaller, add more empty space around it first. Midjourney copies the size from your example.** 
+    
+    It’s best if the object or person in the reference image is already approximately the size you want it to be in the result. Midjourney struggles with sizes and proportions. Add space around your subject in the reference image to help it be smaller in the frame of the reference image if you want it to become smaller in the output. (You can do this in the Editor or with Zoom.)
+    
+    This is a good example of making objects and people “the right size”:
+    
+    ![image.png](attachment:be12c1f9-49bb-4979-9c9e-40f6ef2e53f6:image.png)
+    
+    ![Provided by community member `colect`](attachment:a26925e3-0255-42d1-8af1-5e0d2832b7a4:image.png)
+    
+    Provided by community member `colect`
+    
+2. **Provide enough room on the canvas.** 
+    
+    **If your object is tall, choose a tall (portrait) aspect ratio. If your object is wide, choose a wide (landscape) aspect ratio.** 
+    
+    You’ll get better results if your aspect ratio gives Midjourney enough room. For example, a full body image of someone squashed into a square or landscape aspect ratio is more likely to cause proportion issues. If you need an image to be a certain aspect ratio we recommend a plan to crop it later, but in Midjourney *generate* it in the aspect ratio that creates the best image. 
+    
+3. **Use all the same aspect ratios to avoid black bars.**
+    
+    Strive to make sure all your external image references have the same aspect ratios. Where there’s a difference, you might get black bars like this.
+    
+    ![image.png](attachment:2ca720ef-81be-4cfa-ab21-dce445411ac0:image.png)
+    
+
+### 📦  **Other important things to know about `--oref`.**
+
+1. *What's the best type of image to use?*  Use images with clear, obvious attributes prominently shown. Simple, clear images often work best. Creating a library of reference images in various poses can help reinforce your text prompts.
+2. *Do I have to use multiple images?* **No.** Generally, one clear reference image is enough. You can only use one `--oref` image at a time.
+3. *Does my subject need to have a plain background?* **No.** Midjourney recognizes objects clearly against any background, provided they aren't hidden or camouflaged. The clearer your object, the better.
+4. *Does my subject need to be shown alone?* Yes. Use images with only one distinct subject. If there are multiple subjects, use the prompt to draw out the desirable details.
+5. *Can I use a reference sheet with multiple views or poses?* **Yes.** Reference sheets or turnaround images can work, but single, clear images often perform better. Test to see what works best for your project.
+6. *Can I use any style of image as a reference?* **Yes.** But the style of your oref may be communicated to the output. Lower your `--ow.`
+7. *How do I Pan, Zoom Out, or Edit an oref image? It appears I can’t?!*  You can! Use the Full Editor. Open the image from your Gallery into the Full Editor using the [Edit] button. Make sure the `--oref` and `--ow` parameters are deleted from the prompt or it will throw an error: `Omni-reference is not supported for this job type.` You can also download them and reintroduce them as an external upload to the web Editor.
+
+### 📦 Troubleshooting `--oref`
+
+### 1️⃣ I can't give the character or object a new pose, purpose, style, or details.
+
+Lower the `--ow` value. Increase the detailing in the prompt.
+
+### 2️⃣ I can't change my character's face specifically. The face is "locked."
+
+That's correct. Midjourney preserves the face when using `--oref` at almost any value of `--ow,` often preserving attributes like beard and glasses. If you need to change the face more:
+
+**Follow these steps:**
+
+1. Use `/settings` to ensure you're on `[Low Variation]` mode and have `Remix` ON (not required on web).
+2. Choose the image with the face you want to change. Expand it and select **[Vary Region]** (web: **[Edit]**).
+3. In Editor mode, remove the `--oref` and `--ow` from the prompt.
+4. Mask/select the face area and alter your prompt. For example, mask the beard area and add `clean-shaven`.
+
+Once satisfied, do NOT re-add `--oref` to your prompt, or unwanted attributes will return.
+
+### 3️⃣ Stuff looks janky or broken.
+
+Midjourney sometimes struggles to position characters or objects coherently. For incoherent results (like odd cropping or backward heads), try increasing stylize (`--s`) to `800-1000`. You can also experiment with setting `--exp` to give another boost to coherency. 
+
+### 4️⃣ Stuff is missing altogether.
+
+If details are missing from your canvas, anchor it in the prompt.
+
+### 6️⃣ It appears that I can’t Pan, Zoom Out, or Edit an image I made with oref?
+
+You can! Use the Full Editor. Open the image from your Gallery into the Full Editor using the [Edit] button. Make sure the `--oref` and `--ow` parameters are deleted from the prompt or it will throw an error: `Omni-reference is not supported for this job type.` You can also download them and reintroduce them as an external upload to the web Editor.

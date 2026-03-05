@@ -1,0 +1,433 @@
+# Image Prompting Guide
+
+---
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+There’s no wrong way to prompt in Midjourney. If you love your images, then it doesn’t matter what words you use or what your prompting style is. That said, if your prompts are *not* creating what you have in mind, you can check your prompt with these troubleshooting steps for each Midjourney version.
+
+</aside>
+
+# 🦉 Prompting in Midjourney v7
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## **How should I prompt in v7?**
+
+</aside>
+
+**Our prompting mantra for v7:**  *Want to see it? Say it unambiguously.* 
+
+With v7.0’s improved prompt adherence, the model is more responsive than ever. If something’s missing, it might just be waiting for you to spell it out.  Be very specific. In v7, traditional or standard prompting (as opposed to Conversational Mode prompting) does a great job understanding a wider range of prompting styles than previous models. That means:
+
+- New users can get started more quickly than in prior models.
+- Explorers still have a great aesthetic toy.
+- Advanced users will find prompt adherence can be pretty good.
+
+ **🎨 Your prompts can be open-ended…**
+
+*Midjourney v7.0 is well-equipped to help you create intriguing and entertaining images.*
+
+```
+This guy and his dog look exactly alike. 
+```
+
+![image.png](attachment:7745c0c8-9f6a-4786-ad55-451f8aca1176:image.png)
+
+ **🎨  or completely creative…**
+
+*Midjourney v7.0 is responsive to creative use of words and non-words.  Explore, discover!*
+
+```
+twilight wild garden, impasto painting, painting-knife brushstrokes, deep-teal, dark-crimson, muted colors, overcast atmosphere, garden details
+```
+
+![image.png](attachment:5fbd1569-7454-4a5e-bfe0-c11079207611:image.png)
+
+ **🎨  or incredibly specific…**
+
+Midjourney v7.0 can handle many more subjects and/or details than previous versions. 
+
+```
+A blue-eyed man with a frown on his face is standing at the beach. The ocean is made of purple wine. The man is holding a fat black cat in his arms. The man has a black umbrella. The man is wearing a green sweater and yellow shorts. The weather is stormy. A big blue bird flies across the grey sky. There is an ice cream stand in the distance. An orange beach ball floats in the purple water. A seagull stands nearby wearing a little sailor’s hat, which is pretty cute.
+```
+
+![image.png](attachment:7adbbc84-5729-48c3-a71e-e4bd9f27b69f:image.png)
+
+As a rough estimate, we think it can handle 5 subjects easily, and up to 7 with careful prompting. We think it can handle at least 20 individually specified details. 
+
+<aside>
+<img src="/icons/info-alternate_green.svg" alt="/icons/info-alternate_green.svg" width="40px" />
+
+## Troubleshooting v7 Prompts
+
+</aside>
+
+These tips are NOT different from other models of Midjourney, but we find V7 is more responsive than prior models. The ability to coax lost details back into the image by focusing on them has always been true in Midjourney, but in v7 you can really feel the power of the prompt. 
+
+- We recommend fixing just one issue at a time so that you can manage the model’s attention carefully. In this workflow, we say don't rewrite the prompt just yet. Hold off on that. Just add attention to various areas of the image to gradually influence and modify the outcome.
+- Remember you can do your experimenting in `--draft` and/or `--relax` modes to save minutes.
+
+<aside>
+🦉
+
+### **Prompt-writing guidelines**
+
+1. If it's not controlled with the prompt, Midjourney makes it up.
+2. If the prompt contains chaotic tokens, you lose control of the canvas.
+3. The prompt should address all areas of the canvas: style, subject, background
+4. The prompt only needs to articulate details that are NOT covered by the archetypes, and/or need anchoring to pin them down (example below).
+5. Instructions, conversation, commands belong in Conversational Mode only.
+6. Jargon, camera metadata, technical specifications are uncorrelated so unreliable.
+7. Literary writing (as untrained ChatGPT's produces) wastes processing time. Use dense visual description.
+
+*Prompts are not captions! Prompting is about clarity to the model, not to the human reader.*
+
+</aside>
+
+### If you are getting error messages when using certain parameters…
+
+Or maybe you are getting unexpected results. It could be that you’re using parameters that are compatible with V7 or not fully supported. Here’s a summary:
+
+[**Overview of “Missing” Features in V7**](https://www.notion.so/Overview-of-Missing-Features-in-V7-299024c0a17e8150ac07ffc3ea52e79f?pvs=21)
+
+### If your v7 prompt drops details…
+
+Here’s one way to to anchor them. Revise the prompt to target just the detail that dropped. Be specific. For example:
+
+- If you want "a man crying into his hands," but his hands stay in his lap, rewrite that part.
+- Try: `a man crying into his hands covering his face`
+- See how I brutalized the grammar to get the redundancy in? 😆 Clever redundancy and repetition (which we sometimes humorously call the “cowbell” method) helps the detail garner more attention. More attention means it’s more likely to make it into the image.
+
+### If your “broken” v7 prompt needs to be rewritten from scratch…
+
+If and when these troubleshooting methods STOP working, explore rewriting your prompt from scratch using these guidelines:
+
+**1. Start with your main subject** - Put what matters most first
+
+**2. Add setting/background** - Include context like "in a foggy forest"
+
+**3. End with style details** - Add aesthetic and vibe info like “cinematic still-shot” or “vintage photography”
+
+Important: Move any ignored elements closer to the start of your prompt, as earlier elements get *marginally* more attention. (Your mileage may vary. This slope of influence isn’t very noticeable in V7.)
+
+### Try **Clarinet’s Prompt Helper GPT!**
+
+It provides guidance on prompt troubleshooting steps *and* helps to refine troubling prompts.
+
+https://chatgpt.com/g/g-6781443b83888191813fbc93afa4dc64-clarinet-s-prompt-helper
+
+- **🦉 what can it teach me?**
+    
+    **Start with this prompt …**
+    
+    ```
+    Teach me the guidelines.
+    ```
+    
+    **GPT’s response …**
+    
+    Ok, color me impressed that you want to learn the guidelines! That tells me you’re ready to take more control of your visual results in **Midjourney v7.0** — and I am *so* here for it.
+    
+    Here’s a quick and clean list of the **15 core guidelines** (plus a few extra internal rules I use behind the scenes) to make your prompts crisp, clear, and high in prompt adherence:
+    
+    ---
+    
+    ### **✅ Midjourney v7.0 Prompt Guidelines:**
+    
+    **Guideline #1: Subject Count Limit = 4**
+    
+    Only 4 **compositional subjects** max. Props and backgrounds don’t count. More than 4? Use compression (see Guideline #14). 
+    
+    **Guideline #2: No Negation**
+    
+    Avoid words like *no, not, without, never, nothing*. Recast to positive visual cues.
+    
+    ⚠️ If used, I’ll recast and add a warning: “Negation was recast; result may be interpretively unreliable.”
+    
+    **Guideline #3: No Imperatives**
+    
+    No commands like “draw,” “add,” or “make.”
+    
+    ⚠️ For that, use Conversational Mode: [What’s that?](https://prompt-faqs.notion.site/)
+    
+    **Guideline #4: No Purpose Explanations**
+    
+    No “for a logo” or “for my app.” Use style descriptors instead (e.g., “vector icon,” “storybook style”).
+    
+    **Guideline #5: No Dimensions or Layout**
+    
+    Don’t say “square layout” or “vertical image.” Use --ar for aspect ratio instead.
+    
+    **Guideline #6: No Abstract or Conceptual Language**
+    
+    Avoid: “mysterious,” “iconic,” “beautiful.” Use tangible visuals only.
+    
+    **Guideline #7: No Metaphors or Narrative Language**
+    
+    No storytelling like “a relic of a forgotten time.” Midjourney v7.0 captures a **frozen moment**, not a plot.
+    
+    **Guideline #8: Short. Simple. Direct.**
+    
+    One clear sentence per image action or trait. No run-ons.
+    
+    **Guideline #8b: No Phrase Lists**
+    
+    No visual tag chains like “glowing light, broken wall.” Use full sentences with embedded phrases instead.
+    
+    **Guideline #9: Environmental Archetypes Imply Details**
+    
+    Don’t repeat implied details. “In a junkyard” already includes trash, rust, etc.
+    
+    **Guideline #10: Remove Camera & Metadata Terms**
+    
+    No “ISO 100” or “50mm lens.” Style terms like “Polaroid” are OK.
+    
+    **Guideline #11: Recast Iconic Visual Brands**
+    
+    “Ghibli style” = OK. But abstract use of brand names must be recast as style traits.
+    
+    **Guideline #12: No Fidelity or Realism Language**
+    
+    Remove “realistic,” “ultra-detailed.” Use “photo,” “photograph,” or visual traits instead.
+    
+    **Guideline #13: Eliminate ‘Or’ Phrases**
+    
+    Don’t say “or.” Pick one. Or offer two prompts instead.
+    
+    **Guideline #14: Multi-Subject Compression (Archetype + Anchoring)**
+    
+    If you need >2 subjects:
+    
+    A. Start with a **group archetype** (“Three characters walk through a city.”)
+    
+    B. Use **anchored descriptions**: “The one on the left… the center figure… the right figure…”
+    
+    C. Group counts as one subject. Props don’t count. Add background figure if needed.
+    
+    **Guideline #15: Valid Parameters Only**
+    
+    Check all --param terms with the official list. If it’s not in here: ❌ Invalid!
+    
+    ✅ Full list: --ar, --stylize, --draft, --seed, --v, and more. Full reference: [docs.midjourney.com](https://docs.midjourney.com/hc/en-us/articles/32859204029709-Parameter-List)
+    
+    ---
+    
+- **😀 Ooooh I have a prompt that isn’t making the image I want, can the GPT refine it?**
+    
+    **Yes! Paste a Problem Prompt …**
+    
+    ```
+    Hyperrealistic extreme close-up of a real Korean soju glass with a short, wide cylindrical shape and thick hexagonal base, no logo, placed on a wet traditional Korean wooden table. From the surface of the glass, a violent ocean wave erupts upward a towering spiral of stormy seawater filled with rain, lightning, and motion. A realistically detailed tiny wooden fishing boat is caught in the wave, and a photo-realistic small-scale fisherman from the Joseon dynasty, dressed in traditional clothing, pulls up a net amidst the crashing water. Realistic seagulls fly around the wave. Inside the glass, visible through the water, shimmering schools of fish swim in the churning base. The scene blends cinematic storm lighting, precise glass refraction, and hyper-detailed water physics, with all tiny elements appearing fully lifelike and convincingly real.
+    ```
+    
+    **GPT’s response …**
+    
+    Oof. You brought *drama* to the table and I’m loving it. 🌊 Glassware meets Ghibli-level ocean chaos — this has “epic visual poetry” written all over it. But! As your trusty visual language translator, I spotted a few spots that need Midjourney v7.0-friendly tweaks for adherence.
+    
+    ---
+    
+    ### **🚧 TROUBLESHOOTING CHECKLIST:**
+    
+    - **Guideline #1: Subject Count Limit = 4** → You’ve got **7 compositional subjects**:
+        1. Soju glass
+        2. Wave
+        3. Boat
+        4. Fisherman
+        5. Seagulls
+        6. Schools of fish
+        7. Table
+        
+        Sooo yeah, we’ll need to **compress using Guideline #14: Composition Archetype + Lexical Anchoring**.
+        
+    - **Guideline #2: No Negation** → The phrase “no logo” is a negation.
+        
+        ⚠️ “Negation was recast; result may be interpretively unreliable.” (We’ll just describe the glass as “plain” or “unmarked.”)
+        
+    - **Guideline #12: No “photorealistic,” “hyperrealistic,” or “realistic”** → All recast to **“photo style”**, **“photo detail,”** or dropped if implied.
+    - **Guideline #6 + #7: Abstract, Narrative, Metaphor** → “Blends cinematic storm lighting,” “appearing fully lifelike” = recast to visual cues only.
+    
+    ---
+    
+    ### **✨ COMPRESSED, PROMPT-ADHERENT VERSION:**
+    
+    Here we go — refined to full v7.0 readiness:
+    
+    ```
+    A small group of stormy photo-style elements emerge from a plain Korean soju glass on a wet wooden table. The glass has a short cylindrical shape and a thick hexagonal base. A spiraling wave erupts from the glass, filled with lightning and swirling rain. A tiny wooden fishing boat rises inside the wave. A fisherman in Joseon dynasty clothing hauls a net among the crashing water. Several seagulls circle above the crest. Inside the base of the glass, small fish shimmer in the churning water. Cinematic lighting enhances the storm and the glass refraction. –ar 16:9
+    ```
+    
+    ### **✅ QUICK FINAL CHECK:**
+    
+    - ✅ Max 4 grouped subjects (compressed under Rule #14)
+    - ✅ No negation (recasted “no logo”)
+    - ✅ No abstract/narrative phrases
+    - ✅ No realism terms — replaced with “photo style,” “photo detail,” or implied
+    - ✅ No imperatives or purpose
+    - ✅ One clean paragraph
+    - ✅ Rendering style present (photo style, cinematic lighting)
+    - ✅ Parameters valid — --ar 16:9 fits widescreen cinematic composition
+    
+    ---
+    
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## Was the “Describe” feature improved in v7?
+
+</aside>
+
+The **Describe** feature still outputs the same strange little text prompts it always has… But thanks to **v7.0’s better prompt interpretation and adherence**, when you paste that prompt back in, you might be happier.
+
+To try it:
+
+1. Drag and drop an image into the **Imagine Bar**.
+2. Wait for Midjourney to do its Describe-thing.
+3. Find the prompt in your **[Create]** tab.
+
+It’s not magic. It’s not smarter Describe. It’s just that the new model is *less likely to go rogue* when faced with its own awkward poetry. And that makes Describe… accidentally useful.
+
+![Describe-on-the-Web-with-Annotations.gif](attachment:051091df-db64-48e8-b7ed-115b67ddce48:Describe-on-the-Web-with-Annotations.gif)
+
+<aside>
+<img src="/icons/bookmark_lightgray.svg" alt="/icons/bookmark_lightgray.svg" width="40px" />
+
+More about describe:
+
+[Command: /describe](https://www.notion.so/Command-describe-283024c0a17e817687a0d645d0a5ea63?pvs=21)
+
+</aside>
+
+<aside>
+<img src="/icons/graduate_green.svg" alt="/icons/graduate_green.svg" width="40px" />
+
+## **Watch a V7 overview / demo video!**
+
+</aside>
+
+https://youtu.be/8Uj5w-mnWL8
+
+<aside>
+<img src="/icons/bookmark_lightgray.svg" alt="/icons/bookmark_lightgray.svg" width="40px" />
+
+**Also check out these features introduced in V7:**
+
+[Parameter: `--oref` (Omni-Reference)](https://www.notion.so/Parameter-oref-Omni-Reference-299024c0a17e81d38080c028f44894cb?pvs=21)
+
+[Video Prompting Guide](https://www.notion.so/Video-Prompting-Guide-29e024c0a17e80749f9ed9357fe207f7?pvs=21)
+
+[Conversational Mode](https://www.notion.so/Conversational-Mode-299024c0a17e81838ef4c9381607b0c7?pvs=21)
+
+[Parameter: `--draft` (Draft Mode)](https://www.notion.so/Parameter-draft-Draft-Mode-299024c0a17e81ecbc5bda4edae2167a?pvs=21)
+
+[Parameter: Quality (`--q)` and Modes of Speed (--fast, --relax, --turbo)](https://www.notion.so/Parameter-Quality-q-and-Modes-of-Speed-fast-relax-turbo-299024c0a17e81239422d3bc4e7373e0?pvs=21)
+
+</aside>
+
+---
+
+# 🦉 Prompting in Midjourney v6
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## How should I prompt in v6?
+
+</aside>
+
+As we keep saying, there’s no *wrong* way to prompt per se, but it is helpful to know that v6 has a better understanding of natural language (real sentences with basic grammar) than older versions. Although comma separated word lists can give you amazing images and were a prompting strategy in v5.2, in v6.1 you may lose control of the canvas.
+
+<aside>
+💡
+
+Midjourney 6 model versions are --v 6.0 and --v 6.1. 
+
+</aside>
+
+<aside>
+<img src="/icons/info-alternate_green.svg" alt="/icons/info-alternate_green.svg" width="40px" />
+
+## Troubleshooting v6 Prompts
+
+</aside>
+
+Here’s a quick checklist for the v6 troubleshooting basics:
+
+### Step 1: **Control the whole canvas**
+
+If you don’t control something in your prompt, Midjourney will fill in the gaps using its best guess. And it’s not guessing randomly—it’s pulling from archetypes**.** To control the *whole* canvas, your prompt needs three things:
+
+1. **Style**: how should it look aesthetically?
+2. **Subject**: what’s in the image?
+3. **Background**: where is it, what's the situation or context?
+
+Miss one? Midjourney just shrugs and fills in the blanks with the most predictable thing possible. Try writing your prompt with **Style, Subject, Background** in this order, and then experiment with the order of these elements for your specific prompt.
+
+### Step 2: **Optimize the prompt**
+
+Are details blending together? Is your prompt asking for too much at once? Remember, Midjourney is transforming visual noise into an image. If you're asking Midjourney to change the noise into multiple different subjects, or transform it into lots of specific details, the chances of chaotic rendering increase as Midjourney runs out of processing time. This results in blending and incoherence.
+
+You can take advantage of Archetypes to get more detail with fewer words.
+
+❌  *A dark alleyway. In the background, a black metal android inspired by Jack the Ripper lurks in the shadows, wearing a long dark coat and a tilted top hat, and carrying a walking stick. In the foreground, a calm brown-eyed woman in a crimson Victorian era dress stands looking at her iPhone in the soft light of a flickering wrought iron gas lamp. On the ground very near her feet, half hidden by her skirts, is a suitcase made of glass and blue glowing digital lines. In the style of photo realistic fantasy art.*
+
+✅  *Two characters stand in a Victorian-era alleyway. In the background, Jack the Ripper wears a top hat and coat and has android eyes. In the foreground, a woman with an iPhone. On the ground near her crimson skirts is a suitcase made of glass and blue glowing digital lines. In the style of photo realistic fantasy art.*
+
+[Understand & Use Archetypes](https://www.notion.so/Understand-Use-Archetypes-282024c0a17e8195b3d5cbc3e069ad99?pvs=21)
+
+Continue to the next step to optimize *which* words you’re including.
+
+### Step 3: **Use words Midjourney understands**
+
+- **Use dense visual language** that is correlated to things in Midjourney’s training data! Ask yourself, what does it *look like*?
+    
+    ❌  *a sorrowful knight, longing for home, bathed in the regret of his past*
+    
+    ✅  *Solitary knight in battered armor, standing on a foggy battlefield, cold dawn light breaking through the mist.*
+    
+- **Remove conversation and instructions:**
+    
+    Midjourney is NOT ChatGPT. Unless you are using V7’s Conversational Mode, it is not an LLM (large language model). It doesn’t process instructions and doesn’t understand commands or conversation. You have to phrase things in a way that aligns with how Midjourney actually interprets language.  
+    
+    Conversation, commands, or instructions belong to only:
+    
+    ❌ Make this photograph into a painting.
+    
+    ❌ Include luxury details.
+    
+    ❌ The door should be open.
+    
+- **Remove technical jargon.** Terms like "HDR, 16K" don’t work the way you might expect. On the internet, you’ll come across prompts with words like “hyper-detailed”, “8k”, “f/2.8”, “50mm lens”, “ultra-realistic”, etc. These add more random noise to the prompt than real visual impact, and too many can cause your job to run out of GPU time before it’s done.
+    
+    Midjourney V7 will not comply to technical specifications like:
+    
+    ❌ high-quality, HDR, 4K, 8K, 16K
+    
+    ❌ 8-bit per channel RGBA, WebP/AVIF, suitable for web use
+    
+    ❌ 35mm, EV 15, ISO 1600, f/1.8
+    
+- **Use real sentences** with basic grammar and punctuation, not comma-separated word lists. Although word lists can give you amazing images and were a prompting strategy in v5.2, in v6.1 you may lose control of the canvas.
+
+---
+
+# 🦉 Prompting for Midjourney v5.x and earlier
+
+Check out the prompt templates and troubleshooting info for v1 - v5 in this link:
+
+https://bit.ly/Clarinet-Prompt-Troubleshooting 
+
+---
+
+<aside>
+
+# Leave a Comment or Question
+
+Remember to add context. *We won’t know what page you’re viewing unless you tell us.*
+
+</aside>

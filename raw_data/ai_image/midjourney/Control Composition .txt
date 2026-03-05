@@ -1,0 +1,94 @@
+# Control Composition
+
+[Last Updated: 03/13/2024]
+
+## To control composition, consider two methods:
+
+### 1️⃣ **Use prepositions in your prompt.**
+
+In `--v 6` and beyond, we can use prepositions to position things in relationship to one another, which helps us create the composition of our canvas. These prepositions seem to work well: `left, right, center, middle, foreground, background, above, below, beneath`. We can also experiment with complex prepositional phrases like `in the distance` or `on the horizon` (with perhaps less reliability).
+
+> New to English? Learn more here!
+Basic Prepositions of Place in English
+https://www.youtube.com/watch?v=4530pfmquro
+> 
+
+Here are more example prepositions that might work to control composition:
+
+```
+Left
+Right
+Center
+Middle
+Foreground
+Background
+Above
+Below
+Beneath
+Adjacent
+Parallel
+Perpendicular
+Behind
+In front of
+Beside
+Between
+Beyond
+Underneath
+Across
+Within
+Containing
+Around
+Over
+Through
+Along
+Near
+Against
+Outside
+Inside
+```
+
+*If that's not enough, try the second method...*
+
+### **2️⃣ The earlier things in your prompt are fairly reliably going to occupy the focal point of the canvas.**
+
+If you say `A duck in a field with a basket of flowers` then the duck will likely occupy the focal point, but if you say `A basket of flowers in a field with a duck` then the basket of flowers will more likely occupy the focal point.
+
+See this example expressed in `--v 6.0`: 
+
+```
+**A basket of flowers in a field with a duck. --seed 123456 --v 6.0**
+```
+
+![image.png](attachment:9e741ae2-c910-454b-b5ed-e0426b925b60:image.png)
+
+```
+**A duck in a field with a basket of flowers. --seed 123456 --v 6.0**
+```
+
+![image.png](attachment:58ffa095-812d-49fa-bee4-7de75b0f2b1c:image.png)
+
+You can use this to your advantage. If you want something to appear to the left or right side of the canvas, it sometimes helps to mention something else first, which by happy accident may change how things are laid out in the composition.
+
+All of this is helpful for prepping a canvas for Multiple Subjects and of course Multiple Characters.
+
+For example, `A massive crystal ball glows in the center of a dark throne room while the Red King paces the flagstones --v 5.2` will increase the chance the king is NOT the focal point of the canvas. That massive crystal ball is likely to be in the center.
+
+You'll have to be creative. Maybe you want the Red King off to one side, but you aren't sure what the focal point of the image might be instead. 🤔  You can come up with something. Maybe it's a window, or `the vast empty throne room`, or his advisor.
+
+Again,  in `--v 6` and beyond, you can use prepositions of place with some reliability to control your composition, so we recommend method 1️⃣ first!
+
+![image.png](attachment:38fad0a3-7b26-4cc3-be1d-2a2d2b79e3c3:image.png)
+
+Here's a walk-through of method 2️⃣ using `--v 5.2` examples:
+
+```
+A massive crystal ball glows in the center of a dark throne room while the Red King paces the flagstones, cinematic still-shot by Peter Jackson --ar 3:2
+```
+
+![image.png](attachment:5261e530-af88-4c2c-b8eb-b8d80859f281:image.png)
+
+```
+The Red King paces the flagstones near a massive crystal ball glowing in the center of the dark throne room, cinematic still-shot by Peter Jackson --ar 3:2 
+```
+
+![image.png](attachment:849c6f10-ac0e-4759-94c2-47d9f676ffe5:image.png)
