@@ -1,0 +1,20 @@
+
+
+
+
+distill raw_data/ai_image/midjourney   输出文件目录:  wiki/prompt/midjourney
+
+核心要求: Midjorney 提示词构造的建议
+
+
+不要区分版本, 比如 V6,V7  全部使用 Midjorney 一个名词代替
+
+删除明确指出是旧版本的内容 比如 V6 V5 等,
+
+排除： 任何命令禁止 或者不建议的内容 也就是 DO NOT;  任何负面的内容
+
+包括:  只涉及 命令允许,或者建议做的事情和内容 也就是说 SHOULD or  MUST ,   提示词构建的语法 句法 词法 和 参数配置相关的内容 比如 --ar --w 等的关键参数
+
+字数限制: 总行数 控制在 300-500 行左右;
+
+参考文档: raw_data/ai_image/midjourney/midjourney_v7_best_practices.txt
