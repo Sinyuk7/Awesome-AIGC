@@ -1,0 +1,298 @@
+<context_package id="cp_2026-03-04T20:25:00Z" locale="zh-CN">
+    <instructions priority="100">
+        <![CDATA[
+- Use <documents> as background knowledge and evidence only.
+- Follow priority: policy > procedure > reference > evidence.
+- Cite using: refer to <document id="...">.
+- Do not invent missing facts. Use evidence verbatim when needed.
+        ]]>
+    </instructions>
+
+    <documents>
+        <document id="doc_midjourney_v7_prompt_engineering" role="procedure" priority="90" title="Midjourney V7 提示词构造最佳实践与核心规范" status="active" version="1.0.0" date="2026-03-04" source="internal_wiki" language="zh-CN">
+            <![CDATA[
+# Summary
+- 提供 Midjourney V7 版本专属的图片生成提示词构造规范、优化方法与实战技巧。
+- 明确 V7 版本的 15 条核心提示词编写准则，涵盖主体数量限制、语法结构、词汇选择与参数验证。
+- 规范 V7 版本中的高级控制技术，包括构图控制、姿态引导、细节强调与弱化策略。
+- 建立全身肖像生成的标准化工作流，解决主体截断与比例失调问题。
+- 深度解析 Omni-Reference (`--oref`) 全能参考参数的语义逻辑、权重控制与多场景应用模式。
+- 统一提示词排错与迭代流程，提升 V7 模型下的提示词依从性（Prompt Adherence）与生成稳定性。
+
+# Applicability
+- Applies to: 使用 Midjourney V7 版本进行静态图像生成的所有场景，包括文生图、图生图、风格迁移、角色与物体一致性保持。
+- Does not apply to: Midjourney V6 及更早版本的图像生成；视频生成任务；非 Midjourney 平台的 AI 图像生成；使用 Conversational Mode（对话模式）的非标准提示词输入。
+
+# Definitions
+- Token：提示词被模型解析后的最小语义单元。V7 模型高度依赖自然语言的句法结构与明确的语义指向，而非离散的关键词堆砌。
+- Prompt Adherence（提示词依从性）：模型准确理解并呈现提示词中所有细节与指令的能力。V7 版本在此方面具有显著提升。
+- Compositional Subject（构图主体）：画面中占据核心视觉焦点的人、动物或主要物体。背景元素与附属道具不计入构图主体。
+- Multi-Subject Compression（多主体压缩）：当画面需要超过 4 个主体时，通过定义“群体原型”（Group Archetype）并结合“词汇锚定”（Lexical Anchoring）来规避模型渲染混乱的技术。
+- Environmental Archetypes（环境原型）：模型潜空间中预训练的场景概念集合（如“垃圾场”、“维多利亚时代小巷”），调用原型可自动补全符合该场景的默认细节，无需冗余描述。
+- Semantic Understanding（语义理解）：V7 模型对参考图像（如 `--oref`）的认知方式。模型不仅复制像素，更能识别图像的本质概念（如“戴墨镜的香蕉”），并倾向于将其还原为最常见的原型状态。
+- Omni-Reference / `--oref`（全能参考）：V7 引入的核心参数，通过语义理解迁移参考图像中的角色、动物、建筑或物体的特征，保持跨任务的视觉一致性。
+- Omni-Weight / `--ow`（全能参考权重）：控制 `--oref` 语义迁移强度的参数，取值范围 1-1000，默认值为 100。高权重强化原型依从性，低权重释放模型的创造力与重塑能力。
+- The Cowbell Method（牛铃法则/冗余强调法）：在 V7 中，通过在提示词中多次使用同义词或重组短语来增加特定细节的注意力权重，强制模型渲染易丢失元素的技巧。
+- Slope of Influence（影响斜率）：提示词中词汇位置对生成结果的影响梯度。位于提示词前端的词汇拥有更高的注意力权重，决定画面的核心焦点。
+
+# Requirements
+
+## R1: 构图主体数量限制（Subject Count Limit = 4）
+- V7 模型在单次生成中最多能稳定处理 4 个独立的构图主体（Compositional Subjects）。
+- 构图主体指画面中的核心人物、动物或主要视觉对象。背景元素（如树木、建筑）与附属道具（如手中的剑、桌上的杯子）不计入此限制。
+- 当需求超过 4 个主体时，必须使用“多主体压缩”（Multi-Subject Compression）技术（详见 R14），否则会导致特征融合、肢体崩坏或主体丢失。
+
+## R2: 禁用否定句式（No Negation）
+- 严禁在文本提示词中使用否定词汇，如“no”、“not”、“without”、“never”、“nothing”。
+- V7 模型在处理否定词时，往往会因为注意力机制的特性，反而将该元素引入画面。
+- 替代方案：将否定需求重构为正向的视觉线索。例如，将“没有胡子（no beard）”替换为“光洁的下巴（clean-shaven）”；将“没有标志（no logo）”替换为“纯色（plain）”或“无标记（unmarked）”。
+- 若必须排除特定元素，应使用独立的负面参数 `--no`（如 `--no logo`），而非在正文中使用否定句。
+
+## R3: 禁用祈使句与指令（No Imperatives）
+- 严禁使用命令式动词，如“画（draw）”、“添加（add）”、“制作（make）”、“生成（generate）”。
+- Midjourney V7 的标准提示词模式并非对话式大语言模型（LLM），它无法理解执行动作的指令，只能解析视觉描述。
+- 替代方案：直接描述最终画面的客观状态。将“画一个站在山上的男人”替换为“一个男人站在山上”。
+
+## R4: 禁用用途说明（No Purpose Explanations）
+- 严禁在提示词中解释图像的最终用途，如“用于标志设计（for a logo）”、“用于我的应用（for my app）”、“作为壁纸（as a wallpaper）”。
+- 这些词汇会引入与视觉无关的噪声，稀释有效 Token 的权重。
+- 替代方案：将用途转化为具体的风格描述词。例如，将“用于标志设计”替换为“矢量图标（vector icon）”、“极简图形（minimalist graphic）”。
+
+## R5: 禁用尺寸与排版描述（No Dimensions or Layout）
+- 严禁使用自然语言描述画面的物理尺寸或排版方向，如“方形布局（square layout）”、“垂直图像（vertical image）”、“宽屏（widescreen）”。
+- 替代方案：必须使用宽高比参数 `--ar` 来控制画布尺寸。例如，使用 `--ar 1:1` 替代“方形”，使用 `--ar 9:16` 替代“垂直图像”。
+
+## R6: 禁用抽象与概念性语言（No Abstract or Conceptual Language）
+- 严禁使用无法直接转化为视觉像素的抽象形容词，如“神秘的（mysterious）”、“标志性的（iconic）”、“美丽的（beautiful）”、“令人惊叹的（stunning）”。
+- 抽象词汇会导致模型调用不可控的随机视觉元素来填补语义空白，降低提示词依从性。
+- 替代方案：将抽象概念拆解为具体的视觉特征。例如，将“神秘的森林”替换为“被浓雾笼罩的森林，光线昏暗，树木扭曲”。
+
+## R7: 禁用隐喻与叙事性语言（No Metaphors or Narrative Language）
+- 严禁使用文学性的比喻或长篇故事叙述，如“被遗忘时代的遗物（a relic of a forgotten time）”、“沐浴在过去的遗憾中（bathed in the regret of his past）”。
+- Midjourney V7 捕捉的是一个“冻结的瞬间（frozen moment）”，而非一段剧情或时间线。
+- 替代方案：使用密集的视觉描述语言。将“沐浴在过去的遗憾中”替换为“低着头，双手捂住脸，处于阴影中”。
+
+## R8: 简短、简单、直接与禁用词组列表（Short, Simple, Direct & No Phrase Lists）
+- 提示词必须由结构完整的简单句组成。每个句子只描述一个图像动作或特征。
+- 严禁使用冗长的连词句（run-on sentences）。
+- 严禁使用逗号分隔的视觉标签链（Phrase Lists），如“发光的光线，破损的墙壁，赛博朋克（glowing light, broken wall, cyberpunk）”。这种 V5 时代的“关键词汤”在 V7 中会导致画布失控。
+- 替代方案：将标签链重构为包含主谓宾的完整句子。例如：“赛博朋克风格的破损墙壁上散发着发光的光线。”
+
+## R9: 环境原型隐含细节（Environmental Archetypes Imply Details）
+- 避免重复描述环境原型中已经隐含的默认细节。
+- V7 模型拥有强大的“原型（Archetypes）”认知能力。例如，当提示词包含“在垃圾场（in a junkyard）”时，模型会自动渲染垃圾、生锈的金属、破败的背景等元素。
+- 冗余描述（如“在垃圾场，有生锈的金属和垃圾”）会浪费 GPU 处理时间，并可能导致画面过度拥挤。仅当需要打破原型默认设定时，才需进行额外描述（如“在垃圾场，有一架崭新的白色钢琴”）。
+
+## R10: 移除相机与元数据术语（Remove Camera & Metadata Terms）
+- 严禁使用技术性的相机参数或文件元数据，如“ISO 100”、“50mm 镜头（50mm lens）”、“f/2.8”、“HDR”、“16K”、“8-bit per channel RGBA”、“WebP/AVIF”。
+- 这些术语在 V7 的训练数据中与实际视觉效果的关联性极低，作为噪声存在，会消耗算力并导致生成失败或不可控。
+- 替代方案：使用风格化的摄影术语。例如，使用“宝丽来风格（Polaroid）”、“电影级静态镜头（cinematic still-shot）”、“浅景深（shallow depth of field）”来替代具体的数字参数。
+
+## R11: 重构标志性视觉品牌（Recast Iconic Visual Brands）
+- 允许使用具有明确、统一视觉特征的品牌或艺术家名称作为风格修饰（如“吉卜力风格（Ghibli style）”）。
+- 严禁将品牌名称作为抽象的质量或风格代名词（如使用“苹果公司风格”来表达极简主义）。
+- 替代方案：必须将抽象的品牌名称重构为具体的视觉特征描述。例如，将“苹果风格”替换为“极简主义，白色背景，光滑的金属表面，干净的线条”。
+
+## R12: 禁用保真度与真实感语言（No Fidelity or Realism Language）
+- 严禁使用强调画质的冗余词汇，如“逼真的（realistic）”、“超写实的（hyperrealistic）”、“超详细的（ultra-detailed）”、“高品质（high-quality）”、“4K/8K”。
+- 在 V7 中，这些词汇不仅无效，还会干扰模型对核心主体的注意力分配。
+- 替代方案：使用明确的媒介描述词。例如，使用“照片风格（photo style）”、“摄影作品（photograph）”或具体的视觉特征（如“皮肤纹理可见”）来替代“逼真”。
+
+## R13: 消除“或”短语（Eliminate 'Or' Phrases）
+- 严禁在提示词中使用选择性连词“或（or）”，如“红裙子或蓝裙子（red dress or blue dress）”。
+- 模型无法在单次生成中执行逻辑选择，这会导致特征混合（生成紫裙子）或随机忽略其中一项。
+- 替代方案：做出明确决定，只选择其中一项；或者将需求拆分为两个独立的提示词分别运行。
+
+## R14: 多主体压缩技术（Multi-Subject Compression）
+- 当画面必须包含超过 4 个构图主体时，强制使用“多主体压缩”工作流，分为三个步骤：
+  1. **定义群体原型（Group Archetype）**：使用集合名词将多个主体打包为一个单一的逻辑主体。例如：“三个角色走过城市（Three characters walk through a city）”。
+  2. **词汇锚定（Lexical Anchoring）**：通过空间位置介词为群体中的个体分配特征。例如：“左边的人穿红衣……中间的人戴帽子……右边的人拿伞……”。
+  3. **逻辑降维**：经过压缩后，该群体在模型解析中仅占用 1 个主体名额。附属道具（如伞、帽子）不计入主体数量。
+
+## R15: 仅使用有效参数（Valid Parameters Only）
+- 提示词后缀必须且只能使用官方支持的有效参数。
+- 严禁编造或使用已废弃的参数。如果参数不在官方列表中，模型将报错或产生不可预知的行为。
+- V7 核心有效参数包括：`--ar`（宽高比）、`--stylize` 或 `--s`（风格化程度）、`--draft`（草图模式）、`--seed`（种子值）、`--v 7`（版本号）、`--oref`（全能参考）、`--ow`（全能参考权重）、`--no`（负面提示）。
+
+## R16: 构图与空间关系控制（Composition Control）
+- **空间介词定位法**：在 V7 中，必须使用明确的空间介词来定义物体间的相对位置。
+  - 有效介词包括：左侧（Left）、右侧（Right）、中心（Center）、前景（Foreground）、背景（Background）、上方（Above）、下方（Below）、相邻（Adjacent）、平行（Parallel）、背后（Behind）、前方（In front of）、之间（Between）等。
+  - 示例：“一只鸭子在前景，背景是一片花田（A duck in the foreground, a field of flowers in the background）”。
+- **影响斜率（Slope of Influence）与焦点控制**：提示词中越靠前的词汇，越容易成为画面的视觉焦点。
+  - 若提示词为“田野里的鸭子带着一篮花”，鸭子将占据焦点。
+  - 若提示词为“一篮花在田野里，旁边有一只鸭子”，花篮将占据焦点。
+  - 策略：若需将某主体推至画面边缘，应在提示词开头先描述其他中心物体或环境（如“一个巨大的水晶球在王座室中央发光，红国王在旁边踱步”）。
+
+## R17: 姿态与表情控制（Pose Control）
+- **专业肖像术语**：使用摄影学标准术语来定义基础姿态。
+  - 侧面照（profile shot）、四分之三侧面照（three-quarter shot）、歪头姿势（head-tilt pose）、双手叉腰（hands-on-hips pose）、倾斜姿势（leaning pose）、S型曲线姿势（S-curve pose）、双臂交叉（crossed-arms pose）、双手插兜（hands-in-pockets pose）、坐姿（sitting pose）、斜躺姿势（reclining pose）。
+- **情绪与动作关联法**：当标准术语失效时，必须同时结合以下两种描述：
+  1. 赋予模特与目标姿态高度相关的情绪、态度或活动（如：害羞的、困倦的、放松的、分心的、激烈的、愤怒的）。
+  2. 添加面部细节的具象描述（如：明亮的眼睛、强烈的凝视、笔直的鼻子、皱眉、脸红、大笑、对称的脸）。
+  - 示例：“一个害羞的女孩，低着头，脸颊泛红，避开镜头（A bashful girl, looking down, blushing cheeks, avoiding the camera）”。
+
+## R18: 全身肖像生成规范（Full-Body Character Portraits）
+- 为确保角色从头到脚完整出现在画面中，必须严格执行以下四步检查清单：
+  1. **首词定义媒介**：提示词必须以艺术媒介或风格开头（如“插画（Illustration of...）”、“照片（Photograph of...）”）。
+  2. **使用“全长”术语**：必须使用“全长（full-length）”来引入主体。严禁使用“全身（Full Body）”（可能触发敏感词过滤）、“镜头（Shot）”（语义多重）或“肖像（Portrait）”（默认截断于腰部或肩部）。
+  3. **两端锚定法（Top & Bottom Anchoring）**：必须同时描述角色的顶部（头部、头发、帽子）与底部（脚、爪子、鞋子）。只要描述了鞋子（如“跑鞋”、“光脚”），模型为了遵循提示词，就必须将脚部纳入画幅。
+  4. **环境与地面互动**：必须描述角色脚下的地面（如“站在木地板上”、“走在泥地里”）或头顶的空间（如“头顶的蓝天”），以强制模型构建完整的垂直空间。
+  5. **垂直宽高比**：必须使用足够高的宽高比参数（如 `--ar 2:3` 或 `--ar 3:4`）。
+
+## R19: 细节强调与弱化策略（Emphasis & De-Emphasis）
+- **注意力预算管理**：模型的注意力是稀缺资源。如果某个细节反复丢失，必须删除提示词中其他不重要的竞争元素，为该细节腾出“注意力预算”。
+- **牛铃法则（冗余强调）**：通过同义词堆叠或短语重组来强制模型关注。例如，若“一只睡觉的猫”生成了睁眼的猫，应修改为“一只睡觉的猫，躺着，头低下，闭着眼睛，打盹，沉睡（a cat sleeps lying down with his head down, closed eyes, napping, slumbering）”。
+- **降低风格化参数**：默认 `--s 100` 可能导致模型过度发挥。将参数降至 `--s 50` 或 `--s 75` 可显著提升提示词依从性，迫使模型严格执行文本指令。
+- **扩展画幅空间**：细节丢失可能是因为画布空间不足。扩大 `--ar` 比例（如从 1:1 改为 16:9）可为缺失细节提供渲染空间。
+- **V7 专属依从性技巧（无意义词汇抑制法）**：在提示词末尾添加 `--no luxabiddleprok`（或任何自创的无意义词汇）。由于 V7 权重实现的底层机制，使用 `--no` 抑制一个无意义词汇会间接提升正向提示词的整体依从性权重。可实验性地叠加两次：`--no luxabiddleprok --no luxabiddleprok`。
+- **弱化与消除（De-Emphasis）**：若画面中出现了不需要的元素（如所有人都在戴帽子），严禁使用负面权重（如 `::-0.5`，V7 不支持此语法），必须使用 `--no` 参数（如 `--no hats`）。
+
+## R20: 全能参考参数规范（Omni-Reference / --oref）
+- **核心机制**：`--oref` 依赖语义理解而非单纯的像素复制。它能识别参考图的本质（如“一把椅子”），并尝试在生成中保持该物体的核心特征。
+- **权重控制（--ow）**：
+  - 默认值 `--ow 100`：平衡提取特征与模型创造力。
+  - 高权重（`--ow 400-1000`）：强化对参考图语义原型的依从性，适用于需要高度还原角色面部或物体结构的场景。
+  - 低权重（`--ow 10-50`）：削弱原型束缚，允许模型对参考物进行创造性重塑（如将“靴子”重塑为“靴子形状的帽子”）。
+- **三种提示词驱动模式**：
+  1. **锚定稳定法（Anchoring / Stabilizing）**：在文本中详细重申参考图中的标志性特征（如“蓝色卷发”、“粉色墨镜”），并明确指定新姿态或新环境。适用于需要精确控制画面的场景。
+  2. **放手交托法（Hands-off / "Someone"）**：文本仅提供极简描述（如“某人在银行排队”），完全依赖 `--oref` 填充主体细节。需配合较高的 `--ow` 值。
+  3. **纯场景法（Scene-only）**：文本仅描述背景环境（如“暴风雨下的空旷玉米地”），不提及主体。模型会根据语义理解自动将参考主体融入该环境。若融合生硬，可提高 `--s`（如 800）与 `--exp`（如 80）以增强连贯性。
+- **画幅与比例匹配**：
+  - 参考图中的主体尺寸会直接影响生成结果。若需生成较小的主体，应先在参考图中为其周围留出大量空白。
+  - 必须确保生成图像的宽高比（`--ar`）与参考主体的物理形态相匹配（高个子用竖屏，宽物体用横屏），否则会导致比例失调或出现黑边。
+- **特征选择限制**：`--oref` 擅长捕捉宏观的标志性特征（如风衣、特定发色），极易丢失微小或复杂的细节（如带有八个金字塔形宝石的银吊坠）。复杂细节必须通过文本提示词（R19 冗余强调法）进行二次锚定。
+
+# Procedure
+
+## Step 1: 确定核心主体与数量（Define Core Subjects）
+1. 盘点画面中需要出现的核心人物、动物或主要物体。
+2. 检查主体数量是否超过 4 个。若超过，立即应用“多主体压缩”技术（R14），将多个主体合并为一个群体原型。
+3. 将最重要的主体放置在提示词的最前端，利用“影响斜率”确保其占据视觉焦点。
+
+## Step 2: 构建环境与背景（Establish Environment）
+1. 选择一个强有力的环境原型（如“维多利亚时代的小巷”、“赛博朋克城市”）。
+2. 依赖原型的默认细节，删除所有不必要的冗余描述（如“小巷里有砖墙和煤气灯”）。
+3. 使用明确的空间介词（如“在前景”、“在背景”）将主体锚定在环境中的具体位置。
+
+## Step 3: 定义风格与媒介（Define Style and Medium）
+1. 在提示词的开头或结尾明确艺术媒介（如“插画”、“照片”、“油画”）。
+2. 检查并删除所有抽象的质量词汇（如“杰作”、“4K”、“逼真”）。
+3. 将抽象的品牌或概念重构为具体的视觉特征（如将“极简主义”重构为“大面积留白，单一色彩”）。
+
+## Step 4: 应用高级控制（Apply Advanced Controls）
+1. **全身像需求**：若需全身像，检查是否包含“全长（full-length）”、鞋子描述以及地面互动描述。
+2. **姿态需求**：若需特定姿态，检查是否使用了标准肖像术语或“情绪+面部细节”的组合描述。
+3. **一致性需求**：若需保持角色或物体一致，引入 `--oref` 参数，并根据需求选择锚定法、放手法或纯场景法，同时设定合适的 `--ow` 权重。
+
+## Step 5: 附加有效参数（Append Valid Parameters）
+1. 检查提示词末尾的参数列表。
+2. 确保所有参数均在 V7 官方支持列表中。
+3. 设定合适的宽高比 `--ar`，确保其与主体的物理形态及 `--oref` 参考图的比例相匹配。
+4. 设定风格化参数 `--s`。若需高依从性，设为 50-75；若需高艺术性，设为 100-1000。
+
+## Step 6: 迭代与排错（Iterate and Troubleshoot）
+1. 检视生成结果。若发现细节丢失，不要立即重写整个提示词。
+2. 针对丢失的细节，应用“牛铃法则”增加冗余描述，或删除其他竞争元素以释放注意力预算。
+3. 若画面出现不需要的元素，使用 `--no` 参数进行抑制。
+4. 若多次微调无效，清空提示词，按照 Step 1-5 的顺序重新构建，确保逻辑清晰、无否定句、无祈使句。
+
+# Exceptions
+
+## E1: 否定需求导致元素意外出现
+- 条件：提示词中使用了“no logo”或“without glasses”，结果画面中反而出现了标志或眼镜。
+- 处理：
+  1. 立即删除提示词中的否定词汇。
+  2. 将需求重构为正向描述（如“plain surface”、“bare face”）。
+  3. 若正向描述无效，将该元素移至提示词末尾的负面参数中：`--no logo, glasses`。
+
+## E2: 多主体生成导致特征融合（如“弗兰肯斯坦”现象）
+- 条件：提示词要求生成 5 个不同职业的人，结果生成的人物服装和特征互相混合。
+- 处理：
+  1. 确认主体数量超过了 V7 的 4 个限制。
+  2. 应用多主体压缩技术。将提示词修改为：“一群专业人士站在一起（群体原型）。左边的人穿着医生白大褂，中间的人穿着消防员制服，右边的人穿着警察制服（词汇锚定）。”
+
+## E3: 全身像指令失效，脚部被截断
+- 条件：提示词中写了“full-length”，但生成的图像仍然只到膝盖或腰部。
+- 处理：
+  1. 检查宽高比，确保使用了 `--ar 2:3` 或 `--ar 9:16` 等垂直比例。
+  2. 检查是否描述了鞋子或脚部（如“穿着红色跑鞋”）。
+  3. 检查是否描述了地面互动（如“站在湿漉漉的柏油马路上”）。
+  4. 若以上均已满足，尝试将“full-length”和脚部描述移至提示词的最前端，利用影响斜率增加其权重。
+
+## E4: 关键细节反复丢失
+- 条件：提示词中明确写了“戴着一顶绿色的帽子”，但生成的图像中人物始终没有帽子。
+- 处理：
+  1. 检查提示词是否过长，导致注意力预算耗尽。删除不必要的背景或风格描述。
+  2. 应用牛铃法则，增加冗余描述：“戴着一顶绿色的帽子，头顶上有一顶绿色的帽子，绿色的帽子戴在头上”。
+  3. 降低风格化参数，在末尾添加 `--s 50`。
+  4. 尝试 V7 专属依从性技巧，在末尾添加 `--no luxabiddleprok`。
+
+## E5: Omni-Reference (`--oref`) 导致主体无法改变姿态或用途
+- 条件：使用了一张靴子的图片作为 `--oref`，希望生成一顶靴子形状的帽子，但模型始终只生成一双普通的靴子。
+- 处理：
+  1. 认识到这是因为模型被靴子的“语义原型”困住了。
+  2. 大幅降低 `--ow` 权重，从默认的 100 降至 20 或更低：`--ow 20`。
+  3. 在文本提示词中极其强烈地锚定新用途：“一顶戴在头上的帽子，这顶帽子是用旧靴子做的，靴子形状的帽子，戴在头上”。
+
+## E6: Omni-Reference (`--oref`) 生成结果出现黑边或比例失调
+- 条件：使用了一张全身站立人物的图片作为 `--oref`，但生成的图像是横屏（`--ar 16:9`），导致人物被压扁或两侧出现黑边。
+- 处理：
+  1. 确保生成的宽高比与参考图主体的物理形态匹配。全身站立人物必须使用竖屏比例（如 `--ar 9:16`）。
+  2. 若必须生成横屏图像，应先在外部图像编辑器中将参考图的画布扩展为横向，或者在提示词中增加大量横向环境描述，并降低 `--ow` 权重。
+
+# Examples
+
+## Example 1: 从 V5 风格的“关键词汤”重构为 V7 标准提示词
+- Input (V5 风格): `cyberpunk city, neon lights, rain, dark alley, a man, glowing sword, mysterious, ultra-detailed, 8k, masterpiece, trending on artstation, cinematic lighting`
+- Output (V7 标准):
+  ```
+  A man stands in a dark cyberpunk alleyway holding a glowing sword. Neon lights reflect on the rainy street. Cinematic lighting. --ar 16:9
+  ```
+- Notes: 删除了所有抽象词汇（mysterious, masterpiece）、元数据（8k）和平台标签（trending on artstation）。将离散的标签链重构为包含主谓宾的完整简单句。利用“cyberpunk alleyway”这一环境原型自动补全细节。
+
+## Example 2: 多主体压缩技术的应用
+- Input (错误示范): `A dog, a cat, a bird, a mouse, and a rabbit are sitting on a sofa.` (5 个主体，超出限制，极易融合)
+- Output (V7 标准):
+  ```
+  A group of five small animals sits on a sofa. On the left is a dog and a cat. In the center is a bird. On the right is a mouse and a rabbit. --ar 16:9
+  ```
+- Notes: 首先定义群体原型（A group of five small animals），然后通过空间介词（On the left, In the center, On the right）进行词汇锚定，成功将 5 个主体压缩为 1 个逻辑组。
+
+## Example 3: 强制生成全身肖像
+- Input (原始意图): `生成一个女精灵的全身照`
+- Output (V7 标准):
+  ```
+  Illustration of a full-length female elf with blue hair wandering in a sunny forest. Her bare feet walk on lush green moss. Above her head is a magical bluebird. --ar 2:3
+  ```
+- Notes: 以媒介（Illustration）开头；使用“full-length”而非“full body”；描述了顶部（blue hair, bluebird above）和底部（bare feet, green moss）；使用了垂直宽高比 `--ar 2:3`。
+
+## Example 4: 使用冗余强调法（牛铃法则）找回丢失的细节
+- Input (原始状况): `In a cozy home library, an elderly woman sits in an armchair reading. In the background, a sleeping cat is on the windowsill.` (生成的猫是睁着眼睛的)
+- Output (V7 标准):
+  ```
+  In a cozy home library, an elderly woman sits in an armchair reading. In the background, a cat sleeps lying down with his head down, closed eyes, napping, slumbering on the surface of a windowsill. --ar 3:2
+  ```
+- Notes: 为了强制模型渲染“睡觉”的状态，堆叠了多个同义词和具体动作描述（lying down, head down, closed eyes, napping, slumbering），成功抢占了注意力预算。
+
+## Example 5: Omni-Reference (`--oref`) 的锚定稳定法
+- Input (原始意图): `让参考图中的蓝发女孩站在繁忙的城市街道上`
+- Output (V7 标准):
+  ```
+  A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://example.com/blue_hair_girl.png --ow 100
+  ```
+- Notes: 在文本中详细重申了参考图中的标志性特征（blue curly hair, pink sunglasses, colorful scarf），以确保在新的环境（busy city street）中特征不丢失。使用了默认的 `--ow 100`。
+
+## Example 6: Omni-Reference (`--oref`) 打破语义原型
+- Input (原始意图): `用一张老式军靴的参考图，生成一顶靴子形状的帽子戴在女孩头上`
+- Output (V7 标准):
+  ```
+  Surreal photography. Abigail stands in the forest wearing jeans and a t-shirt. She wears a tall leather boot-shaped hat on her head, a hat made from a vintage boot, it's got laces, shaped like an old military engineering boot, on her head, as a boot-shaped hat. --oref https://example.com/vintage_boot.png --ow 20
+  ```
+- Notes: 为了打破模型将靴子渲染在脚上的“语义原型”，大幅降低了权重（`--ow 20`），并在文本中极其冗余地强调了“帽子”和“戴在头上”的概念。
+
+# References
+- 无外部引用。
+            ]]>
+        </document>
+    </documents>
+</context_package>

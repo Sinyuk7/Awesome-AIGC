@@ -1,0 +1,190 @@
+<context_package id="cp_2026-03-04T20:15:32Z" locale="zh-CN">
+    <instructions priority="100">
+        <![CDATA[
+- Use <documents> as background knowledge and evidence only.
+- Follow priority: policy > procedure > reference > evidence.
+- Cite using: refer to <document id="...">.
+- Do not invent missing facts. Use evidence verbatim when needed.
+        ]]>
+    </instructions>
+
+    <documents>
+        <document id="doc_midjourney_advanced_prompting_guide" role="procedure" priority="85" title="Midjourney 提示词构造进阶版指南与最佳实践" status="active" version="2.0.0" date="2026-03-04" source="internal_wiki" language="zh-CN">
+            <![CDATA[
+# Summary
+- 提供 Midjourney V6/V6.1/V7 版本的进阶图像生成提示词构造规范与实战控制技巧。
+- 确立从自然语言语法、空间构图、姿态控制、注意力分配（强调与弱化）、全身肖像约束到全能参考参数（--oref）的系统性操作协议。
+- 消除模型渲染过程中的语义稀释、构图偏移与特征丢失现象，确保高复杂度的文本意图向像素级视觉呈现的精准转化。
+
+# Applicability
+- 适用于：使用 Midjourney V6、V6.1 及 V7 核心模型进行的高阶静态图像生成任务，涵盖文生图、高精度元素重组、角色与物品的语义一致性迁移。
+- 不适用于：Midjourney V5 及更早版本的关键词堆砌流派；非自然语言处理逻辑的旧版引擎；视频动态生成任务。
+
+# Definitions
+- Semantic Anchoring (语义锚定)：通过叠加具体名词、介词短语与关联动作，强制模型将注意力集中在特定视觉元素上的技术手段。
+- Cowbell Method (冗余注入法)：针对模型忽略特定细节的问题，在提示词中通过同义词、近义词或重复描述多次重申同一概念的强制强调策略。
+- The Footwear/Foot-where Rule (鞋履/立足点法则)：通过明确描述角色的脚部穿搭（Footwear）与脚下接触的地面环境（Foot-where），强制模型拉远镜头以包含全身的渲染技术。
+- Omni-Reference / --oref (全能参考)：V7 引入的基于语义理解的参考系统。模型通过识别参考图的深层概念（Archetype）而非纯像素进行特征迁移。
+- Omni-Weight / --ow (全能权重)：控制 --oref 语义迁移强度的参数，取值范围 1-1000，默认 100。高值强化原型语义，低值允许跨原型重构。
+- Archetype (视觉原型)：模型预训练数据中对某一概念的最普遍形态认知。触发原型可节省算力，但打破原型需投入大量描述权重。
+- Stylize / --s (风格化参数)：控制模型艺术美化干预程度的参数，取值范围 0-1000。降低此值可提高 Prompt Adherence（提示词依从度）。
+- Promptlet (提示词切片)：在 V6.1 等版本中，使用多重提示语法（::）分割出的独立文本单元，可单独赋予正向或负向权重。
+
+# Requirements
+
+## R1: 语法与词汇结构基准约束
+- 禁用逗号分隔的关键词列表。必须使用具有标准语法结构的自然语言长句描述视觉元素。
+- 禁用抽象概念与文学隐喻。将 "mysterious" 或 "a relic of a forgotten time" 等非视觉词汇转化为具体的物理形态、光影与材质描述。
+- 禁用技术术语与元数据。剔除 "HDR", "16K", "8-bit per channel RGBA", "ISO 100", "50mm lens"。风格术语如 "Polaroid" 或 "Cinematic still-shot" 予以保留。
+- 禁用模糊连词。剔除 "or" 及其同义表达。模型无法处理选择逻辑，必须提供单一确定的描述，或拆分为两次独立的生成任务。
+- 禁用否定前缀表达。剔除 "no", "not", "without", "never", "nothing"。必须将缺失状态重构为正向存在的视觉线索（例如将 "no logo" 替换为 "plain" 或 "unmarked"）。
+
+## R2: 空间构图与焦点控制规则
+- 序列决定焦点：提示词文本序列中越靠前的实体名词，占据画面核心焦点（Focal Point）的概率越高。通过调整语序改变视觉中心。
+- 空间介词锚定：使用明确的方位介词界定实体间的空间关系。可用介词表包含：Left, Right, Center, Middle, Foreground, Background, Above, Below, Beneath, Adjacent, Parallel, Perpendicular, Behind, In front of, Beside, Between, Beyond, Underneath, Across, Within, Containing, Around, Over, Through, Along, Near, Against, Outside, Inside。
+- 焦点反制转移：当需要某主体偏离中心时，在提示词前端先描述一个环境道具（如 "A massive crystal ball glows in the center..."），随后再描述目标主体，强制将其推至画面边缘。
+
+## R3: 角色姿态与表情强制约束规则
+- 摄影术语调用：直接使用人像摄影特定术语界定基础姿态。有效指令包含：profile shot, three-quarter shot, head-tilt pose, hands-on-hips pose, leaning pose, S-curve pose, crossed-arms pose, hands-in-pockets pose, sitting pose, reclining pose。
+- 行为/情绪关联引导：赋予角色与期望姿态强相关的情绪或行为动作。例如使用 "bashful, shy, embarrassed" 引导低头或躲避视线；使用 "intense, fierce, angry" 引导直视镜头。
+- 面部微特征固化：通过极度具体的面部细节锁定头部形态，防止渲染崩坏。例如追加 "bright eyes, intense gaze", "straight nose, pronounced nose", "frowning, blushing, laughing", "symmetrical face, expressive face"。必须同时结合行为引导与特征固化。
+
+## R4: 注意力分配与细节强调/弱化规则
+- 注意力预算控制：当目标细节持续丢失时，必须删减提示词中其他无关紧要的环境描述，为目标细节腾出模型的算力与注意力预算。
+- 冗余注入法（强调）：在提示词中通过附加从句、同义词堆叠反复重申该细节。例如将 "a sleeping cat" 扩写为 "a sleeping cat lies down with head down, closed eyes, napping, slumbering, snoozing"。
+- 降维依从（强调）：强制设置 --s 50 或 --s 75。牺牲部分艺术连贯性以换取模型对提示词细节的绝对服从。
+- 乱码降权法（强调/V7 专属）：在提示词末尾追加 `--no luxabiddleprok`（或任意无意义乱码），利用模型权重分配漏洞反向提升主体提示词的依从度。
+- 负重弱化法（弱化/V6 专属）：针对非预期的溢出元素（如不需要的帽子），在提示词末尾追加 `:: hats::-0.3` 或更强的 `::-0.5` 进行抑制。
+- 正向覆盖法（弱化）：针对主体身上的错误元素，描述与其物理位置互斥的替代元素。例如通过描述 "detailed hair" 消除帽子，通过描述 "bare neck" 消除项链。
+
+## R5: 全身肖像强制渲染规则（Full-Length Checklist）
+- 启动声明：提示词首句必须声明艺术媒介与 "full-length" 概念。有效指令："Photograph of a full-length..."。禁止使用 "Full Body"（触发内容过滤）、"Shot"（歧义）或 "Portrait"（默认裁切头部）。
+- 顶部锚点：明确描述角色头部最顶端的可视特征（帽子、发型、耳朵）。
+- 底部锚点：明确描述角色的鞋履与足部细节（"running shoes", "bare feet", "heavy boots"）。
+- 触地介质：明确描述足部接触的物理地面类型（"stands on wooden floorboards", "walking down the sidewalk", "in the mud"）。
+- 比例支撑：强制使用适合容纳全身的宽高比参数，设置 `--ar 2:3` 或 `--ar 9:16`。
+
+## R6: Midjourney V7 核心约束十五法则
+- Rule 1: 构图主体数量上限设为 4 个。超过 4 个实体时，必须使用群组词汇进行概念压缩。
+- Rule 2: 禁止使用否定词汇。
+- Rule 3: 禁止使用祈使句与系统指令（"draw", "add", "make"）。
+- Rule 4: 禁止描述用途解释（"for a logo", "for my app"），转换为纯风格描述（"vector icon", "storybook style"）。
+- Rule 5: 禁止使用文本描述尺寸与布局（"square layout"），必须使用 `--ar` 参数。
+- Rule 6: 剔除抽象与概念性语言（"iconic", "beautiful"）。
+- Rule 7: 剔除故事叙述性语言。只描述被冻结的单帧视觉瞬间。
+- Rule 8: 保持单句简短直接。单一视觉动作或特征对应一个独立句子，杜绝长篇从句。
+- Rule 8b: 禁止并列短语列表（"glowing light, broken wall"）。
+- Rule 9: 依赖环境原型，剔除冗余隐含细节。当描述 "in a junkyard" 时，禁止重复描述垃圾与生锈金属。
+- Rule 10: 移除所有相机元数据参数。
+- Rule 11: 将抽象品牌名重构为具象风格特征描述，保留知名视觉 IP 原型（如 "Ghibli style"）。
+- Rule 12: 移除保真度修饰词（"hyperrealistic", "ultra-detailed"），统一使用 "photo style" 或 "photograph"。
+- Rule 13: 消除 "or" 逻辑分支。
+- Rule 14: 多主体压缩协议。使用原型概括群组（"Three characters walk"），再通过空间锚点分离个体特征（"The one on the left... the center figure..."）。
+- Rule 15: 仅使用官方支持的尾缀参数，剔除一切自造参数。
+
+## R7: Omni-Reference (--oref) 语义迁移协议
+- 机制认知：--oref 并非像素级拷贝，而是语义级识别。模型会将参考图识别为特定原型（Archetype）。打破原型必须调低 --ow。
+- 方法一（参数锚定控制）：在提示词中重申参考图中最重要的标志性特征，并明确指定新姿态、新动作与新环境。针对人物使用 `--ow 100`，针对打破原型的物品强制降低至 `--ow 20`。
+- 方法二（语义托管）：使用代词 "Someone" 或 "Some stuff" 作为提示词主体，将外观决策权完全移交 --oref。配置 `--ow 400` 至 `--ow 1000`。
+- 方法三（纯场景投射）：提示词仅描述纯粹的背景与环境上下文，不提及任何主体。模型根据 --oref 自动注入主体。配合 `--s 800` 与 `--exp 80` 提升融合连贯性。
+- 尺寸控制律：模型继承参考图中主体的物理比例。若需生成小尺寸物体，必须事先在参考图中为主体四周增加大量留白。
+- 画幅一致律：生成的 `--ar` 参数对应的宽高比，必须与 --oref 参考图的宽高比严格一致，以防止生成不可控的黑边伪影。
+
+# Procedure
+
+## Step 1: 意图解析与主体提炼
+1. 提取用户原始需求中的核心主体、动作、环境与风格基调。
+2. 剔除所有抽象词汇、负面否定词、相机参数与连词。
+3. 统计独立主体的数量。若数量超过 4 个，执行 "群组归类 + 局部方位锚定" 进行多主体压缩。
+
+## Step 2: 空间构图与序列排布
+1. 根据期望的视觉焦点，将最核心的主体置于提示词的最前端。
+2. 若需将某主体推至边缘，首句先描述环境中的大型锚定物（如建筑、家具）。
+3. 使用明确的方位介词（Left, Background, Foreground 等）连接主体与环境物。
+
+## Step 3: 细节强化与全身约束配置
+1. 若任务要求全身像：应用鞋履/立足点法则，首句加入 "full-length"，补充头顶与脚部穿搭描述，补充脚下地面介质描述。
+2. 若需特定姿态：注入摄影专业体态术语，结合关联情绪词（shy, fierce）与具体面部表情特征。
+
+## Step 4: 外部参考与参数装配
+1. 判定是否引入外部视觉特征。若有，提取高质量、特征单一、无遮挡的图片 URL，作为 `--oref` 的值。
+2. 依据期望的控制力度分配 `--ow` 值（激进重构设为 20，自然保持设为 100，托管复制设为 400+）。
+3. 在提示词末尾装配所有必选参数。包含且不仅限于 `--ar`（必须与任务及 oref 比例匹配）、`--s`（默认 100，增强文本依从度降至 75 甚至 50）、`--v 7` 或 `--v 6.1`。
+
+## Step 5: 渲染测试与迭代修正
+1. 提交生成任务并评估四宫格结果。
+2. 若关键细节丢失：应用冗余注入法（同义词重复），或调低 `--s`，或在 V7 中附加 `--no luxabiddleprok` 乱码技巧。
+3. 若出现不受控的溢出元素：在 V6 中使用 `:: unwanted_item::-0.5`，或在 V7 中使用正向覆盖法描述相反属性。
+4. 若使用 --oref 出现姿态崩坏或融合生硬：提升 `--s` 至 800，或进入 Full Editor 模式局部重绘（Vary Region），重绘时必须移除 `--oref` 参数。
+
+# Exceptions
+
+## E1: 复杂提示词下的特征溶解 (Feature Dissolution)
+- 条件：描述 5 个以上特征时，模型丢失部分属性。
+- 处理：削减环境与次要道具的描述篇幅；对丢失特征应用 Cowbell Method（例如："a blue hat, an azure cap, a cobalt headpiece"）；末尾追加 `--s 50`。
+
+## E2: 全身肖像退化为大头照 (Portrait Bias Regression)
+- 条件：已使用 "full-length" 且描述了全身，但结果仍为近景特写。
+- 处理：强化立足点介词，增加 "walking on a street" 级别的环境互动；检查并确保 `--ar` 为 2:3 或 9:16；移除任何类似于 "bright eyes" 的极致面部微观描述（微观面部描述会强制镜头拉近）。
+
+## E3: Omni-Reference 原型绑架 (Archetype Hijacking)
+- 条件：使用 --oref 试图将一个苹果形状的灯泡渲染发光，但模型坚决渲染出普通的苹果，拒绝发光材质。
+- 处理：模型被语义原型绑架。必须将 `--ow` 参数断崖式下调至 `20` 甚至更低，同时在文本中极其暴力地强调 "glowing glass lightbulb, emitting blinding light, electrical filaments"。
+
+## E4: 多主体风格污染 (Cross-Subject Style Bleeding)
+- 条件：描述 "一个穿红色夹克的男人与一只绿色的狗"，结果生成了红色的狗。
+- 处理：遵循 V7 的简短独立句法则。拆分为："A man wears a red jacket. A dog sits next to him. The dog has bright green fur." 禁用长句混合属性。
+
+## E5: 乱码溢出 (Nonsense Text Generation)
+- 条件：使用 V6.1 的负面权重提示词切片（`"" ::-0.3`）导致画面出现模糊乱码或结构崩溃。
+- 处理：选取构图中最好的一张进行 Subtle Remix。在 Remix 弹出的编辑框中，彻底删除所有权重符号（`::`）和怪异后缀，仅保留纯净文本并设置 `--s 1000` 提交，模型将执行连贯性修复。
+
+# Examples
+
+## Example 1: 应用方位介词与顺序控制焦点
+- Input: 希望在王座室中生成一个巨大的水晶球，但要求国王不要成为画面的绝对中心（V5.2/V6 逻辑）。
+- Output: `A massive crystal ball glows in the center of a dark throne room while the Red King paces the flagstones near the left wall, cinematic still-shot by Peter Jackson --ar 3:2 --v 6.1`
+- Notes: 运用了构图法则。将 "massive crystal ball" 前置确保其占据焦点。使用介词 "in the center" 定位水晶球，"near the left wall" 强制将国王推离视觉中心。
+
+## Example 2: 高效强化丢失细节的冗余注入法 (Cowbell Method)
+- Input: 提示词包含 "a sleeping cat in the windowsill"，但生成的猫总是睁着眼睛。
+- Output: `In the background, a cat sleeps lying down with his head down, closed eyes, napping, slumbering, on the surface of a shelf of a bay window windowsill. --s 75 --v 7`
+- Notes: 移除了其他冗余描述以释放算力预算。使用了五个以上的同义词/短语（sleeps, lying down, head down, closed eyes, napping, slumbering）强行霸占模型注意力。降低了 --s 换取文本依从度。
+
+## Example 3: V7 架构下的多主体压缩与规范重构
+- Input: 原始劣质提示词 "Hyperrealistic close-up of a real glass no logo. A wave erupts. A realistic small fisherman pulls a net. Realistic seagulls fly. Lifelike cinematic lighting." 包含 7 个主体，大量冗余术语和否定词。
+- Output: `A small group of stormy photo-style elements emerge from a plain Korean soju glass on a wet wooden table. The glass has a short cylindrical shape and a thick hexagonal base. A spiraling wave erupts from the glass, filled with lightning and swirling rain. A tiny wooden fishing boat rises inside the wave. A fisherman in Joseon dynasty clothing hauls a net among the crashing water. Several seagulls circle above the crest. Inside the base of the glass, small fish shimmer in the churning water. Cinematic lighting enhances the storm and the glass refraction. --ar 16:9 --v 7`
+- Notes: 严格执行 V7 十五法则。将主体压缩进 "group of stormy elements" 原型。去除了 "no logo"（改为 plain）。去除了 "hyperrealistic/lifelike"（改为 photo-style）。拆解为短句，消除连词与并列。
+
+## Example 4: 强制全身肖像渲染 (The Footwear Rule)
+- Input: 需要一个蓝发女性精灵走在森林里的全身照片。
+- Output: `Photograph of a full-length female elf with blue hair wandering in a sunny forest, with her bare feet walking on lush green moss. Above her head is a magical bluebird. --ar 2:3 --v 7`
+- Notes: 首句声明 "Photograph of a full-length..."。顶部锚点为 "blue hair" 与 "magical bluebird above her head"。底部锚点为 "bare feet walking on lush green moss"。采用 2:3 垂直比例。
+
+## Example 5: 利用 Omni-Reference 进行抽象特征锚定
+- Input: 提供了一张戴粉色墨镜、蓝卷发的女孩图片（URL），要求将该角色转移到繁忙的城市街道，保持核心特征但姿态自然。
+- Output: `A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://cdn.midjourney.com/.../0_3.png --ow 100 --v 7`
+- Notes: 采用了 --oref 的方法一（参数锚定控制）。在文本中明确重申了参考图的标志性特征（blue curly hair, pink sunglasses），指定了新环境。权重保持默认 100 以维持平衡。
+
+## Example 6: 纯场景投射模式下的 Omni-Reference
+- Input: 已有一张物品（如复古卡车）的参考图，希望不加描述地将其直接丢入一片阴沉的玉米地中，完全交由模型融合。
+- Output: `An empty cornfield beneath an ominous stormy sky. --oref https://cdn.midjourney.com/.../truck.png --s 800 --exp 80 --ow 400 --v 7`
+- Notes: 采用了 --oref 的方法三（纯场景投射）。文本中完全未提及卡车。大幅提升 --s 800 与 --exp 80 以增强图像在极端拼接下的光影与逻辑连贯性，提升 --ow 400 强化对参考图原型的复制力度。
+
+## Example 7: 姿态与表情联动控制
+- Input: 生成一个害羞、不敢直视镜头的少女肖像，双手插兜。
+- Output: `Medium shot of a teenage girl, hands-in-pockets pose. She exhibits a bashful, shy, and embarrassed demeanor, looking down at the wooden floorboards. Blushing cheeks, averted gaze. Soft window light. --ar 3:4 --v 6.1`
+- Notes: 完美融合姿态术语（hands-in-pockets pose）、关联情绪引导（bashful, shy, embarrassed）以及面部微特征（blushing cheeks, averted gaze），彻底锁死模型对姿态的解释空间。
+
+## Example 8: 负面提示词切片的杂物消除法 (V6/V6.1)
+- Input: 生成西部酒馆场景，但模型自作主张给所有的群演路人都画上了牛仔帽，难以通过纯正向描述抹除。
+- Output: `A man plays piano in an Old West saloon :: hats ::-0.3 --ar 16:9 --v 6.1`
+- Notes: 遭遇群体性泛滥元素时，提取元素核心名词 "hats" 作为独立 Promptlet，赋予负数权重 `-0.3`。若效果不明显，可进一步下调至 `-0.5`，强制模型在潜空间抑制该元素的生成概率。
+
+# References
+- refer to <document id="doc_midjourney_parameter_reference_v7">
+- refer to <document id="doc_midjourney_aspect_ratio_guidelines">
+            ]]>
+        </document>
+    </documents>
+</context_package>

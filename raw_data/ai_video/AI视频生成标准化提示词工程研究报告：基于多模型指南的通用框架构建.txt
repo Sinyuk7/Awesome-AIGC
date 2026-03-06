@@ -1,0 +1,167 @@
+AI视频生成标准化提示词工程研究报告：基于多模型指南的通用框架构建
+人工智能生成内容（AIGC）领域正在经历一场深刻的范式转移。随着大规模时空视频生成模型的涌现，早期生成式AI所依赖的类似于“老虎机”式的概率性文本输入方式，已无法满足当前高质量视频生产的需求1。现代先进的视频生成架构（如引入了扩散Transformer和变分自编码器的模型）本质上已演变为复杂的渲染引擎和物理世界模拟器，它们致力于在潜在空间中计算物理属性、运动向量以及多帧之间的时间一致性1。因此，提示词工程（Prompt Engineering）已从一种随意的自然语言描述，进化为一门高度结构化、类似于电影技术导演（Technical Director）和摄影指导（Director of Photography）的精密学科4。
+随着AI视频生成市场的迅猛扩张——预计到2030年该市场规模将达到1333.4亿美元7——用户面临着日益碎片化且各自为政的提示词编写指南。各大主流模型（包括Sora、Wan模型、Seedance以及其他行业工具）均发布了官方的提示词规范。这些指南往往基于其特定架构的训练偏差和优先级：部分模型强调物理逼真度与因果关系模拟，部分侧重于高分辨率的美学分层控制，还有部分则聚焦于严格的语法序列约束4。然而，在这些依赖特定平台特性的表象之下，隐藏着一套控制大型语言模型（LLM）和扩散模型注意力机制的通用底层逻辑。
+本报告旨在对包括钉钉文档体系内的AI辅助创作规范、Sora模型提示指南、Wan模型官方手册以及Seedance 2.0提示词框架在内的多种前沿文献进行深度的比较分析。通过剥离特定模型本身的硬件限制或软件UI特性，提取其在注意力引导、时空连续性控制以及视觉锚定上的共性，最终取其精华、去其糟粕，归纳总结出一套全面、标准化、且不依赖特定模型底层架构的AI视频提示词编写通用框架。
+核心视频生成模型指南的比较与综合评价
+要构建一套普适性的标准框架，首先必须解构当前行业内领先视频生成架构所提供的官方指导原则。不同模型在其底层设计哲学上的差异，直接决定了其官方指南中对文本结构的要求。通过对这些指南的横向对比，可以清晰地识别出哪些原则是具有普遍适用性的“精华”，哪些是因模型能力不足而妥协的“糟粕”。
+Sora指南：物理中心主义与摄影学语法
+以Sora为代表的物理模拟派模型，其核心设计理念在于对物理世界现实的复刻以及多镜头一致性的维持6。此类模型的官方指南极力要求用户摒弃游客视角的随意描述，转而采用专业摄影指导（DP）的语法结构6。
+在Sora的提示词逻辑中，最核心的原则是“单一镜头，单一动作（One shot, One thing）”9。这意味着提示词必须限制在一个连续的摄像机运动轨迹和一个主体的单一动作反馈内。指南明确指出，如果在单一提示词中堆砌复杂的复合动作序列，将会导致模型在时空计算上的崩溃，进而产生严重的形态扭曲和物理规律错乱9。此外，该指南强调了物理属性与材质的明确性，要求详细描述表面纹理、外力作用（如风、水、织物的相互作用）以及光线的方向性，以触发模型内部的光线追踪和流体动力学计算6。在音频同步方面，Sora指南展示了极高的结构化要求，强调对白或音效必须脱离视觉描述，放置在独立且带有明确标签（如Dialogue:）的代码块中，以确保视听生成的注意力不被相互干扰11。
+Wan模型指南：美学分层与时空分辨率控制
+Wan模型（如Wan 2.1及后续版本）的官方文档展现了一种基于层级叠加的提示词构建哲学8。作为采用了先进视频变分自编码器（Wan-VAE）和扩散Transformer技术的开源模型，其优势在于能够高效压缩并生成1080P高分辨率的流畅动态视频2。
+Wan模型的指南将提示词拆分为基础和进阶两个维度。基础维度遵循简单的“主体 + 场景 + 运动”三元结构，适用于快速的概念验证8。而为了达到影视级质量，指南提倡引入高阶维度的美学控制（Aesthetic Control）与风格化（Stylization）8。在图生视频（Image-to-Video）这一特定且高频的应用场景中，Wan模型指南指出，由于主体的外观和环境的美学基调已被参考图像锁定，提示词的重心应完全转移至运动控制上8。此时，强烈建议使用精确的副词（如“缓慢地”、“剧烈地”）来控制动作的幅度与节奏，并通过明确的电影机位术语（如“dolly in”、“pan left”）来接管镜头的运动轨迹8。
+Seedance指南：严格的序列约束与时态固化
+Seedance 2.0的提示词指南则代表了一种高度规范化的语法约束流派。该指南强制用户遵循一个不可颠倒的五段式模板结构：主体（Subject）  动作（Action）  相机（Camera）  风格（Style）4。
+这种方法的精华在于其对自然语言处理（NLP）注意力机制的精准把控。Seedance指南特别强调在描述动作时，必须使用单一的、清晰的“现在时态（Present tense）”动词4。从算法计算的角度来看，现在时态能够为扩散模型提供一个连续的动作状态锚点，从而避免了过去时或复杂从句导致的帧间时序混乱。此外，该指南极其推崇使用“视觉锚点（Visual anchors）”，即用具体可见的物理现象（如“暖色荧光灯”、“90年代香港艺术电影的黄绿胶片感”）去替代抽象的主观形容词4。
+差异评价与共性提取（取其精华去其糟粕）
+通过对上述指南以及更广泛的行业最佳实践（如Venice、LTX Studio的官方文档）的综合评价，我们可以对不同策略进行筛选与整合：
+糟粕（应予摒弃的依赖特定模型的策略）：
+依赖底层UI特性的操作： 如部分指南中提到的通过拖拽界面预设来代替文本描述4。在构建通用规范时，必须假定用户仅拥有文本输入接口或API调用权限。
+过度冗长的叙事型表达： 早期大语言模型训练积累的“讲故事”习惯，在视频模型中是致命的。试图在一段提示词中描述跨越几分钟的剧情流转，完全违背了当前模型的算力限制。
+模型特有的参数指令： 如特定的长宽比代码或生成步数指令，这些不属于提示词语义范畴，应被剥离出通用框架。
+精华（跨模型普遍适用的核心逻辑）：
+词汇的专业化降维： AI视频模型并非人类读者，它们是受过海量专业影像数据训练的计算器。所有指南都证明，使用精确的摄影学词汇（如Bokeh、Tracking shot、Golden hour）比使用日常用语能更有效地激发模型的高质量潜空间4。
+动作的原子化拆解： “单一镜头，单一动作”是所有前沿模型的物理极限也是最佳实践4。
+宏观与微观的具体化锚定： 必须使用具备明确RGB色彩值或光度学特征的词汇来锁定画面的美学基调，消除大语言模型的随机幻觉4。
+
+模型指南体系
+核心优势与倡导策略
+适用场景与通用价值提取
+Sora体系
+强调物理现实主义、材质光影交互、多镜头风格延续以及分离式的独立音频区块对齐6。
+提取其“DP视角（摄影指导）”描述法、环境表面物理交互描写，以及独立封装的视听同步结构，用于构建框架的深度物理层。
+Wan体系
+采用渐进式的美学分层，特别强调在图生视频（I2V）模式下对副词和摄像机运动学词汇的高级控制2。
+提取其“美学控制参数化”逻辑，将光照、构图和镜头畸变（Lens）作为独立模块，规范化运动幅度的副词使用。
+Seedance体系
+强制的线性五段式结构，严格限定动作描述必须使用现在时态动词，注重视觉锚定物4。
+提取其“现在时态原则”与“视觉锚点”理论，将其融入动作描述与风格化层，确保时序稳定性和注意力不漂移。
+
+提示词病理学：典型错误与认知纠偏
+在建立标准化框架之前，有必要对当前用户在提示词编写中普遍存在的“坏习惯（Bad Habits）”进行病理学分析12。AI视频生成之所以频繁出现肢体扭曲、主体消失、背景崩溃或画质劣化的现象，往往源于用户对大型语言模型注意力机制的误解，以及信息过载导致的计算溢出。
+认知偏差一：将AI视为具备推演能力的人类导演
+最常见的错误是将AI视频模型拟人化，认为其具备抽象概念的推演能力。例如，输入“生成一个史诗般的、感人的赛博朋克城市镜头”。这种缺乏具体约束的描述（Vague Objective Setting）未能提供任何可量化的技术指标10。对于AI而言，“感人的”是一个无法映射到像素RGB值的黑盒概念。缺乏明确边界会导致模型在海量训练数据中随机采样，最终生成看似正确但平庸且毫无逻辑的拼接画面13。此外，这种模糊性会导致用户陷入无止境的试错循环中。
+认知偏差二：指令过载与注意力稀释
+大型语言模型在处理长文本时存在“注意力稀释（Attention Dilution）”现象13。如果用户在单个提示词中塞入过多的细节、复合动作或相互矛盾的视觉特征（例如：“一个穿着红色外套和蓝色裤子的男人在雨中奔跑，突然停下来看手表，然后镜头拉远显示一架直升机降落”），模型的文本编码器将会崩溃12。它可能将红蓝颜色混合生成紫色外套，或者在渲染男人看手表时完全丢失环境中的下雨属性。AI在处理复杂提示词时，为了兼顾所有指令，往往会牺牲核心的物理连贯性10。这种“信息贪婪”是导致视频生成失败的头号原因。
+认知偏差三：忽视安全性与隐私合规
+在企业级或专业工作流中，未经处理的提示词输入极易引发数据泄露风险。各种在线AI生成工具（即使是受控部署的API）也会将用户的提示词作为日志记录甚至用于未来的模型微调训练12。在提示词中直接粘贴真实的客户名称、专有产品数据、API密钥或尚未公开的内部文档，是一种严重的安全违规行为12。专业的提示词工程必须具备数据脱敏意识，使用占位符或抽象描述替代敏感实体。
+认知纠偏与策略重构
+针对上述病理，专业的提示词工程需要建立一套“微观拆解与视觉转译”的重构策略15。
+首先，实行**“微提示词拆解（Micro-Prompts）”**策略15。将一个复杂的叙事意图拆分为多个细小的、独立的镜头单元。如果需要一个长序列，应该分别生成多个3到5秒的高质量短片段，然后利用传统的非线性编辑（NLE）软件进行后期的拼接与剪辑，而不是指望AI一次性吐出一个完美的8秒长镜头9。短视频切片的生成不仅成功率高，且由于环境变化小，模型能更专注地渲染高质量细节。
+其次，实施**“抽象概念的可视化转译”**。将所有带有主观色彩的形容词替换为具体的电影工业技术参数。如下表所示：
+
+错误倾向（The Bad）
+病理分析
+重构策略（The Good）
+“一个悲伤的女人在雨中行走，画面很有电影感。”
+主观情感词“悲伤”无法被精准渲染，“电影感”缺乏具体的光学指标，导致输出高度同质化11。
+“中景特写（Medium Close-up），一个身穿深色风衣的女性在雨中缓慢行走，肩膀微垂。采用变形宽银幕镜头（Anamorphic lens），浅景深（Shallow DOF）。色彩锚点：冷蓝色、青灰色。高对比度明暗法（Chiaroscuro）。” 10
+“一只狗跑进房间，跳上沙发，然后开始叫。”
+典型的指令过载，包含三个连续的动作。模型在跨越空间位移时会导致几何拓扑结构的崩溃9。
+遵循“单一动作原则”：提示词仅描述最终状态或最关键的动作截面。“定角镜头（Locked-off shot），一只金毛犬跳上棕色真皮沙发，动作迅速。室内布光。” 8
+“列出2025年最好的营销策略并生成相关视频。”
+混淆了生成式文本问答与视频生成的模型能力边界，包含事实性信息的查询12。
+将分析工作交由文本模型处理，视频模型仅接收最终的视觉描述指令。“广角镜头，一个现代科技感的数据中心，服务器指示灯闪烁，缓慢的轨道摄影（Dolly track）。”17
+
+AI视频生成全维度通用标准化框架（七层架构）
+在剔除模型特定差异并纠正不良习惯后，我们可以构建一套全面、科学的通用提示词编写规范。本框架基于好莱坞工业标准和多项AI视频指南中的“六层架构（Six-layer framework）”5进行扩充，融入了现代扩散Transformer模型所需的高级物理维度和音频同步维度，最终形成了一套严格的时序逻辑文本结构。
+该结构按照AI处理信息的优先级递减顺序排列，确保模型的注意力机制首先锚定最核心的实体和运动，再依次叠加环境、光影和技术滤镜。标准的提示词流应该严格遵循以下组装顺序：
+第一层：主体定义与材质物理（Subject and Material Physics）
+这是整个生成的基石。模型必须在潜在空间的去噪计算初期，确立画面的焦点和其所遵循的物理规律。
+具象化主体特征： 避免使用“一个人”或“一辆车”这样宽泛的词汇。必须详细界定其人口统计学特征、外貌、甚至是服饰的材质。例如：“一个留着胡须的40岁白人男性，穿着反光银色尼龙夹克”4。
+材质的物理意义： 在现代世界模拟器（如Sora和Wan 2.1）中，材质描述（尼龙、粗花呢、液态金属、玻璃）是极其重要的。因为模型需要根据材质来计算后续的光线反射率（Specular highlight）、布料的重力下垂感以及在运动中的折痕变化6。未定义材质的主体往往会呈现出橡皮泥般的塑料质感。
+第二层：运动学与时态原子化（Action and Temporal Dynamics）
+决定主体如何与空间发生交互，是视频有别于图像的本质。
+现在时态的动词约束： 必须使用精确的、单一的现在时动词来描述动作4。现在时态（如“正在行走”、“转身”、“伸手”）向模型传达了一个持续存在的状态，使得模型能够逐帧推演运动向量，而不是陷入对已完成动作的逻辑推断中。
+单一原子动作： 遵循“单一机位 + 单一动作”的铁律4。绝不使用连词（和、然后、接着）来堆砌动作。
+动作能量学描述： 除了动词本身，应加入描述运动节奏或力度的副词（Tempo/Energy descriptor），如“沉重地踱步”、“轻盈地跳跃”或“猛烈地摇晃”6。这不仅控制了视频的节奏，还会影响模型对动态模糊（Motion Blur）和重力表现的计算。
+第三层：空间几何与环境交互（Spatial and Environmental Geometry）
+构建主体所处的容积空间，为光线追踪和阴影投射提供物理背景11。
+地理与时代背景： 设定明确的时代和地点（例如：“1980年代的东京霓虹街道”或“古老的石制祭坛”），以约束模型在生成背景建筑和道具时的风格走向4。
+天气与大气介质： 大气元素（如浓雾、大雨、漫天飞雪、空气中的灰尘微粒）为画面提供了景深层次，并为光线的体积散射（Volumetric scattering）创造了条件5。
+表面交互物理： 重点描述环境表面的状态，如“潮湿反光的柏油路面”、“粗糙的砂岩”或“布满划痕的金属桌”4。表面物理属性是提升视频真实感的关键维度，它直接决定了环境光如何反射回主体身上。
+第四层：摄影机语法与构图取景（Cinematographic Framing）
+完成物理世界的搭建后，提示词必须切换到“导演”视角，定义如何通过镜头捕捉这个世界18。使用精确的景别和角度词汇，能够极大地接管模型的画面裁剪权。
+景别控制（Shot Size）：
+大远景（Extreme Wide Shot / Establishing Shot）： 强调广阔的环境和史诗感，主体在画面中极小。适用于交代地理位置和气候条件10。
+全景（Wide Shot）： 主体全身入画，平衡了环境与主体的关系，适合表现宏大的动作轨迹4。
+中景（Medium Shot）： 通常取腰部或胸部以上的画面，能清晰捕捉主体的手部动作和面部情绪，同时保留适度的环境背景。是应用最广、生成稳定性最高的景别4。
+特写（Close-Up）： 极其靠近主体，专注于细节、面部微表情或物体表面。此类景别极大地减少了模型渲染复杂背景的计算负担，有助于提升细节的超高保真度4。
+机位角度（Camera Angle）：
+平视（Eye-level）： 最自然、中性的视角，适合写实类纪录片风格10。
+低角度（Low Angle / 仰视）： 增加主体的压迫感、威严感或动态冲击力10。
+高角度（High Angle / 俯视）： 削弱主体的力量，或用于展示复杂的地面几何阵列18。
+过肩镜头（Over-the-shoulder）： 用于构建强烈的空间方位感和人物对话关系8。
+第五层：摄像机运动学（Camera Kinematics）
+控制摄像机在三维空间中的运动轨迹。摄像机运动是引发视频伪影（Artifacts）的高危区域，必须谨慎使用4。
+慢速克制原则： 所有模型指南都指出，摄像机运动必须保持“缓慢”和“克制”。剧烈的摇摄（Pan）极易撕裂边缘画面4。
+固定镜头（Static / Locked-off）： 摄像机完全不动。当主体的动作非常复杂时，固定镜头是确保画面不崩塌的最好选择8。
+推拉跟移（Dolly / Track）： 摄像机在物理空间中前后移动（Dolly）或平行于主体移动（Tracking）。这是增强电影空间立体感（视差效果）最有效的运动方式4。
+设备质感（Handheld vs Steadicam）： 指明运镜的物理质感。“手持拍摄（Handheld）”会引入轻微的画面摇晃和微小的不规则震动，增加伪纪录片或Vlog的真实感；而“斯坦尼康/稳定器（Steadicam / Gimbal）”则确保运动如丝般顺滑，呈现出重工业电影的质感4。
+第六层：光度学与美学色彩锚点（Photometric and Aesthetic Anchors）
+光影是建模的骨架，色彩是情绪的皮肤。缺乏特定光影描述的提示词会生成如同新闻播报般平铺直叙的“平光”画面9。
+光源的性质与方向： 必须明确光线的发光原理及其相对主体的位置。使用如“温暖的逆光（Warm backlight）”、“柔和的边缘轮廓光（Soft rim light）”、“刺眼的顶部荧光灯（Harsh overhead fluorescent）”或“蝴蝶光（Butterfly lighting）”等专业术语9。
+电影光影流派： 引入宏观的布光风格。例如，“黄金时刻（Golden Hour）”带来长长的阴影和暖黄色调；“蓝调时刻（Blue Hour）”制造静谧、神秘的冷色氛围；“明暗对比法（Chiaroscuro）”产生强烈的高反差戏剧效果17。
+色彩锚点机制（Palette Anchors）： 极其关键的稳定性策略。为了防止模型在多帧渲染中发生色彩漂移（Color shifting），必须在提示词中显式声明3到5个具体的色彩锚点。例如：“Palette anchors: 深青色，琥珀色，胡桃木棕，奶油白”9。这等于在潜在空间中打下了色彩基桩，确保了全片的色调连续性。
+第七层：技术规范、材质输出与独立音频控制（Technical Specs and Audio Integration）
+这是最终的滤镜层，决定了模拟世界通过何种介质呈现给观众，以及声音的处理。
+镜头焦距与光学特征： 不同的镜头具有不同的光学畸变和空间压缩特性。指定“35mm镜头”可获得近似人眼的纪实感；“85mm远摄镜头”会压缩背景，非常适合人像特写；而“变形宽银幕镜头（Anamorphic lens）”则能自动引入横向的镜头炫光（Lens flare）和椭圆形的光斑（Bokeh）8。
+胶片与介质质感： 决定画面的物理媒介属性。追求极致现代商业画面的可使用“8k、极度清晰、高动态范围”；追求复古复刻的则需加入“16mm黑白胶片、颗粒感（Film grain）、轻微的色度噪声（Chroma noise）、高光晕影（Halation）”等物理瑕疵词汇，以增强真实感4。
+音频与对白的分离封装： 对于具备原生音频生成能力的高级模型（如Sora、Wan等），音频指令不能混杂在画面描述中。必须严格按照官方文档的语法，在提示词最底部使用单独的代码块进行声明11。对白内容必须极其简短（以匹配通常仅有数秒的视频长度），并使用统一的说话者标签（如“侦探：”）以确保唇音同步算法的精准映射11。此外，也应在这一区域提供具体的环境底噪描述（如“低沉的排气扇轰鸣声”）4。
+通用提示词组装模板范式
+将上述七层架构合并，我们得到了一个严谨的、可复用的AI视频生成提示词标准模板：
+[主体定义]：[具体外貌特征，年龄，人种，服饰的具体材质]
+[动作与时态]：[单一现在时动词] + [动作幅度/节奏副词]
+[环境与几何]：[地理位置与时代]，[天气与大气介质]，[特定表面的物理交互状态]
+[摄影机语法]：[明确的景别]，[机位角度]，[单一的摄像机运动方向及设备质感]
+[光度学与色彩]：[光源方向与类型]，[整体布光风格]。色彩锚点：
+[技术与介质规范]：[镜头焦距]，[景深控制]，[胶片质感与光学瑕疵]
+Audio: [具体的环境音效描述或底噪]
+Dialogue:
+: "[简短自然的一句话对白]"
+高级操作工作流与多模态可控性优化
+掌握了标准的文本组装框架仅仅是基础。在实际的商业视频制作或专业工程应用中，单次提示词的输入往往无法立刻满足复杂的生产需求。因此，必须结合底层模型的计算特性，引入高级的操作工作流（Operational Workflows），以提升生成效率、控制成本，并实现严苛的多镜头一致性与可控性。
+迭代机制与成本效能优化（The 5-10-1 Rule）
+现代领先的大规模视频生成模型（如拥有140亿参数的Wan 2.1版本或Sora的Pro系列）在进行去噪计算时，会消耗极大的显存（VRAM）和算力资源19。频繁地在这些高配模型上进行试错不仅耗时，而且成本极其高昂。
+专业的提示词工程师通常遵循行业内的“5-10-1法则”或类似的递进评估策略来进行降本增效5。该策略的核心在于“跨模型调优”：
+低成本验证： 首先在计算成本低、生成速度快的小参数模型（如1.3B版本，或设置为较低分辨率的探索性模型）上，使用上述七层框架快速测试提示词的结构逻辑19。重点观察主体动作是否符合预期、构图视角是否正确、色彩锚点是否生效。
+锁定变量与迁移： 一旦在快速模型上获得了满意的骨架效果，将完全相同的提示词文本无缝迁移至高参数、高分辨率的生产级模型（如Sora 2 Pro或Wan 14B）进行最终渲染19。
+微调而非重构： 当高阶模型的输出主体优秀但存在局部微小瑕疵时，绝不可修改提示词后重新生成（这会重置随机种子并生成完全不同的视频）。应充分利用模型的原生“重混（Remix）”或“变体（Variation）”功能，在锁定时空拓扑结构的前提下，让模型仅对瑕疵区域进行微调计算9。
+连续性叙事的风格脊椎构建（Style Spine）
+AI模型在不借助外部图像或控制网络干预的情况下，自身不具备跨镜头的“记忆能力”。如果要在多个独立生成的提示词之间保持场景和人物的绝对连贯性，就必须在文本层面构建一条坚不可摧的“风格脊椎（Style Spine）”6。
+实现这一目标的唯一途径是实施极端的“词汇复用（Vocabulary Reuse）”9。在一个系列的不同镜头中，主体外貌、环境布置、灯光逻辑和色彩锚点的文本描述必须逐字保持一致。例如，如果第一个镜头的灯光设定为“窗户透入的柔光与温暖的台灯辅光”，在生成同一个房间的后续反打镜头时，如果将光照描述随意更改为“室内黄光”，底层模型将会完全重新计算整个空间的体积光映射，导致前后镜头的物理逻辑断裂。通过僵化地复制粘贴光度学与色彩参数，能够有效欺骗模型在潜空间中锁定相同的美学向量。
+图生视频（Image-to-Video）的降维与重心转移
+当项目对一致性要求达到商业级时（例如品牌广告中的特定人物IP或固定产品的展示），纯文本生成（T2V）已无法满足精度要求，工作流必然转向图生视频（I2V）模式8。在此模式下，一张高保真的参考图像将作为初始潜空间的条件输入（Conditioning Input）。
+引入参考图像后，提示词框架的编写逻辑将发生显著降维：
+削减静态描述： 主体的长相、服装材质、背景建筑群以及基础的光影基调已经通过图像像素完全固化。如果在提示词中再次冗长地描述这些已有视觉信息，不仅画蛇添足，反而可能因为文本特征提取器与视觉编码器的信号冲突而引发失真。
+聚焦动力学映射： I2V提示词的作用从“无中生有”转变为“赋予静态画面以动能”。因此，提示词的重心必须集中在第二层（动作的幅度和节奏）以及第五层（摄像机运动轨迹）上8。此时，强烈建议通过堆叠样式参考（Style Reference Stacking），精确控制动画的流体感或摄像机滑轨的平稳度18。
+质量控制与多维评估矩阵
+最后，作为一名专业的“技术导演”，必须建立一套客观的质量评估体系（QC），摒弃仅凭个人喜好判断“好与坏”的主观标准21。每一个生成的视频片段必须经过以下维度的严格打分验证6：
+提示词依从性（Prompt Adherence）： 模型是否精准执行了文本中设定的所有硬性技术规范（如特定的镜头焦距、预设的色彩锚点等）？
+运动学质量（Motion Quality）： 摄像机轨道的推进是否平滑且符合数学规律？人物的骨骼动态生物力学是否自然，是否存在“瞬移（Teleporting）”、肢体闪烁或鬼影等伪影现象？
+物理真实度（Physical Realism）： 模型是否正确模拟了世界法则？例如，水花溅起的流体动力学表现是否符合重力？环境光的阴影是否跟随光源变化和主体的移动而进行正确的几何投射？材质的反光属性是否合理？
+视听同步余量（Audio Sync and Mix Headroom）： 当启用了原生音频生成功能时，人物的唇语闭合是否与代码块中设定的对白音轨达到微秒级的对齐？环境底噪是否与视觉空间的大小和介质特性相匹配？
+综上所述，掌握大型AI视频生成模型并非一门依赖灵感的玄学，而是一套严密遵循计算机视觉与物理引擎规律的工程学体系。通过摒弃将AI拟人化的错误习惯，深刻理解大语言模型的注意力分配机制，并严格执行涵盖“主体物理、动作原子化、环境几何、摄影语法、光度色彩及技术音频规范”的七层标准化框架，创作者方能摆脱盲目试错的泥沼。在此框架的指引下，辅以跨模型的成本迭代策略与严苛的质量评估矩阵，任何从事AIGC生产的专业人员，均能够在这场席卷全球的内容生产力革命中，稳定且高效地输出达到工业级制片标准的影像作品。
+Works cited
+How to Actually Control Next-Gen Video AI: Runway, Kling, Veo, and Sora Prompting Strategies | by Kristopher Dunham | Medium, accessed February 27, 2026, https://medium.com/@creativeaininja/how-to-actually-control-next-gen-video-ai-runway-kling-veo-and-sora-prompting-strategies-92ef0055658b
+Qwen's Wan 2.1: A Guide With Practical Examples - DataCamp, accessed February 27, 2026, https://www.datacamp.com/tutorial/wan-2-1
+Overview of Wan 2.1 (text to video model) : r/learnmachinelearning - Reddit, accessed February 27, 2026, https://www.reddit.com/r/learnmachinelearning/comments/1og54lh/overview_of_wan_21_text_to_video_model/
+Exclusive Seedance 2.0 Prompt Guide With 70 Ready-To-Use AI ..., accessed February 27, 2026, https://www.imagine.art/blogs/seedance-2-0-prompt-guide
+The Prompt Engineering Framework to Generate PERFECT AI Videos - YouTube, accessed February 27, 2026, https://m.youtube.com/watch?v=cIySbq74jnI
+Sora 2 Prompt Authoring Best Practices (2025): Proven Workflow Guide - Skywork.ai, accessed February 27, 2026, https://skywork.ai/blog/sora-2-prompt-authoring-best-practices-2025/
+AI Prompt Engineering for Video Generation: Complete Guide with Examples - GenAIntel, accessed February 27, 2026, https://www.genaintel.com/guides/ai-prompt-engineering-video-generation-guide
+How To Prompt Wan Models Full Tutorial and Guide - Hugging Face, accessed February 27, 2026, https://huggingface.co/blog/MonsterMMORPG/how-to-prompt-wan-models-full-tutorial-and-guide
+Sora 2 Prompting Guide, accessed February 27, 2026, https://soratoai.com/en/docs/guides/sora-2-prompting-guide/
+Sora 2 Prompting Guide - OpenAI for developers, accessed February 27, 2026, https://developers.openai.com/cookbook/examples/sora/sora2_prompting_guide/
+How to Use Sora AI: A Video Prompting Guide - Leonardo.Ai, accessed February 27, 2026, https://leonardo.ai/news/sora-prompt-guide/
+5 Common AI Prompting Mistakes and How to Avoid Them - Act!, accessed February 27, 2026, https://www.act.com/blog/ai-prompt-mistakes-to-avoid-how-to-get-the-best-results-from-your-ai-tool/
+Stop Making These AI Prompt Mistakes - Better Results Guide, accessed February 27, 2026, https://www.sentisight.ai/avoid-this-entering-prompts-ai-search-tools/
+Prompt Engineering: How To Prompt AI for Real-World Results - DreamHost, accessed February 27, 2026, https://www.dreamhost.com/blog/ai-prompts/
+5 Common AI Prompting Mistakes (and How to Fix Them) | by strawberry AI - Medium, accessed February 27, 2026, https://medium.com/@strawberryAI/5-common-ai-prompting-mistakes-and-how-to-fix-them-825ec7ed8806
+openai-cookbook/examples/sora/sora2_prompting_guide.ipynb at ..., accessed February 27, 2026, https://github.com/openai/openai-cookbook/blob/main/examples/sora/sora2_prompting_guide.ipynb
+Sora 2 Prompting Best Practices for Real-Life Motion - WeShop AI, accessed February 27, 2026, https://www.weshop.ai/blog/sora-2-prompting-best-practices-for-real-life-motion/
+The Complete Guide to AI Video Prompt Engineering - Venice AI, accessed February 27, 2026, https://venice.ai/es/blog/the-complete-guide-to-ai-video-prompt-engineering
+Video generation with Sora | OpenAI API, accessed February 27, 2026, https://developers.openai.com/api/docs/guides/video-generation/
+Benchmarking WAN2.1: Open-Source Text-to-Video Generation on SaladCloud, accessed February 27, 2026, https://blog.salad.com/benchmarking-wan2-1/
+Prompt Engineering Tools 2025 | Top 15 Tools & Guide, accessed February 27, 2026, https://brollyai.com/prompt-engineering-tools/
+AI Video Prompt Guide: How To Write AI Video Prompts | LTX Studio, accessed February 27, 2026, https://ltx.studio/blog/ai-video-prompt-guide

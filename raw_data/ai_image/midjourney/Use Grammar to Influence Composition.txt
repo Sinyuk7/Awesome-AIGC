@@ -1,0 +1,79 @@
+11/10 Prompt Troubleshooting Jam Session
+Use Grammar to Influence Composition
+To influence composition in Midjourney, explore what happens when the main subject or primary element of an image is  named before its surrounding environment or setting… or the other way around. 
+
+Use grammar to influence relationship to the frame:
+By strategically ordering the main subject and its surrounding environment within the prompt, you can nudge the AI model to prioritize one element over the other, which may influence the focus and framing of the composition.
+
+
+Initial Prompt (❌)
+Refined Prompt (✅)
+Observation/Change
+A fountain with a mermaid statue on top
+A mermaid statue topping a fountain
+The refined prompt puts the focus on the mermaid, resulting in a close-up where the fountain is context. The initial prompt made the fountain the main subject.
+A candle with a ghost made of smoke rising from it
+A smoke-formed ghost rising from a candle flame
+The refined prompt prioritizes the ghost, making the candle the origin and not an equally-sized subject. The initial prompt treated the candle and ghost as equally sized.
+
+
+
+Use grammar to influence object relationships to other objects:
+Strategically ordering the main subject and surrounding elements can focus the AI model on one component over another, influencing how objects are placed in relationship to one another by tweaking the model's attention.
+
+
+Initial Prompt (❌)
+Refined Prompt (✅)
+Observation/Change
+A miniature city contained by a glass tank
+A glass tank with a miniature city inside it
+The refined prompt shifts the focus from the city to the tank (the "star").
+A sky with eyes floating in the clouds
+Eyes floating in cloudy sky
+The refined prompt puts the "creepy eyes" front and center, making the sky the background canvas.
+
+
+
+Use grammar to influence object relationships with archetypes:
+Incorporating archetypal verbs like "growing" can shift the AI model's interpretation of object relationships.
+
+Initial Prompt (❌)
+Refined Prompt (✅)
+Observation/Change
+A plate with a forest made of broccoli on it
+A tiny forest of broccoli trees growing on a plate
+→ The initial prompt's structure made the flat plate the dominant element, resulting in a flat design on the plate (e.g., food presentation).
+
+→ The refined prompt uses the archetype of "growing" and places the tiny forest of broccoli trees as the main subject, causing the image generation model to interpret the scene as a three-dimensional diorama or miniature landscape, not just a flat food arrangement.
+
+
+
+
+An example of a prompt refinement process exemplifying all of these:
+The following prompt refinement process demonstrates using grammar to shift focus from the large, static object (massive oak tree) to the setting (convertible's driver's seat) and then employing archetypal verbs ("growing," "driving") to create a successful image where the tree is the active subject.
+
+#
+Prompt Refinements
+Explanation
+1
+A massive oak tree sitting in the driver’s seat of a convertible
+It doesn't work. It creates an archetypal picture of an oak tree with a car parked in front of it.
+2
+A convertible's driver seat occupied by a small oak tree sitting in the driver’s seat of a convertible
+Swapped focus to the driver's seat, reduced the size of the tree so it has a fighting chance to fit in the car, and repeated the positioning on both ends of the prompt
+3
+A convertible's driver seat occupied by a small oak tree driving the convertible
+Refined the positioning of the tree by using the archetype of "driving". It's ok. Can I do better?
+4
+Driver's seat with a tree growing in it
+Borrowing on the archetype of growing.
+5
+Driver's seat with a tree growing in it. The tree is driving the car.
+Focused on the driver's seat, using the archetypes of growing and driving.
+
+
+
+
+
+
+No images are provided in this document to ensure the focus remains purely on the grammatical structure and logical ordering of the prompts. The goal is to train the eye and mind to anticipate compositional results based on word choice and placement, before external visual feedback biases the process.

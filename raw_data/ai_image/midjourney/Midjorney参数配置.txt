@@ -1,0 +1,1156 @@
+# Parameter: --sref (Style Reference)
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+A Style Reference (the `--sref` parameter) is a way to capture the visual vibe of an existing image and apply it to your new Midjourney creations. There are two ways to use it: with an **Image** (Midjourney or external) or a **code**. Format like this:
+
+`--sref <URL>`
+
+`--sref 1234` or `--sref random`
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What is `--sref`? (style reference)**
+
+</aside>
+
+A Style Reference is a way to capture the visual vibe of an existing image and apply it to your new Midjourney creations. It doesn't copy objects or people, just the overall style—like colors, medium, textures, or lighting—helping you achieve a consistent visual theme. 
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**  
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **How do I use sref images?**
+
+</aside>
+
+You'll need an image that reflects the style you want to use on your canvas. 
+
+- **Use images on Discord:** You need to obtain the image’s URL ending in .jpg, .png, .gif. Once you have the URL, add it to the end of the prompt with `--sref URL`. If you’re using an image from your computer, an easy way to create a URL is to drop it into your DM with the @Midjourney bot, then copy that link.
+    - **How to get a URL from an image for use in Midjourney… (click to open toggle)**
+        
+        I grab the URL twice in this video to show you twice. You only have to grab it once. 😆
+        
+        1️⃣ Open a direct message to @MidjourneyBot like it's a person!
+        
+        2️⃣ Click the **[ + ]** button in your chat bar. Choose 'Upload a File'.
+        
+        3️⃣ Select an image from your device or file system. Send it.
+        
+        4️⃣ Right-click the center of the image and select 'Copy Link' or 'Copy Media Link' .
+        
+        ⚠️ Avoid copying the Message Link! ⚠️
+        
+        🍎  On Apple iOS, tap the image and then select to "Share" it then select "Copy" to grab the URL.
+        
+        ✅  If the URL has "cdn" in it, you did it right.
+        
+        *This video shows the process on a Windows 11 desktop Discord client. In the video, the URL has expiration metadata added to the end, which is deleted in the video to show the clean URL. But listen, it's okay to leave it there. On mobile, it's hard to get all that deleted. And in fact, if you get an error message, try getting the URL again and keeping this metadata. Sometimes that solves the error.*
+        
+        [How-To-Get-URL-For-Midjourney.mp4](attachment:428e0689-cb72-4d33-b35d-2239238bdde6:How-To-Get-URL-For-Midjourney.mp4)
+        
+- **Use images on Web:** click the Image Reference icon next to the Imagine Bar to upload the image, then drag it into the style reference area.
+- **Here’s a 1-2-3 step tutorial for style reference images… (click to open toggle)**
+    
+    <aside>
+    <img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+    
+    Check out this video tutorial: https://app.screencast.com/LcfcubPoekBTL
+    
+    </aside>
+    
+    1. **Identify one or more style reference image URLs that end in a filename such as jpg, gif, webp, or png. Uploaded images used with published jobs will be public, so please be mindful of what you upload.** 
+    
+    The rule is that the URL(s) need to end in jpg, gif, webp, or png. But you'll see the **@Midjourney Bot** shorten it to something like "https://s.mj.run/9DFZsjKwkyE" which doesn't technically end in a filename but is still usable. You'll also see Discord adding extra text to the end of image URLs. You can leave it there or delete it back to the .png file name, as shown here. You can use any image URL provided it passes our moderation filters.
+    
+    For this tutorial,  I am going to *make* an image with a style I want to keep using, because it will help demonstrate what --sref can do. Look at the prompt I'm using to make my style reference image:
+    
+    ```
+    A textured, impasto, expressive oil painting depicting a solitary fox gazing at the full moon from a tree-covered cliff. The sky above is dark and spangled with starlight. The painting is rendered in a mixture of teals and blacks with the fox's coral body in contrast. The mood is suspenseful and mysterious. --v 6.1
+    ```
+    
+    The stylistic parts of this prompt are what will transfer to the new canvas.
+    
+    ![image.png](attachment:d9194c2e-f281-4fe4-b360-45a05853e3ad:image.png)
+    
+    1. **Add `--sref` and the URL(s) to the end of your prompt.**
+    
+    In this step, we're making a *new image* in the visual style of our style reference image. I chose U4 from the grid of foxes above. The magic of using a "style reference" image (--sref) is that Midjourney will strive to pick up only the *aesthetic* qualities of a reference image instead of its semantic content as well. In this sense, we can think of --sref like a text expander type shortcut.  Think about the prompt that created the fox image. Because of --sref, for my *new* image I won't have to retype "A textured, impasto, expressive oil painting depicting" or "The painting is rendered in a mixture of teals and blacks"  or “The mood is suspenseful and mysterious" because in a sense it will be *done for me* by Midjourney.
+    
+    **Importantly, the prompt to create the new canvas has no aesthetic content (adjectives) of its own. This helps sref perform!**
+    
+    I will use the fox image as my --sref to provide the aesthetic content, instead.
+    
+    ```
+    A young man stands at the edge of the forest cliff, looking over the ocean below. --sref https://s.mj.run/9DFZsjKwkyE --v 6.1
+    ```
+    
+    ![image.png](attachment:cadcd735-bfbd-42a8-a426-beee7bd8c7d8:image.png)
+    
+    ➡️  **Sidebar: Multiple URLs**
+    
+    If you're interested in using multiple style reference images, place all URLs after --sref separated by spaces, like this:
+    `A  young man stands at the edge of the forest cliff, looking over the ocean below. --sref <https://url.com/earth-style.png> <https://url.com/wind-style.png> <https://url.com/fire-style.png> <https://url.com/air-style.png>  --v 6.1`
+    
+    **➡️  Sidebar: Multiple URLs with Weights**
+    
+    If you're interested in making one of the style reference images more dominant than the others, give it a weight that is relative to the weight of the other URLs.
+    `A  young man stands at the edge of the forest cliff, looking over the ocean below. --sref <https://url.com/earth-style.png::2> <https://url.com/wind-style.png::1> --v 6.1`
+    In this example, earth-style is twice as influential as wind-style. As with weights everywhere in Midjourney, the exact numbers aren't in play,  just the relationship between them. You could just as easily use ::1.0 and ::0.5 or ::100 and ::50.
+    
+    1. **Optionally, clean up any undesirable details.**
+    
+    Note Midjourney applied ONLY the aesthetics and NOT the content. There's no fox, right? But in some cases, Midjourney will also pick up *some* of the content, like the night sky with moon, which my new prompt didn't specify. It comes from the `sref` image. Oops.
+    
+    If you want to get away from the style reference image accidentally adding undesirable details to your canvas, there are three methods you can explore.
+    
+    **Three methods to explore:**
+    
+    1. Modify the prompt.
+        - *Too many semantic details?* Write a prompt that *replaces* the undesirable details with ones that you do find desirable.
+        - *Not enough of the style?* Modify your prompt to *lean in* to the style you're chasing. If you want `textured, impasto, expressive oil painting` and it is not showing up strongly enough, add the words to the prompt in solidarity with your sref images.
+    2. Change your `-sw` from the default of 100.
+        - *Too many semantic details?* Lower your `-sw` from the default of 100 to something less dominating, like `-sw 20`.
+        - *Not enough of the style?* Raise your `-sw` from the default of 100 to something more dominating, like `-sw 800` (max is 1000).
+    3. Use small weights to emphasize or de-emphasize elements on the canvas you find undesirable.
+    
+    **In this example, I lowered the --sw value:**
+    
+    ```
+    A man stands in a parking lot of futuristic cars against a neon cyberpunk cityscape. --sref https://s.mj.run/9DFZsjKwkyE --v 6.0 --sw 22
+    ```
+    
+    ![image.png](attachment:a69924ab-cbd0-4a62-89fa-30e09c12bd6a:image.png)
+    
+    **Here's an example of doing all three things:**
+    
+    That brightens up the image compared to the previous. But, all this said, it may not be possible for you to *exactingly* control all the details brought in from the `sref` image.
+    
+    ```
+    In the bright afternoon, a young man stands at the edge of the forest cliff in the sunlight, looking over the sunlit ocean below:: night::-0.5 --sw 20 --sref <https://s.mj.run/9DFZsjKwkyE> --v 6.0
+    ```
+    
+    ![image.png](attachment:d6a2a9b5-02a4-404b-a51b-08735e1f2e49:image.png)
+    
+    (Your last option is to use a different style image reference altogether. You can narrow down what kind of style image references to select based on whatever they're doing that you find undesirable.)
+    
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **How do I use sref** codes**?**
+
+</aside>
+
+There are two ways to use sref codes! 
+
+1. Use the sref parameter + type any whole number between `0` and `4294967295`; format like this: `--sref 123`. If you choose a number higher than is available, it’ll roll over the count.
+2. Let Midjourney return a random number for you by replacing the number with “random” like this: `--sref random`.
+    - The random style will be returned as a numeric code, which you can then re-use with any prompt to roughly recreate that style.
+    - ⚠️ `random` does not work in v6.0, only v6.1 and v7
+
+<aside>
+<img src="/icons/bookmark_lightgray.svg" alt="/icons/bookmark_lightgray.svg" width="40px" />
+
+Get inspired:
+
+- Visit Discord to find codes discovered and shared by other users.
+- Check out the Style Explorer on the Midjourney Explore page [(more info in official docs)](https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#h_01K4AQTTGG689MHVSHW9N7Q6KC)
+- Create your own library of sref codes with notes to yourself about what each code does.
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Can I combine srefs? Can I weight them individually?
+
+</aside>
+
+**You sure can! Here are some options …**
+
+- Blend multiple sref codes:  `--sref 123 456`
+- Mine multiple random codes at once: `--sref random random` .
+- Blend images & numbers: `--sref 123 456 https://www.host.com/image.png`
+- Note: the order does not matter.
+
+**Also, try changing the influence of each sref using standard weighting syntax …**
+
+- Weighted numbers: `--sref 123::1 456::2` (Discord + Web)
+- Weighted number and image: `--sref 123::0.5 456::1 https://www.host.com/image.png::0.5`
+- *Weights may include integers, decimals, and negative numbers*.
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Can I add an `sref` during Vary Region / Editor?
+
+</aside>
+
+<aside>
+<img src="/icons/book_lightgray.svg" alt="/icons/book_lightgray.svg" width="40px" />
+
+If you're brand new to Vary Region (Discord) / Editor (web), you might want to read about it first, then come back.
+
+</aside>
+
+**Yes! Here's how to use `--sref` image(s) to help shore up style while using Vary Region:**
+Make sure remix is on. Upscale. Click [Vary Region].
+
+1. Keep the parts of the prompt that establish the general composition of the canvas. Keep as much as you can without running out of memory. If your detail doesn't show up, that might be the memory issue. Edit the prompt to remove some extraneous details to make room for the details of the addition.
+2. Now, add your detail to the prompt. Remember to describe it in some detail (5-7 words at a minimum).
+3. Now you can shore up the *style* (visual aesthetic) of your addition by using the *base image* as the `sref`. Right-click in the center of the upscaled image and choose Copy Link from the drop-down menu. Add that link as your `-sref`.
+
+![image.png](attachment:6234a4b6-c693-4f54-9921-a6c3dc504055:image.png)
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## What are sref versions (--sv) ?
+
+</aside>
+
+Each style reference ***version*** offers a unique way of interpreting and applying your Style Reference, so experiment and see what works best for you! Note the V7 and V6 differences below.
+
+### V7 sref versions
+
+There are 6 versions total. --sv 6 is default, and --sv 4 is the old V7 sref model (prior to June 16, 2025). Sref random and sref codes are only compatible with --sv 4 and 6.
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#heading-7
+
+</aside>
+
+### V6 sref versions
+
+There are four `sref` algorithms to choose from, with slightly different effects. Add `--sv N` (sref version) where `N` is 1, 2, 3, or 4. (--sv 4 is the default). *What do they do?* We can't predict. It depends on the interaction between the style and prompt. See the docs for a general explanation.
+
+`your prompt --sref <URL> --sv 1`
+
+`your prompt --sref <URL> --sv 2`
+
+`your prompt --sref <URL> --sv 3`
+
+`your prompt --sref <URL> --sv 4`
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#heading-8
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What are sref weights (--sw) ?**
+
+</aside>
+
+You can control the influence of the style reference with the `--sw` parameter, where `--sw 1` is the minimum, `--sw 1000` is the maximum, and `--sw 100` is default.
+
+**Pertaining to 'sref' weights, could you tell me the minimum/maximum weight range? Also, do they have to be expressed in whole numbers, or can one use decimal values for a lighter effect (e.g., .25, .5, etc.)?**
+
+They work like other weights in Midjourney. They are only compared to each other. They are proportions in relationship to each other so that a weight of 1.0 and a weight of 0.5 is the same as a weight of 100 and a weight of 50. So there's no minimum or maximum value.  They are relational numbers. They can be expressed as decimals but there may be rounding on the back-end. (this is so users can type anything they want and still get approximately the effect they had in mind without throwing an error message.)
+
+
+# Parameter: --style raw / --raw
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+*Styles* are prepackaged configurations of Midjourney that change the way our prompts are expressed on the canvas. In v6 & v7, there are two Styles available: **Standard** (aka “default” or “house style”) and **Raw**. 
+
+You can think of Raw as a "skinny" version of Midjourney … it skips the aesthetic overlay or “post-production” work that Standard includes. It may appear to create more prompt adherence, and it may improve realistic quality of photographs when paired with terms like *photograph of*.
+
+Try it by typing the parameter: `--style raw` or `--raw` ; or by activating the setting in Discord or web (FYI it’s called Raw *Mode* instead of *Style* 🤷‍♀️)
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## What is the `--style raw` or `--raw` parameter?
+
+</aside>
+
+*Styles* are prepackaged configurations of Midjourney that change the way our prompts are expressed on the canvas. When we don't specify a `--style`, we're using the Midjourney default house style (plus an `--sref` if we include one). If we *do* specify a `--style`, we're *replacing* the default house style with our choice.
+
+<aside>
+<img src="/icons/info-alternate_lightgray.svg" alt="/icons/info-alternate_lightgray.svg" width="40px" />
+
+Activate on Midjourney website: 
+
+Click **Raw Mode** in the Settings menu. It will add the parameter so you don’t have to type it. 
+
+![Screenshot 2025-09-07 at 12.15.13 PM.png](attachment:3936093f-27ca-41ef-8382-62ef610f193e:Screenshot_2025-09-07_at_12.15.13_PM.png)
+
+</aside>
+
+<aside>
+<img src="/icons/info-alternate_lightgray.svg" alt="/icons/info-alternate_lightgray.svg" width="40px" />
+
+Activate on Discord: 
+
+Type /settings then click **Raw Mode**. It will add the parameter so you don’t have to type it. 
+
+![Screenshot 2025-10-04 at 8.25.34 AM.png](attachment:d444b3c6-9657-4c15-a96e-6219f7cbda6f:Screenshot_2025-10-04_at_8.25.34_AM.png)
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Is `--style raw` the same as `--raw`?
+
+</aside>
+
+Yes, but it saves your fingers from having to type 6 characters! 😇
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### How does it work?
+
+</aside>
+
+As with all `--style` parameters, you can increase the influence of "`--style raw`" with the value of "`--s N`" (stylize) where the value of "`N`" can be between 0 and 1000. If you don't specify `--s` (stylize) the value will be 100.
+
+Midjourney's "house" or "default" style has *amazing* intelligence around aesthetics. Some of that intelligence is tucked away in the black box of Midjourney's inner workings. But other elements of Midjourney's aesthetic intelligence are open for us to configure in the form of parameters like:
+
+- style (`--style`) allows us to choose different configurations of the black box
+- stylize (`--s`) allows us to increase/decrease the influence of the style we've chosen
+- sref (`--sref`) allows us to pick up and use an aesthetic from a style reference image provided with a URL
+- sref weight (`--sw`) allows us to increase/decrease the influence of the sref we've chosen
+- chaos (`--c`) adds a random element so that each image in the grid is different
+- weird (`--w`) steers the images in the grid away from whatever aesthetic appears to be trending on the gallery
+
+When you use "`--style raw`" in your prompt, you are loading up a configuration that does a little less "post-production work" for you.  Some people say that if your prompt asks for a photograph, it will look more realistic using `--style raw`.
+
+As with all `--styles`, the effect is *complex* so it is hard to nail down in a single statement. It appears to me to use less memory than the default house style. It is a "skinny" version of Midjourney, if you will. It does less. That's why using `--style raw` might appear to create more prompt adherence. You can achieve a similar adherence using any other style if you lower stylize (`--s`) to a value below 100, because that also takes up a bit less memory. (At the cost of coherency and beauty.)
+
+⚠️ Be aware that using "`--style raw`" also means that if your prompt is *missing*  words that tell Midjourney how to create the image (like `photographic` or `rendered as video game concept art`), the output may be less visually appealing or coherent. To troubleshoot, you can experiment with decreasing or increasing the value of "`--s`" (stylize).
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### When might I use `--style raw`?
+
+</aside>
+
+- If you want the aesthetic phrases *you've* crafted to be a leading influence, and lowering stylize (`--s`) didn't help, you might explore using `--style raw`.
+`an asymmetrical unknown illuminated letter shaped like an oak tree, gothic diagrammatic sketch on parchment paper --style raw`
+
+![image.png](attachment:7dd2afa3-955b-43e9-940c-6fb1dededa85:image.png)
+
+- For photographs in particular, if you would like to see a less "post-processed" type of photograph, you might explore `--style raw` to reduce that post-processed look. Make sure to include cues in the prompt, too.
+`a pride of lions rests in the shade of a tree, amateur snapshot photography --style raw`
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Does `--style raw` create better Midjourney photographs?
+
+</aside>
+
+No. Adding words like `photographic, photograph, photography` works. `Raw` doesn't *create* photographs, it's just *useful* when making photographs because it can reduce the "post-processing" look that some people find a little uncanny.  As always, some prompts respond differently than others.
+
+Browse more examples below. 🔻
+
+```
+an asymmetrical unknown illuminated letter shaped like an oak tree, gothic diagrammatic sketch on parchment paper --style raw
+```
+
+![image.png](attachment:2744516c-05d7-4b26-b467-d00fda3c5ca1:image.png)
+
+Without all the aesthetic treatments from the default house style, and with the help of "`--style raw`, we get to see Midjourney's raw output type, which is photographic. This is why "`--style raw`" may in some cases be a good way to support photographic outputs *you* create with prompts that include `photograph, photo, photography, photographed by, snapshot, shoot, shot,` a photographer's name, etc.
+
+![image.png](attachment:1ef5d2a3-700f-4e2e-9dc7-0db46363d69b:image.png)
+
+![image.png](attachment:3bfe0781-3acd-4238-abb1-553708f895cf:image.png)
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## What does `--style raw` do in Midjourney video?
+
+</aside>
+
+Raw behaves a little differently when used for images and video (animations)…
+
+- **For Images:** Raw mode does less post-production work than Standard mode (strips away the default house style)
+- **For Video (Animation):** by default, your animation’s prompt passes through an LLM layer which optimizes it for video output. When you are in Raw mode, your prompt is run exactly as written.
+
+# **Parameter: --p (Profiles, Moodboards, Ranking, Personalization)**
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+Personalization is a way to teach Midjourney your visual preferences, and store these preferences as alphanumeric codes that you add to your prompt. This is also referred to as Profiles due to the parameter `--profile` (`--p` for short). Make your Personalization/Profiles by ranking images (for Global Profile and Ranked Profiles) or by creating a collection of 1-500 images of your choosing (for Moodboards).
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What is Personalization? what are Profiles?**
+
+</aside>
+
+Personalization (Profiles) acts like a style assistant for your image creations. By liking or ranking images and creating moodboards, Midjourney learns your visual preferences and uses that information to generate images that match your tastes and unique style. Personalization is compatible with Midjourney versions 6.0, 6.1, 7, and Niji 6. 
+
+We have three types:
+
+- **Global Profiles**
+- **Ranked Profiles**
+- **Moodboard Profiles.**
+
+We use the profile parameter (`--p`) to create images using our own aesthetic preferences.
+
+<aside>
+<img src="/icons/book_lightgray.svg" alt="/icons/book_lightgray.svg" width="40px" />
+
+https://docs.midjourney.com/hc/en-us/articles/32433330574221-Personalization
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **How do I make a Global or Ranked Profile?**
+
+</aside>
+
+- Your default or Global Profile is generated when you rank/rate a minimum number of images by choosing "Create Standard Profile" @ https://www.midjourney.com/personalize
+- The Global Profile is used as the default, and included automatically if you use `--p` by itself in a prompt.
+- You can also create additional Ranked profiles (built from ranking image pairs) which you can reference with `--p code`.
+- **How do I “rank” and “like” images for my profile?**
+    
+      Ranking:
+    
+    - You need a specific number of rankings for each Midjourney Version, for the basic default/global profile to "kick in."
+    - You can see how many rankings you have with `/info`.
+    - Rank on the web here  https://www.midjourney.com/personalize
+    - Select your personal aesthetic preference from a pair of images.
+    - *Ignore the prompt.*
+    - If you don't like either of the choices, use the "skip" button.
+    - Both ranking and *some* "likes" (s) are incorporated into your personalization profile.
+    
+    ![Ranking_Example_with_Captcha_2024-06-12.gif](attachment:cf6cef74-ea24-46d8-8689-11989d168e01:Ranking_Example_with_Captcha_2024-06-12.gif)
+    
+      Likes:
+    
+    - Go to https://www.midjourney.com/explore
+    - Hover over the images you like best and select the heart emoji.
+    - Skip images if you're uncertain or don't like them.
+    - Review and refine your collection of "liked" images by using the [Likes] tab or by visiting https://www.midjourney.com/explore?tab=likes.
+    - Watch this space for when "Likes" are incorporated into `--p`.
+    - "Liking" your own images does NOT influence your personalization profile.
+    
+    ![Personalization_Likes_2024-06-12.gif](attachment:be3fc738-8cd3-4cee-8dc0-d37c7734987d:Personalization_Likes_2024-06-12.gif)
+    
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **What are Moodboards?**
+
+</aside>
+
+- Moodboards are `--p` profiles made from images you add, instead of images you rank.
+- Moodboards are `--p` (profiles), not multi-image style references. That is, they are not the same thing as using `--sref URL URL URL`. Style reference strives to draw from visual style only, while `--p` (profiles) also pull composition, color, subject matter, visual conventions, detail level, motifs, vibes, aesthetics, etc.
+- The variety of input images directly affects output variation: similar images produce uniform styles, while diverse images yield far more complex, blended, or eclectic outputs.
+- Currently, moo bards max cap at 500 images.
+- You can only delete images from moodboards from the desktop. Hover over the image you want to delete and look for the trash can icon.
+- You may need to refresh the moodboard to see additions to it.
+
+<aside>
+<img src="/icons/info-alternate_blue.svg" alt="/icons/info-alternate_blue.svg" width="40px" />
+
+### When should I use a mood board versus a profile?
+
+</aside>
+
+**Mood boards feel a little like mini training sessions, helping Midjourney lock onto the aesthetic you're chasing.** The fewer images you include, the more focused the result. The more visually similar those images are, the more consistent the style will be. The reverse is also true. Eclectic mood board = eclectic output. While the prompt will always be the most powerful force in Midjourney, mood boards are surprisingly assertive in the blend, often exerting more influence than style references (`--sref`) or profiles (`--p`).
+
+**Profiles, on the other hand, might feel  more like a steady undercurrent.** They shape your image from beneath the surface, quietly guiding the aesthetic. They do blend with other style modifiers, but their influence may feel deep or subtle. Where mood boards can feel shouty, profiles are more like a persistent gravitational pull. They are stable, refined, and consistent. Think of them as a reliable foundation rather than a dramatic flair. 
+
+> **Profiles whisper. Mood boards yell.**
+> 
+
+Use profiles when you want a consistent aesthetic undercurrent. 
+
+Use mood boards when you want to grab Midjourney by the collar and say, “Paint it like *this*. *This* is the vibe. *This* right here.”
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **Do v6.1 mood boards work with v7?**
+
+</aside>
+
+Yes, however moodboards are handled differently by the v7 model so you may not get exactly the same types of results as in v6.1.
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **Do v6.1 profiles work with v7?**
+
+</aside>
+
+- v6.1 Global Profile codes *do* work with v7
+    - but not other v6.1 ranked profiles
+- v7 Global Profile codes *don’t* work with v6.1
+
+<aside>
+<img src="/icons/info-alternate_blue.svg" alt="/icons/info-alternate_blue.svg" width="40px" />
+
+## How do I use `--p`?
+
+</aside>
+
+We've marked these items with 👾 for Discord and 🌐 for website. Otherwise the note works for both!
+
+- Type `--p` after your prompt to use the default/global profile.
+- Type `--p code` after your prompt to use a specific profile.
+- 👾 Discord Only: Type `/list_personalize_codes` to show all your profiles.
+- 🌐 Web Only: Manage your profiles using the website @ https://www.midjourney.com/personalize
+
+---
+
+Discord Only: Toggle personalization on permanently (so you do not have to keep typing `---p`) type `/settings` and select the **[ Personalization]** button.
+
+- 🌐 Web Only: Click the options button and look for 'Personalization: [ON] [OFF]'.
+- If you want to use someone else's code, use `--p code`.
+- 👾 Discord Only: In Discord public creation channels, you can use `--p @name` instead. (Won't work in DMs.)
+
+<aside>
+💡
+
+Use the `--p none` parameter to toggle personalization **off** temporarily (applies only to the prompt that includes it).
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **Can I blend profiles together?**
+
+</aside>
+
+Use multiple `--p` codes at once, to blend together different personal styles (6.0 and 6.1 codes won't blend). Example:
+
+```
+--p 1uwjacn 1yjtfcj
+```
+
+Change the influence of the codes using standard weighting syntax. Example:
+
+```
+--p 1uwjacn::1 1yjtfcj::0.5
+```
+
+On the web, *only use whole/natural numbers*. Using decimals will throw an error.
+
+You can also blend `--p` with `--sref` and `--cref` and image prompts. Example:
+
+```
+owl --sref 4082972121 --p vlp7b25 r9gm7l6
+```
+
+You can faux-weight by creating duplicate or highly similar boards and referencing them multiple times. Example:
+
+```
+--sref orange --p green blue
+```
+
+Here, the `--p` would be twice as influential as the style reference, so the image would be mostly cool colors. Example:
+
+```
+--sref red orange yellow --p green
+```
+
+Here, the `--sref` would be three times as influential, so the image would be mostly warm colors.
+
+<aside>
+<img src="/icons/forward_blue.svg" alt="/icons/forward_blue.svg" width="40px" />
+
+### **More tips**
+
+</aside>
+
+- Order doesn't matter.
+- Personalization (`--p`) is a `--style`, just like `--style raw` (with which it is fully compatible). This means you can control its "loudness" by using `--stylize` which is `--s 100` by default. The value of `0` is its lowest influence, and the value `1000` is its maximum influence.
+- If your prompt uses `--style raw --p` (both) they are blended and `--s` modifies the amalgam.,
+- Did you know that `--p` is waaaay-hay-hay deeper than "just" a visual aesthetic? It can effect composition, framing, cropping, medium, mood, subject, and soooo much more!
+    
+    ![Using_Personalization_In_A__Prompt_2024-06-12.gif](attachment:00fd116f-0f4b-413c-8264-96bfce946f34:Using_Personalization_In_A__Prompt_2024-06-12.gif)
+    
+
+- **Discord: set personalization to "ON" by default:**
+    - Type `/settings`.
+    - Select the **[ Personalization]** button.
+    - On most displays, green is "ON" and grey is "OFF".
+    - If you have this "ON" by default, you don't have to type `--p` unless it is someone else's code.
+
+    # Parameter: --sref (Style Reference)
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+A Style Reference (the `--sref` parameter) is a way to capture the visual vibe of an existing image and apply it to your new Midjourney creations. There are two ways to use it: with an **Image** (Midjourney or external) or a **code**. Format like this:
+
+`--sref <URL>`
+
+`--sref 1234` or `--sref random`
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What is `--sref`? (style reference)**
+
+</aside>
+
+A Style Reference is a way to capture the visual vibe of an existing image and apply it to your new Midjourney creations. It doesn't copy objects or people, just the overall style—like colors, medium, textures, or lighting—helping you achieve a consistent visual theme. 
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**  
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **How do I use sref images?**
+
+</aside>
+
+You'll need an image that reflects the style you want to use on your canvas. 
+
+- **Use images on Discord:** You need to obtain the image’s URL ending in .jpg, .png, .gif. Once you have the URL, add it to the end of the prompt with `--sref URL`. If you’re using an image from your computer, an easy way to create a URL is to drop it into your DM with the @Midjourney bot, then copy that link.
+    - **How to get a URL from an image for use in Midjourney… (click to open toggle)**
+        
+        I grab the URL twice in this video to show you twice. You only have to grab it once. 😆
+        
+        1️⃣ Open a direct message to @MidjourneyBot like it's a person!
+        
+        2️⃣ Click the **[ + ]** button in your chat bar. Choose 'Upload a File'.
+        
+        3️⃣ Select an image from your device or file system. Send it.
+        
+        4️⃣ Right-click the center of the image and select 'Copy Link' or 'Copy Media Link' .
+        
+        ⚠️ Avoid copying the Message Link! ⚠️
+        
+        🍎  On Apple iOS, tap the image and then select to "Share" it then select "Copy" to grab the URL.
+        
+        ✅  If the URL has "cdn" in it, you did it right.
+        
+        *This video shows the process on a Windows 11 desktop Discord client. In the video, the URL has expiration metadata added to the end, which is deleted in the video to show the clean URL. But listen, it's okay to leave it there. On mobile, it's hard to get all that deleted. And in fact, if you get an error message, try getting the URL again and keeping this metadata. Sometimes that solves the error.*
+        
+        [How-To-Get-URL-For-Midjourney.mp4](attachment:428e0689-cb72-4d33-b35d-2239238bdde6:How-To-Get-URL-For-Midjourney.mp4)
+        
+- **Use images on Web:** click the Image Reference icon next to the Imagine Bar to upload the image, then drag it into the style reference area.
+- **Here’s a 1-2-3 step tutorial for style reference images… (click to open toggle)**
+    
+    <aside>
+    <img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+    
+    Check out this video tutorial: https://app.screencast.com/LcfcubPoekBTL
+    
+    </aside>
+    
+    1. **Identify one or more style reference image URLs that end in a filename such as jpg, gif, webp, or png. Uploaded images used with published jobs will be public, so please be mindful of what you upload.** 
+    
+    The rule is that the URL(s) need to end in jpg, gif, webp, or png. But you'll see the **@Midjourney Bot** shorten it to something like "https://s.mj.run/9DFZsjKwkyE" which doesn't technically end in a filename but is still usable. You'll also see Discord adding extra text to the end of image URLs. You can leave it there or delete it back to the .png file name, as shown here. You can use any image URL provided it passes our moderation filters.
+    
+    For this tutorial,  I am going to *make* an image with a style I want to keep using, because it will help demonstrate what --sref can do. Look at the prompt I'm using to make my style reference image:
+    
+    ```
+    A textured, impasto, expressive oil painting depicting a solitary fox gazing at the full moon from a tree-covered cliff. The sky above is dark and spangled with starlight. The painting is rendered in a mixture of teals and blacks with the fox's coral body in contrast. The mood is suspenseful and mysterious. --v 6.1
+    ```
+    
+    The stylistic parts of this prompt are what will transfer to the new canvas.
+    
+    ![image.png](attachment:d9194c2e-f281-4fe4-b360-45a05853e3ad:image.png)
+    
+    1. **Add `--sref` and the URL(s) to the end of your prompt.**
+    
+    In this step, we're making a *new image* in the visual style of our style reference image. I chose U4 from the grid of foxes above. The magic of using a "style reference" image (--sref) is that Midjourney will strive to pick up only the *aesthetic* qualities of a reference image instead of its semantic content as well. In this sense, we can think of --sref like a text expander type shortcut.  Think about the prompt that created the fox image. Because of --sref, for my *new* image I won't have to retype "A textured, impasto, expressive oil painting depicting" or "The painting is rendered in a mixture of teals and blacks"  or “The mood is suspenseful and mysterious" because in a sense it will be *done for me* by Midjourney.
+    
+    **Importantly, the prompt to create the new canvas has no aesthetic content (adjectives) of its own. This helps sref perform!**
+    
+    I will use the fox image as my --sref to provide the aesthetic content, instead.
+    
+    ```
+    A young man stands at the edge of the forest cliff, looking over the ocean below. --sref https://s.mj.run/9DFZsjKwkyE --v 6.1
+    ```
+    
+    ![image.png](attachment:cadcd735-bfbd-42a8-a426-beee7bd8c7d8:image.png)
+    
+    ➡️  **Sidebar: Multiple URLs**
+    
+    If you're interested in using multiple style reference images, place all URLs after --sref separated by spaces, like this:
+    `A  young man stands at the edge of the forest cliff, looking over the ocean below. --sref <https://url.com/earth-style.png> <https://url.com/wind-style.png> <https://url.com/fire-style.png> <https://url.com/air-style.png>  --v 6.1`
+    
+    **➡️  Sidebar: Multiple URLs with Weights**
+    
+    If you're interested in making one of the style reference images more dominant than the others, give it a weight that is relative to the weight of the other URLs.
+    `A  young man stands at the edge of the forest cliff, looking over the ocean below. --sref <https://url.com/earth-style.png::2> <https://url.com/wind-style.png::1> --v 6.1`
+    In this example, earth-style is twice as influential as wind-style. As with weights everywhere in Midjourney, the exact numbers aren't in play,  just the relationship between them. You could just as easily use ::1.0 and ::0.5 or ::100 and ::50.
+    
+    1. **Optionally, clean up any undesirable details.**
+    
+    Note Midjourney applied ONLY the aesthetics and NOT the content. There's no fox, right? But in some cases, Midjourney will also pick up *some* of the content, like the night sky with moon, which my new prompt didn't specify. It comes from the `sref` image. Oops.
+    
+    If you want to get away from the style reference image accidentally adding undesirable details to your canvas, there are three methods you can explore.
+    
+    **Three methods to explore:**
+    
+    1. Modify the prompt.
+        - *Too many semantic details?* Write a prompt that *replaces* the undesirable details with ones that you do find desirable.
+        - *Not enough of the style?* Modify your prompt to *lean in* to the style you're chasing. If you want `textured, impasto, expressive oil painting` and it is not showing up strongly enough, add the words to the prompt in solidarity with your sref images.
+    2. Change your `-sw` from the default of 100.
+        - *Too many semantic details?* Lower your `-sw` from the default of 100 to something less dominating, like `-sw 20`.
+        - *Not enough of the style?* Raise your `-sw` from the default of 100 to something more dominating, like `-sw 800` (max is 1000).
+    3. Use small weights to emphasize or de-emphasize elements on the canvas you find undesirable.
+    
+    **In this example, I lowered the --sw value:**
+    
+    ```
+    A man stands in a parking lot of futuristic cars against a neon cyberpunk cityscape. --sref https://s.mj.run/9DFZsjKwkyE --v 6.0 --sw 22
+    ```
+    
+    ![image.png](attachment:a69924ab-cbd0-4a62-89fa-30e09c12bd6a:image.png)
+    
+    **Here's an example of doing all three things:**
+    
+    That brightens up the image compared to the previous. But, all this said, it may not be possible for you to *exactingly* control all the details brought in from the `sref` image.
+    
+    ```
+    In the bright afternoon, a young man stands at the edge of the forest cliff in the sunlight, looking over the sunlit ocean below:: night::-0.5 --sw 20 --sref <https://s.mj.run/9DFZsjKwkyE> --v 6.0
+    ```
+    
+    ![image.png](attachment:d6a2a9b5-02a4-404b-a51b-08735e1f2e49:image.png)
+    
+    (Your last option is to use a different style image reference altogether. You can narrow down what kind of style image references to select based on whatever they're doing that you find undesirable.)
+    
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### **How do I use sref** codes**?**
+
+</aside>
+
+There are two ways to use sref codes! 
+
+1. Use the sref parameter + type any whole number between `0` and `4294967295`; format like this: `--sref 123`. If you choose a number higher than is available, it’ll roll over the count.
+2. Let Midjourney return a random number for you by replacing the number with “random” like this: `--sref random`.
+    - The random style will be returned as a numeric code, which you can then re-use with any prompt to roughly recreate that style.
+    - ⚠️ `random` does not work in v6.0, only v6.1 and v7
+
+<aside>
+<img src="/icons/bookmark_lightgray.svg" alt="/icons/bookmark_lightgray.svg" width="40px" />
+
+Get inspired:
+
+- Visit Discord to find codes discovered and shared by other users.
+- Check out the Style Explorer on the Midjourney Explore page [(more info in official docs)](https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#h_01K4AQTTGG689MHVSHW9N7Q6KC)
+- Create your own library of sref codes with notes to yourself about what each code does.
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Can I combine srefs? Can I weight them individually?
+
+</aside>
+
+**You sure can! Here are some options …**
+
+- Blend multiple sref codes:  `--sref 123 456`
+- Mine multiple random codes at once: `--sref random random` .
+- Blend images & numbers: `--sref 123 456 https://www.host.com/image.png`
+- Note: the order does not matter.
+
+**Also, try changing the influence of each sref using standard weighting syntax …**
+
+- Weighted numbers: `--sref 123::1 456::2` (Discord + Web)
+- Weighted number and image: `--sref 123::0.5 456::1 https://www.host.com/image.png::0.5`
+- *Weights may include integers, decimals, and negative numbers*.
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### Can I add an `sref` during Vary Region / Editor?
+
+</aside>
+
+<aside>
+<img src="/icons/book_lightgray.svg" alt="/icons/book_lightgray.svg" width="40px" />
+
+If you're brand new to Vary Region (Discord) / Editor (web), you might want to read about it first, then come back.
+
+</aside>
+
+**Yes! Here's how to use `--sref` image(s) to help shore up style while using Vary Region:**
+Make sure remix is on. Upscale. Click [Vary Region].
+
+1. Keep the parts of the prompt that establish the general composition of the canvas. Keep as much as you can without running out of memory. If your detail doesn't show up, that might be the memory issue. Edit the prompt to remove some extraneous details to make room for the details of the addition.
+2. Now, add your detail to the prompt. Remember to describe it in some detail (5-7 words at a minimum).
+3. Now you can shore up the *style* (visual aesthetic) of your addition by using the *base image* as the `sref`. Right-click in the center of the upscaled image and choose Copy Link from the drop-down menu. Add that link as your `-sref`.
+
+![image.png](attachment:6234a4b6-c693-4f54-9921-a6c3dc504055:image.png)
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## What are sref versions (--sv) ?
+
+</aside>
+
+Each style reference ***version*** offers a unique way of interpreting and applying your Style Reference, so experiment and see what works best for you! Note the V7 and V6 differences below.
+
+### V7 sref versions
+
+There are 6 versions total. --sv 6 is default, and --sv 4 is the old V7 sref model (prior to June 16, 2025). Sref random and sref codes are only compatible with --sv 4 and 6.
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#heading-7
+
+</aside>
+
+### V6 sref versions
+
+There are four `sref` algorithms to choose from, with slightly different effects. Add `--sv N` (sref version) where `N` is 1, 2, 3, or 4. (--sv 4 is the default). *What do they do?* We can't predict. It depends on the interaction between the style and prompt. See the docs for a general explanation.
+
+`your prompt --sref <URL> --sv 1`
+
+`your prompt --sref <URL> --sv 2`
+
+`your prompt --sref <URL> --sv 3`
+
+`your prompt --sref <URL> --sv 4`
+
+<aside>
+<img src="/icons/globe_lightgray.svg" alt="/icons/globe_lightgray.svg" width="40px" />
+
+**Official Midjourney Documentation:**
+
+https://docs.midjourney.com/hc/en-us/articles/32180011136653-Style-Reference#heading-8
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What are sref weights (--sw) ?**
+
+</aside>
+
+You can control the influence of the style reference with the `--sw` parameter, where `--sw 1` is the minimum, `--sw 1000` is the maximum, and `--sw 100` is default.
+
+**Pertaining to 'sref' weights, could you tell me the minimum/maximum weight range? Also, do they have to be expressed in whole numbers, or can one use decimal values for a lighter effect (e.g., .25, .5, etc.)?**
+
+They work like other weights in Midjourney. They are only compared to each other. They are proportions in relationship to each other so that a weight of 1.0 and a weight of 0.5 is the same as a weight of 100 and a weight of 50. So there's no minimum or maximum value.  They are relational numbers. They can be expressed as decimals but there may be rounding on the back-end. (this is so users can type anything they want and still get approximately the effect they had in mind without throwing an error message.)
+
+
+# Parameter: `--draft` (Draft Mode)
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+Draft Mode (--draft) is actually a Quality setting, equivalent to 25% of standard quality. This means the model is spending .25 of the regular GPU time rendering your images. It’s super fast so it’s useful for exploring ideas quickly; just know that the images will be … lower quality 😄. You can use the [Enhance] button to re-run the prompt at standard quality. 
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+### What is Draft Mode (`--draft`)?
+
+</aside>
+
+⚡ ***V7 is speedy.*** To take advantage of that speed, explore drafting your prompts with the new
+ `--draft` feature. You can turn it off and on from your Options or from the Prompt Bar.
+
+![image.png](attachment:19e53e1c-9e31-4bce-aeab-04b33f7f5143:image.png)
+
+Note that the parameter is different from **[🗨️ Conversational Mode]** , although Conversational Mode does benefit from using it. The parameter by itself limits the minutes spent on the prompt, but doesn’t offer the LLM interpretation layer. 
+
+### ⚡ **When should I use `--draft` the parameter?**
+
+![image.png](attachment:d3722422-f3a2-488b-9de5-82ec6ef76e59:image.png)
+
+When you’re still working on the prompt, lower quality may help you save time and minutes until you’re ready to try the prompt at full quality (just remove `--draft`).  
+
+<aside>
+💡
+
+There are always going to be differences between the `--draft` and full quality versions, even with seed locked. 
+
+</aside>
+
+
+# Parameter: `--oref` (Omni-Reference)
+
+---
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+Omni-reference (or `--oref`) helps you get roughly the same character, animal, building, or object etc across jobs. Midjourney uses a semantic understanding of the image to transfer attributes of it. Control this transfer with the `--ow N` parameter (omni-reference weight), with values of `N` from `1-1000`. The default is `100`.
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_blue.svg" alt="/icons/help-alternate_blue.svg" width="40px" />
+
+## **What is Omni-reference (--oref)?**
+
+</aside>
+
+Omni-reference (or `--oref`) helps you get roughly the same character or object across jobs. It allows you to stabilize not just characters, but also… anything? Everything? Think buildings, animals, distinct objects, unique shapes.
+
+Basically, the `--oref` parameter lets you create a subject based on an image you provide via URL (or attachment, if you use the web).  It’s helpful for keeping visual consistency, especially if the prompt includes some stabilizing or anchoring phrases. But, be aware, at time of writing, it can’t be used in the Full Editor (because that’s still v6.1 behind the curtain).
+
+<aside>
+💡
+
+The promptcraft challenge with `oref`: Midjourney is semantically aware of the thing in your attachment and will try to use it *archetypally* in the new image. For example, if your attached image is boots, Midjourney will struggle if you ask for a boat or a hat in the shape of that boot. It will try to treat the boots as boots. *Repurposing objects against their archetype is not easy*. To do it, you’ll need to drop `--ow` to values well below the default of `100` and try some tricks.
+
+</aside>
+
+<aside>
+<img src="/icons/info-alternate_blue.svg" alt="/icons/info-alternate_blue.svg" width="40px" />
+
+## Deep Dive and Examples
+
+</aside>
+
+⭐ Open all toggle sections below for more info!
+⭐ Keep them ALL open if you’re using AI to read/explain this page.
+⭐ Desktop shortcut to expand/close all: `Ctrl + Alt + T` (Windows), `Cmd + Opt + T` (Mac)
+
+### 📦 Example of a pretty standard prompt using `--oref` .
+
+Notice how we anchor the details.
+
+`A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png`
+
+![This is the `--oref` used in the prompt.](attachment:62c4ccac-d517-4f78-b3d3-8b407ef5c3c3:image.png)
+
+This is the `--oref` used in the prompt.
+
+This is the image produced by the prompt and the `--oref`.
+
+![This is the output of the prompt + `--oref`.](attachment:8e2c0d61-6161-4b30-b456-4d505f3b1972:image.png)
+
+This is the output of the prompt + `--oref`.
+
+### 📦 Distinctive features work best with oref.
+
+The more distinctive the features, the better the results. 
+
+**✅ Attributes that work well with `--oref`:**
+
+**Big signature features:** teal curly hair, pink sunglasses, floor-length trench coat, green backpack
+
+**❌ Attributes that don’t work well with `--oref`:**
+
+**Small or complex details:** a silver pendant necklace with eight small pyramid-shaped jewels, a leather jacket with the left sleeve missing that says "ZOOM" across the back, an undercut hairstyle with infinity symbols shaved onto the temples
+
+<aside>
+💡
+
+Character or object *details* may still change due to randomness and the play of other style and vibe modifiers. To address this, explore anchoring or stabilizing important traits directly in the prompt.
+
+</aside>
+
+### Weight values of all kinds are important when using oref.
+
+Explore combining ALL the transfer tools for richer results. And explore *removing or reducing* these very same things if you are struggling to make your oref appear “as-is” in the output.
+
+| Tool | Result | How to Preserve Oref |
+| --- | --- | --- |
+| Style Reference `--sref` | *Bring in the style.* | Reduce `--sw` to preserve oref. |
+| Omni Reference `--oref` | *Bring in the face or shape.* | Increase `--ow` to preserve oref. |
+| `image prompt` | *Bring in the composition.* | Reduce `--iw` to preserve oref. |
+| Profiles & Mood Boards `--p` | *Bring in a vibe.* | Reduce `--s` to preserve oref. |
+
+### 📦 Different kinds of prompting do different things with oref.
+
+There are three key ways to handle prompting with `--oref`. You can anchor the details (pose, expression, emotion, costume, props, scene, action) to maintain control, use a lighter touch and let `--oref` handle most of it, or provide just the scene and let `--oref` do ALL the work based on its semantic understanding of the contents of the reference image.
+
+In all three cases, the prompt will blend with whatever attributes Midjourney identifies from the `--oref` image(s) you provide. Your prompt can anchor important details of your character or object, or it can be hands-off, allowing the `--oref` image(s) to guide the details fully.
+
+### ⚓ Method #1: Anchoring / Stabilizing
+
+*If you want to control the canvas, this is your method. This is when your prompt reinforces signature attributes from the reference image and explicitly poses the character or positions the object, aggressively if necessary. We recommend using the default value of `--ow` for people (100) but a low value of `--ow` for objects (20) if you are trying to repurpose shapes.* 
+
+```
+A portrait in the style of Teen Magazine photography. Jo is a young woman with blue curly hair, pink sunglasses, and a colorful scarf around her neck. She stands on a sidewalk on a busy city street. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png 
+
+Surreal photography. Abigail stands in the forest wearing jeans, a t-shirt, and sandals. She wears a tall leather boot-shaped hat on her head, a hat made from a vintage boot, it's got laces, shaped like an old military engineering boot, on her head, as a boot-shaped hat. --oref https://s.mj.run/eAdna9ES5pM
+
+```
+
+![image.png](attachment:a5fbc71c-34b5-4f36-88b6-9e79a0b35a84:image.png)
+
+### 👤 Method #2:  "Someone."
+
+*If you want to give Midjourney more control, this is your method. This is when you write a “hands-off” prompt letting `--oref` do the work. Notice the prompt does NOT reinforce signature details. It just references the character or object generically. This allows Midjourney to blend and imagine more on its own. We recommend using a higher value of `--ow` for people or objects to reinforce details if you’re doing this kind of prompting.*
+
+```
+Someone waits in line at the bank.  --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png --ow 400
+
+Some stuff sits on the docks. --oref https://s.mj.run/eAdna9ES5pM --ow 1000
+```
+
+![image.png](attachment:cc552a93-1dc6-4e35-bca9-26712a120023:image.png)
+
+![image.png](attachment:269af09e-5b55-45ad-820d-8d368b8d9dee:image.png)
+
+### 🖼️ Method #3: Scene-only.
+
+A third approach is available if your `--oref` image already contains the pose and other desired details. You describe only the setting, surroundings, context, or background. Midjourney will blend the referenced character or object into the described scene. If results seem incoherent, try increasing the stylize (`--s`) value and/or experimental (`--exp`) values, e.g., `--s 800 --exp 80`
+
+*Notice the prompt doesn't mention the character or object explicitly, trusting Midjourney to place it intelligently, relying on its semantic understanding of the reference image.*
+
+```
+An empty cornfield beneath an ominous stormy sky. --oref https://cdn.midjourney.com/4b6da3fb-f752-40f5-9d20-c5a7697dffb9/0_3.png --s 800 --exp 80 --ow 400
+```
+
+### 📦 Semantics, archetypes, and omni reference weight (`--ow` )
+
+This takes a minute to understand. So bear with me.
+
+When you feed Midjourney an image using `--oref`, it's not just copying pixels. It's actually trying to understand **what the hell it's looking at.** It's figuring out—*semantically*, that is—what makes a "chair" a chair or a "dog" a dog, instead of seeing just shapes, colors, and blobs.
+
+So if your reference is a picture of a banana wearing sunglasses, Midjourney isn’t just seeing "yellow curved thing + dark plastic thingies." It’s trying to grasp the concept: “Oh, a *banana* wearing *sunglasses*.” 
+
+Here’s evidence of the fact Midjourney has a semantic understanding of your attached image. Squint at the attachment. See that? I’ll give you a moment.
+
+![Image provided by community member `colect`](attachment:65f6c945-e90c-4767-96c8-943bc7b92711:image.png)
+
+Image provided by community member `colect`
+
+The problem is that this semantic understanding can *trap* Midjourney into depicting only the best-known, least-original appearances of things. *Bananas don't wear sunglasses. Sunglasses aren't worn by bananas.* So, left to its own devices, Midjourney may just put a banana on the table next to some sunglasses. That's the archetype. Archetypes are powerful. And your prompt is probably fighting to do something non-archetypal. That's hard. That’s also art, right? That's why we have to drop `--ow` below 100, *to pry Midjourney's fingers off the archetype.*
+
+The attributes Midjourney identifies from your reference image(s) blend with the prompt to create the final output. Control this transfer roughly using the `--ow N` parameter (weight), with values of `N` from `1-1000`. The default is `100`.
+
+- ⬆️ Higher values (max `--ow 1000`) will create more archetypal adherence, which doesn’t mean more loyalty to the details of your image. It means more loyalty to the *semantic understanding* Midjourney has of your image.
+- ➡️ A value of `--ow 100` (default) picks up roughly everything as-is, nice balance.
+- ⬇️ Lower values (below 100) mean less archetypal adherence, so more creativity allowed.
+
+![image.png](attachment:27ce7bf1-b929-4f64-bee3-6e1b6e2eddbb:image.png)
+
+### 📦 Aspect ratios matter with `--oref.`
+
+1. **Size matters.** 
+    
+    **Make the object or person the correct size in your ref image. If you want it smaller, add more empty space around it first. Midjourney copies the size from your example.** 
+    
+    It’s best if the object or person in the reference image is already approximately the size you want it to be in the result. Midjourney struggles with sizes and proportions. Add space around your subject in the reference image to help it be smaller in the frame of the reference image if you want it to become smaller in the output. (You can do this in the Editor or with Zoom.)
+    
+    This is a good example of making objects and people “the right size”:
+    
+    ![image.png](attachment:be12c1f9-49bb-4979-9c9e-40f6ef2e53f6:image.png)
+    
+    ![Provided by community member `colect`](attachment:a26925e3-0255-42d1-8af1-5e0d2832b7a4:image.png)
+    
+    Provided by community member `colect`
+    
+2. **Provide enough room on the canvas.** 
+    
+    **If your object is tall, choose a tall (portrait) aspect ratio. If your object is wide, choose a wide (landscape) aspect ratio.** 
+    
+    You’ll get better results if your aspect ratio gives Midjourney enough room. For example, a full body image of someone squashed into a square or landscape aspect ratio is more likely to cause proportion issues. If you need an image to be a certain aspect ratio we recommend a plan to crop it later, but in Midjourney *generate* it in the aspect ratio that creates the best image. 
+    
+3. **Use all the same aspect ratios to avoid black bars.**
+    
+    Strive to make sure all your external image references have the same aspect ratios. Where there’s a difference, you might get black bars like this.
+    
+    ![image.png](attachment:2ca720ef-81be-4cfa-ab21-dce445411ac0:image.png)
+    
+
+### 📦  **Other important things to know about `--oref`.**
+
+1. *What's the best type of image to use?*  Use images with clear, obvious attributes prominently shown. Simple, clear images often work best. Creating a library of reference images in various poses can help reinforce your text prompts.
+2. *Do I have to use multiple images?* **No.** Generally, one clear reference image is enough. You can only use one `--oref` image at a time.
+3. *Does my subject need to have a plain background?* **No.** Midjourney recognizes objects clearly against any background, provided they aren't hidden or camouflaged. The clearer your object, the better.
+4. *Does my subject need to be shown alone?* Yes. Use images with only one distinct subject. If there are multiple subjects, use the prompt to draw out the desirable details.
+5. *Can I use a reference sheet with multiple views or poses?* **Yes.** Reference sheets or turnaround images can work, but single, clear images often perform better. Test to see what works best for your project.
+6. *Can I use any style of image as a reference?* **Yes.** But the style of your oref may be communicated to the output. Lower your `--ow.`
+7. *How do I Pan, Zoom Out, or Edit an oref image? It appears I can’t?!*  You can! Use the Full Editor. Open the image from your Gallery into the Full Editor using the [Edit] button. Make sure the `--oref` and `--ow` parameters are deleted from the prompt or it will throw an error: `Omni-reference is not supported for this job type.` You can also download them and reintroduce them as an external upload to the web Editor.
+
+### 📦 Troubleshooting `--oref`
+
+### 1️⃣ I can't give the character or object a new pose, purpose, style, or details.
+
+Lower the `--ow` value. Increase the detailing in the prompt.
+
+### 2️⃣ I can't change my character's face specifically. The face is "locked."
+
+That's correct. Midjourney preserves the face when using `--oref` at almost any value of `--ow,` often preserving attributes like beard and glasses. If you need to change the face more:
+
+**Follow these steps:**
+
+1. Use `/settings` to ensure you're on `[Low Variation]` mode and have `Remix` ON (not required on web).
+2. Choose the image with the face you want to change. Expand it and select **[Vary Region]** (web: **[Edit]**).
+3. In Editor mode, remove the `--oref` and `--ow` from the prompt.
+4. Mask/select the face area and alter your prompt. For example, mask the beard area and add `clean-shaven`.
+
+Once satisfied, do NOT re-add `--oref` to your prompt, or unwanted attributes will return.
+
+### 3️⃣ Stuff looks janky or broken.
+
+Midjourney sometimes struggles to position characters or objects coherently. For incoherent results (like odd cropping or backward heads), try increasing stylize (`--s`) to `800-1000`. You can also experiment with setting `--exp` to give another boost to coherency. 
+
+### 4️⃣ Stuff is missing altogether.
+
+If details are missing from your canvas, anchor it in the prompt.
+
+### 6️⃣ It appears that I can’t Pan, Zoom Out, or Edit an image I made with oref?
+
+You can! Use the Full Editor. Open the image from your Gallery into the Full Editor using the [Edit] button. Make sure the `--oref` and `--ow` parameters are deleted from the prompt or it will throw an error: `Omni-reference is not supported for this job type.` You can also download them and reintroduce them as an external upload to the web Editor.

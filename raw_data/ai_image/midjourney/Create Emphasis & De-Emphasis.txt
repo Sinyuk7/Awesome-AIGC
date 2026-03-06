@@ -1,0 +1,201 @@
+# Create Emphasis & De-Emphasis
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+### Overview (TL;DR)
+
+- **The model’s attention is scarce.** If a detail keeps disappearing, remove competing elements to create more "budget" for it.
+- **Redundancy helps the model notice the detail.** Restate the key idea in a second (or third?) short clause or sentence. Maybe a few synonyms.
+- **Reduce stylize.** Try `--s 50–75` to increase prompt adherence.
+- **Rewrite > tweak.** When stuck, rewrite the prompt to rebalance attention from scratch.
+- **Give Midjourney more room.** Expand `--ar` to make sure Midjourney has all the room it needs to show the details it missed.
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## So, how do I emphasize a detail on the canvas?
+
+</aside>
+
+ It is harder for details to go missing in V7, but it can happen when prompts are demanding (not long, just demanding).  There are several strategies to explore. 
+
+<aside>
+🦉
+
+Before giving up on Midjourney's apparent disobedience, take a moment to examine your entire batch of results. Keep in mind that having just 1 or 2 usable images in a batch actually indicates you have a well-crafted prompt!
+
+</aside>
+
+### **1. Remove other details to make room.**
+
+- Missing details could be due to "running out of time" - each server job has a fixed processing time allocation.
+- Review your prompt and remove unnecessary details to avoid wasting processing time.
+- Remove details from *other* areas of the prompt that are working well.
+- *Add* more details (see #2) to the stubborn area that's not showing up.
+- This shifts the model's attention balance toward the stubborn detail, increasing the chances it will be included.
+
+### **2. Spend more time on the stubborn detail.**
+
+If a detail is hard to get on the canvas, describe it more in your prompt. 
+
+Instead of just `a sleeping cat on a windowsill` (which renders an alert cat with its head up and eyes open!) try `In the background, a cat sleeps lying down with his head down, closed eyes, napping, slumbering, on the surface of a shelf of a bay window windowsill.` 
+
+*The additional details serve as emphasis.*   They shift the model’s attention, which increases the chances of the detail being included.
+
+The more you describe a detail in your prompt, the better your chances of seeing it on the canvas.
+
+### **3. Find another way to *phrase* the stubborn detail and use both ways redundantly, or just use synonyms.**
+
+It might help to explore replacing the phrase with a different one. 
+
+For example, if "`A man wears a hat"` isn’t working, try including the *additional* phrase "`A hat is worn by a man."` 
+
+Use both. Use three variations. Use four. 
+
+It works differently for every prompt. 
+
+Instead of just "`a sleeping cat`" (for example) go ahead and try "`a sleeping slumbering snoozing napping cat`". 
+
+This is another version of "spend more time describing it" in #2 above.
+
+### **4. Lower the value of stylize (`--s` ).**
+
+The default is `--s 100` so lower the value below 100.
+
+The risk with lowering stylize is a loss of coherency and beauty, but for prompts that include their own vibe/aesthetic phrases, this is worth exploring.
+
+### **5. Use the prompt adherence trick.**
+
+**The steps for Midjourney v7.0, web or Discord:**
+
+Add `--no luxabiddleprok` to the end of the prompt. This deemphasizes a nonsense word that won’t change how your image renders. Choose your own favorite word to replace it. Using `--no` will drop the prompt weight, which, due to a bug in the implementation of weights, may increase prompt adherence. Due to another bug in v7, you can actually do it twice, experimentally: 
+
+`I am a prompt. --no luxabiddleprok --no luxabiddleprok`
+
+**The steps for Midjourney v6.1 only, on the web:**
+
+1️⃣ Edit the prompt. Turn it into a promptlet with a weight of `1` (one), which is the default weight. Since it's the default, you can add `::` to the end, and the value of `1` will be assumed. You can also type out the `::1` which might be helpful to track what you're doing. Notice there's no space between the `::` and the number.
+
+`I am a prompt::1`
+
+2️⃣ Add a second promptlet. This is your subtracted promptlet. We're recommending empty double quotation marks because we believe that token may have a low influence on the outcome. To give your prompt a nudge, try subtracting the double quotation marks with a value of `-0.5` and increase or decrease this value to explore how it  changes prompt adherence. In this step, also optionally add `--s 1000` to the end of the prompt to maximize Midjourney's coherency, which will compensate for the incoherency effect of lowering the prompt weight.
+
+`I am a prompt::1 ""::-0.3 --s 1000`
+
+3️⃣ You may see more adherence to your prompt, but what displays on the canvas could be incoherent: blurred, smeared, badly formed, etc. We can fix this with a remix workflow. First, select the best canvas out of the bunch you've made. Click the [Subtle] remix button. (Remix is found under 'More options'.) This will give you an opportunity to edit the prompt. *Remove all the weights so that the prompt is by itself.*  Take out any weird or chaos. Leave stylize as 1000 per the prior step. Submit it.
+
+`I am a prompt --s 1000`
+
+4️⃣ If your prompt contains the right details to map to the incoherent canvas, then your canvas should be returned to you with coherency restored. Not quite there? You can repeat the subtle remix for extra effect.
+
+<aside>
+<img src="/icons/forward_green.svg" alt="/icons/forward_green.svg" width="40px" />
+
+## Examples of Emphasis in Action
+
+</aside>
+
+In the image below (which requires some zoom to examine) there are different examples to review.
+
+- Reduce stylize (default is `--s 100` so try `--s 75` or `--s 50`) but be aware the image might lose beauty and coherency.
+- Rephrase it in different ways multiple times (either whole phrases or just synonyms)
+- Repeat the whole grammatical phrase.
+- Add the grammatical phrase as a promptlet with a small weight (this can cause complete chaos in some prompts!) (this is NOT available in v7!)
+- Try your luck with modifiers like "very" or "extremely" (this only very rarely works)
+
+Different prompts are differently responsive to different methods. 
+
+![image.png](attachment:ddff08c7-6ddc-4b2a-a7cc-6f94bed72698:image.png)
+
+<aside>
+<img src="/icons/snorkel_green.svg" alt="/icons/snorkel_green.svg" width="40px" />
+
+## Deeper Dive (more examples)
+
+</aside>
+
+### ✅ Try adding synonymous words and/or phrases.
+
+If your prompt includes the phrase "`a sleeping cat in the windowsill`" and the cat is rendered but has its eyes open,  you could try emphasizing the detail by adding synonyms: "`a dozing, slumbering, snoozing, sleeping cat on the windowsill`".
+
+🖼️ IMAGE SOON (the links broke)
+
+### ✅ Trying repeating a word or whole phrase.
+
+If your prompt includes the phrase "`a sleeping cat in the windowsill`" and the cat is rendered but has its eyes open, you could try emphasizing the detail with repetition of the word being ignored: "`a sleeping sleeping sleeping sleeping cat on the windowsill"`.\
+
+🖼️ IMAGE SOON (the links broke)
+
+### ✅ Try lowering stylize.
+
+Type `/settings` and select the **[Stylize Low]** button which will auto-append `--s 50` to your prompts. That's often too low, so we recommend adding `--s 75` to the end of your prompt manually. Lowering stylize is a good place to start if you aren't seeing everything you want on the canvas. Stylize (`--s`) values of 50-75 tend to let the prompt control the canvas a little better. Much lower values and we might lose beauty and coherency. Much higher values and we might lose control of the canvas. The default is `--s 100` and the max is `--s 1000`.  
+
+🖼️ IMAGE SOON (the links broke)
+
+### ❌ Trying adding the phrase as a promptlet with a small weight.
+
+It doesn’t work in this example. Here's the prompt with a small weight on the promptlet. This method may result in chaotic results in v6. (But hey, it works beautifully in v5.)
+
+`An elderly woman, dressed in a loose, vintage bridal gown, occupies a well-worn armchair. She peruses an aged photo album, her fingers tracing each image. The room is a library, filled with books and cozy atmosphere. Behind her, there is a sleeping cat on the windowsill, bathed in soft daylight filtering through the curtains.::  sleeping cat on the windowsill::0.5`
+
+![image.png](attachment:963ed5fd-69f8-49b6-98d5-2c6734585e86:image.png)
+
+### ❌ Try your luck with modifiers.
+
+It doesn’t work in this example. If your prompt includes the phrase "a sleeping cat in the windowsill" and the cat is rendered but has its eyes open, you could try using natural language to emphasize the detail, but it's unlikely to play as expected.
+`An elderly woman, dressed in a loose, vintage bridal gown, occupies a well-worn armchair. She peruses an aged photo album, her fingers tracing each image. The room is a library, filled with books and cozy atmosphere. Directly behind her, in the obvious spotlight of a sunbeam, there is a very clear and easy to perceive sleeping cat on the windowsill.`
+
+![image.png](attachment:bc4b1282-3ef3-4497-ad5e-9ba8c7a494cf:image.png)
+
+### ✅ Most reliably: Rewrite the prompt. ✨
+
+- Start with a clean slate based on what you've learned is difficult to get onto the canvas.
+- Spend more time on the stubborn detail and less time on the details that come easily.
+- Make room for all your stuff! Sometimes expanding the aspect ratio (`-ar`) to make room for everything is the key.
+- Avoid ambiguity! Get 👏 very 👏 specific 👏
+
+Here's an example with all of those things in play.
+`In a cozy home library, an elderly woman dressed in a loose vintage bridal gown sits in an armchair reading a photo album. In the background, a cat sleeps lying down with his head down closed eyes napping slumbering on the surface of a shelf of a bay window windowsill. The cat naps in soft sunlight filtering through the curtains. --seed 9898989898 --v 6.0 --ar 3:2`
+
+![image.png](attachment:9fb2136c-29dd-49c6-a390-e9ca06a2cd47:image.png)
+
+Victory! 😆
+
+None of these work all the time. All of these work some of the time. 😆
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## So, how do I de-emphasize, suppress, or negate a detail on the canvas?
+
+</aside>
+
+It depends on your circumstances. Check it out:
+
+### Scenario A: Midjourney is emphasizing a phrase too much.
+
+For example, you've said a creature is "inspired by a salamander" and now your creature looks exactly like a salamander. Too much salamander. And you can't say "only a little bit like a salamander" because Midjourney's NLP (Natural Language Processing) isn't there yet. If you’re desperate for help rephrasing your prompt, try CLP (Clarinet’s Prompt Helper) instead.
+
+https://chatgpt.com/g/g-6781443b83888191813fbc93afa4dc64-clarinet-s-prompt-helper
+
+But to solve this scenario this scenario yourself, take the phrase that represents the problem detail and add it to the end of the prompt with a small negative weight. For example:
+
+ `A small blue child-sized creature inspired by a salamander:: inspired by a salamander::-0.2` 
+
+Note the negative sign and the small fractional weight. That will turn down the emphasis a little. If you want it turned down even more, try `::-0.5`. This doesn’t work with V7, but you can mimic `::-0.5` by using `--no` as in `--no inspired by a salamander`.
+
+### Scenario B: You didn't prompt for the detail but it's showing up anyway.
+
+Imagine you're prompting the Wild West and every human figure in the image is wearing a hat. Imagine you're prompting a library and everyone is wearing glasses. If the detail is appearing on your *main subject*, it's easy enough to prompt it away by describing what should be there in place of the detail Midjourney filled in. e.g. If you describe hair, hats tend to disappear. If you describe a bare neck, necklaces tend to disappear. But what about all the extras milling around in the image? You can't solve that easily with positive prompting. So instead you can add the detail to the end of the prompt with a small negative weight.
+
+For example, to try removing the hats from all the people in the saloon: 
+
+ `A man plays piano in an Old West saloon:: hats::-0.3`
+
+ If that wasn't enough (and when I squint at the figures in the back I still see hats!) then you might take it up to `::-0.5`. You could also say `--no hats` which is the same as using `::-0.5`.
+
+![image.png](attachment:aab31aa2-bbe0-4a54-b0b3-43e6de2cfe57:image.png)
+
+This video was made as a rapid experiment, but may still be helpful.

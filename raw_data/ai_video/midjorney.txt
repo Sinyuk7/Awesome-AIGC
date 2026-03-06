@@ -1,0 +1,423 @@
+# Video Prompting Guide
+
+---
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## How do I create a Video in Midjourney?
+
+</aside>
+
+When using Midjourney video, you don’t start with a prompt. You start with a frame, a still image, called a Starting Frame. We normally speak strictly about prompting here, but we’ll pause a minute to talk about the Starting Frame because it influences what’s possible to prompt.
+
+<aside>
+💡
+
+You don’t start with a prompt. You start with a still image called a Starting Frame, which influences what’s *possible* to prompt. So choose a good Starting Frame. 
+
+</aside>
+
+**Here are steps to get to the video prompting process:**
+
+ **1. Choose your Starting Frame.**
+
+Sure, the [Animate] button is available on the [Create] tab for your own images. But as prompters, we’ll rarely use it, because its function is to be fun and easy and *not require prompting at all.*  If you use it, Midjourney will make a guess about the appropriate motion for the image and give you a video automagically.  
+
+As prompters, however, we’re most interested in the choices available when we click on an image to view it by itself.  Then we see all the available *Animate Image* buttons. And sure, you can animate automagically from here too with the “Auto” and “Loop” buttons, but as prompters we’re most interested in “Animate Manually” mode. We’re definitely here for Manual mode.
+
+![image.png](attachment:df00c074-9491-4641-9be3-050de9a16d7b:image.png)
+
+But first, a few words about selecting your Starting Frame:
+
+- 👀 Be aware that images will be downscaled for video.
+    - Consider using a grid image, not an upscale, to help reduce downscaling artifacts that might effect video quality.
+    - If you notice artifacts or glitches in the *grid* image, you can possibly smooth them with “Creative Upscale”. Then, ok, you’re using an upscaled image, but we hope with glitches minimized.
+- 👀 Be aware that the start (and optional end) image(s) you pick will establish the **style**, **motion**, and **contents** of the video.
+    - You won’t be able to prompt action starting *before* the image you pick. You can’t pan to it, only from it, if that makes sense.
+    - Images come with built-in expectations for how things move. That’s the *motion archetype*. Sometimes you’ll be leaning into the archetype and things will work well. Sometimes you’ll be fighting it, and that’s when prompts matter most.
+    - Finally, strive to find images that contain all the details needed to complete the actions you have in mind. If you’re going to have your fantasy oil painting elf king rock out on an electric guitar, be aware that the added element may struggle to be in the same style (fantasy oil painting) as the rest of the video.  Best to create a fantasy oil painting elf king with his guitar already in the frame. That said, we do go deeper into some prompting tricks to help us get around the style issue.
+    
+
+<aside>
+💡
+
+You may want to avoid making videos from upscaled images.  At the start of every video render there’s a downscaling process that takes the starting image to a resolution appropriate for 480p video. The more we have to downscale your starting frame, the more risk of glitch. Starting with the lower resolution images may help reduce downscaling artifacts. Maybe.
+
+</aside>
+
+ **2. Choose Your Animation Mode**
+
+- **[Auto] or [Loop]**: As prompters, we’re glossing over auto mode. In this mode, Midjourney writes the motion prompt for you. Super easy. It guesses what should move and how. Great for quick fun. No, you don’t get to see the prompt it wrote. If you’ve uploaded your own image, leave the prompt blank to get [Auto].
+- **[Animate Manually]**: This is prompter heaven. You write your own motion prompt. This gives you more control. Your prompt will get some invisible back-end help from Midjourney to become the best video prompt it can be. It’s pretty good at it, so we suggest you use as your default. But if the video isn’t working out the way you want, you could experiment with adding `--raw` at the end of the prompt, which tells Midjourney you want to use your own prompt and declines the assistance.  See prompting guide, below.
+
+ **3. Pick a Motion Level**
+
+- **Low Motion**: Good for calm or slow-moving scenes. This constrains motion chaos. Great for ambient or moody vibes. Lower chance of bigger motion.
+    - `--motion low` at end of prompt
+- **High Motion**: This turns up an invisible value of chaos (so to speak) to increase the variety of possible motion. Greater chance of bigger motion.
+    - `--motion high` at end of prompt
+    
+
+ 4**. Optionally, Extend Your Video**
+
+Once you’ve got a video you like, you can **extend** it up to **four times**, about **4 seconds per extension**. Use ‘Manual’ to do your own thing. Add `--raw` to increase prompt adherence.
+
+<aside>
+💡
+
+[Extend] uses the last frame of the previous video to start a new video, and we think it “knows” about the previous video, so if you reference the previous video in the prompt it should play well. (But just as often we think it doesn’t know anything about the prior video clip, so… please let us know what you think.)
+
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## How should I prompt in Manual Mode?
+
+</aside>
+
+Video diffusion models need prompts that account for *motion*, *sequence, and object permanence*. We want to use verbs and adverbs, and anchor the right details in the prompt.
+
+<aside>
+💡
+
+As a troubleshooting step, if your video isn’t turning out the way you want, explore adding the parameter  `--raw`  to the end of the prompt. Doing this will decline the auto-assist from Midjourney and put the prompting entirely into your own hands.
+
+</aside>
+
+**🎬  How to prompt in manual mode…**
+
+We recommend you delete the still image prompt that was there before. It probably doesn’t do what you need it to do. Then, from scratch, narrate the video clip:
+
+- **⚠️ Be aware of time constraints.** **Keep in mind you only have 5 seconds. Midjourney will try to obey the prompt, but it won’t speed up the action to fit everything into 5s. Actions take way more set-up than you think to seem natural, and many actions will run out of time before they can properly express themselves in the short timeframe. Break the action into several extensions as needed, prompting each one.
+- **⚠️ Keep it lean.**  **You do not have to add description. In fact, you might want to savagely cut description. Visual information and style will be picked up from the starting frame.
+
+<aside>
+💡
+
+One more time for the people in the back: Visual information and style will be picked up from the starting frame, so it doesn’t need to be in the prompt. (Editor is the same.)
+
+</aside>
+
+- **⚠️ Simplify the subjects.** Focus on the actions. Reinforce props as needed to babysit object permanence (for example, if the prop will leave the frame and return).
+    - If the character was “a Nordic elf-maiden with long rainbow braids” in the image prompt, the video prompt can just say `She walks across the snow`.
+    - If the scene was “a massive gnarled tree towering above the crowds” in the image prompt, the video prompt can just say `The camera pans up and around the tree.`
+    - This doesn’t mean the prompt has to be short. It can be long. But it needs to focus on motion, not description. For example:
+        - `The camera begins with a slow, intimate dolly-in toward the man's face from a slight angle, capturing his moment of stillness as he locks eyes with someone across the room. As the camera pushes closer, his eyes glisten faintly, jaw tightening for a moment before relaxing into pained composure. His upper body shifts almost imperceptibly forward, as if he might step toward her--but he stops himself. He swallows hard, blinks slowly, then exhales through his nose with controlled tension. --ar 91:51 --motion low --raw`
+- **⚠️ Learn the model’s weaknesses.** **Learn what’s not possible. See next section for more about that.
+
+<aside>
+💡
+
+### **🎬 Manual Mode Prompting Checklist**
+
+- [ ]  **Probably delete the image prompt because it’s not a good motion prompt. You want a prompt that focuses on** *motion*, *sequence, and object permanence.*
+- [ ]  **Use simplified references to the subjects.**
+- [ ]  **Use active verbs, keep the “action” brief:**
+    - ✅ `A bird soars upward, flapping its wings rapidly.`
+    - ❌ `There is a bird in the sky.`
+- [ ]  **Suggest the sequence of events:**
+    - ✅ `A boy walks through a forest, then he enters a glowing cave as fireflies swirl.`
+    - ❌ `A boy in a forest seems to approach a cave with fireflies.`
+    - ✅ Common Temporal Connectives: first, then, next, after that, suddenly, meanwhile, eventually, as, while, at the same time, finally
+- [ ]  **Reinforce props/objects for object permanence, especially if they leave view:**
+    - ✅ `She turns in a circle, holding a stone tablet in one hand.`
+    - ❌ `She turns in a circle.`
+- [ ]  Use `--raw` as a troubleshooting step to give yourself more control.
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+## How does Video work?
+
+</aside>
+
+How does the magic of Midjourney Video happen? We can’t specifically say. 😬
+
+But we do want to say something *generally*, because *we’re striving to understand how to prompt the model.* 
+
+So, *generally*: Midjourney-for-images has been adapted to generate short video clips by extending the image generative process we all know and love… into the time dimension. 🤯 
+
+![Like a magical genius octopus animator?](attachment:e8cfc64e-2319-4e19-b4c6-e5c070d52754:whatnostop_httpss.mj.runhQ9ZBXCnJio_a_magical_genius_octopus__999d7883-ec9f-404f-a564-a94d11af4eb3_1.gif)
+
+Like a magical genius octopus animator?
+
+Unlike traditional video generators that produce one frame at a time using autoregressive approaches, there are some video models based on diffusion.
+
+Generally speaking, diffusion video models essentially generate all frames in parallel, treating them as a unified volume of data representing both space (the contents of each frame) and time (the sequence of frames). 
+
+Picture a stack of translucent pages, each one drawn to represent a single frame of the action. That’s traditional onion-skin animation. But instead of working on one frame at a time like a human artist, diffusion video models work on the entire sequence all at once through multiple simultaneous denoising steps. 🤯 
+
+This parallel strategy gives video diffusion models global context, allowing them to adjust the content of all the frames at the same time in a coordinated way… *like a magical genius octopus animator…* who can see the whole stack of onion-skin drawings all at once and can refine them all together, not one by one like those puny mortals. 🐙
+
+Knowing something about video diffusion models, even through rough analogies like this one, we can begin to guess why these models might strive-and-fail to maintain natural movement, object permanence, and consistent style. Onward…
+
+![The whole stack of translucent onion-skin drawings.](attachment:a9e59e03-441c-4e56-939f-742766523bbc:image.png)
+
+The whole stack of translucent onion-skin drawings.
+
+<aside>
+<img src="/icons/info-alternate_green.svg" alt="/icons/info-alternate_green.svg" width="40px" />
+
+## Video Prompting Challenges - Deep Dive
+
+</aside>
+
+We know that, generally speaking, diffusion video models have limits, especially when processing time is highly constrained as it is with with our imagine jobs.  Here are some examples where step-constrained diffusion video models generally struggle:
+
+| The Challenge | Why It Might Happen | How to (Mostly) Dodge It |
+| --- | --- | --- |
+| **Action that “occurs before the first frame.”** e.g. “I want the camera to pan across the jungle to reveal the tiger I have in my Starting Frame.” | The model can’t imagine *prior* to time zero, which is the Starting Frame. It can only imagine *forward* in time. | This can’t be dodged. If you want to pan across the jungle to the tiger, your Starting Frame *must* be the jungle. Your prompt can add the tiger. |
+| **Object exits the frame, then re‑enters.** | The model doesn’t track “objects”. It’s all diffusion patterns, nothing discrete. | Re‑mention important objects in the prompt, especially at the planned re‑entry moment:
+`A paper lantern floats very slowly on the pond rightward and exits the frame. The camera holds on empty water. The same crimson paper lantern re-enters, floating in on the water from the left.` |
+| **Completely new object enters *late*.** | The model supports this if the prompt properly contrives the entry.  | Instead of `a meteor crashes into the island` try more narration, like `a tiny distant meteor is hurtling toward the island in the background and becomes gradually larger in the sky until it finally crashes into the island.`The idea is to get it in the noise tensor at start.
+
+*”So you can lie that the stuff has been there the whole time?*”
+ — @colect |
+| **Complex rotation/turn of a detailed subject.** | Again, the model isn’t aware of objects as objects. It’s all diffusion, all pixel patterns. | Maybe you’ll be the one to discover the solution to this challenge. |
+| **External forces interacting with scene physics (waves, wind, impacts).** | At a guess, this is because most video training lacks paired “before‑impact / after‑impact” examples with correct Newtonian fallout. Damn. | This is hard to fix. You can try explaining the physics to the model, such as: `As the massive wave of water passes through the living‑room, the room is flooded. All furniture is now floating in deep water.` Not going to make any bets, though. |
+| **Camera‑orbit vs. object‑spin ambiguity.** | “Rotate around the statue” and “the statue rotates” are near‑synonyms to a language model. We have to fight hard to get this distinction to work. | You can try to characterize the camera: 
+`The camera swings around the lizard in orbit around the lizard. The background sweeps by.`
+
+  |
+
+[`A paper lantern floats very slowly on the pond rightward and exits the frame. The camera holds on empty water. The same crimson paper lantern re-enters, floating in on the water from the left. --motion high --raw --video 1`  ](attachment:46c4745c-0707-46c4-bf9b-f4ea019f3bd0:whatnostop_A_paper_lantern_floats_very_slowly_on_the_pond_rig_d86744db-7fa4-4ea2-84a7-1a3f6e85f539_3.mp4)
+
+`A paper lantern floats very slowly on the pond rightward and exits the frame. The camera holds on empty water. The same crimson paper lantern re-enters, floating in on the water from the left. --motion high --raw --video 1`  
+
+Want to get really into video? 
+Check out our events: 
+
+[Midjourney Events · Events Calendar](https://lu.ma/midjourney)
+
+[`A tiny distant meteor is hurtling from high in the sky down toward the island and becomes gradually larger in the sky until it finally crashes directly onto the center of the island. Boom! The whole island explodes into a mushroom cloud of fire and rubble upon impact. --motion high --raw --video 1` ](attachment:c2a9e6e0-2db1-4ba3-be71-69a6e6179e43:social_whatnostop_a_tiny_distant_meteor_is_hurtling_from_high_in_the_2903b780-b863-4f3e-a10c-6e6c6688c25f_2.mp4)
+
+`A tiny distant meteor is hurtling from high in the sky down toward the island and becomes gradually larger in the sky until it finally crashes directly onto the center of the island. Boom! The whole island explodes into a mushroom cloud of fire and rubble upon impact. --motion high --raw --video 1` 
+
+[`https://s.mj.run/c_fxdhn4XTQ The camera swings around the lizard in orbit around the lizard. The background sweeps by. --ar 1:1 --motion high --raw --video 1`](attachment:c8525c3d-68b0-4dcf-8cdd-7daee25b773d:whatnostop_httpss.mj.runc_fxdhn4XTQ_The_camera_swings_around__fd063101-aba8-4322-b03a-39fb72e39797_1.mp4)
+
+`https://s.mj.run/c_fxdhn4XTQ The camera swings around the lizard in orbit around the lizard. The background sweeps by. --ar 1:1 --motion high --raw --video 1`
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: Why is it so hard to make XYZ type of video?
+
+</aside>
+
+**You’re probably fighting Motion Archetypes.** Diffusion video models imitate the kinds of motion they *saw the most* while training, which we call “archetypes”.  It’s harder to get natural motion from the model when there’s no prior footage to teach it how it looks, and no physics engine to reason it out. C’mon, Midjourney, give us a physics engine! 😆
+
+<aside>
+💡
+
+Rarer motions → fewer examples → weaker priors → higher risk of shenanigans.
+
+</aside>
+
+ **Examples of prompts that challenge archetypes:**
+
+- **Objects or camera movements that move in ways that break physics or logic.**
+    - e.g. A teapot pouring liquid straight up into the air.
+    - e.g. An upside down volcano erupting.
+- **Unique body movements..**
+    - e.g. A woman dancing hip-hop, but underwater. *The dancing may be unaffected by the increased friction of the water.*
+    - e.g. A man jumping up and down in a cloak made of heavy coins. *The cloak may still behave like soft fabric.*
+- **Stuff entering or leaving the frame in novel ways.**
+    - *The model will contrive ways for them to appear or disappear.*
+    - e.g. A character with no headphones in the starting frame is directed to put headphones on, so that the model has to “invent” the headphones: You will need to support the model with details like `He uses his hands to pick the headphones and place them over his ears.` (Otherwise the item will teleport into existence.)
+    - e.g. She teleports to the other side of the clearing.
+    - e.g. He slams the door shut, then disappears into thin air.
+
+Just like with still images in Midjourney, if your request is too far from what the model has seen in training, it may fail. If you’ve learned how to handle archetypes in image prompting you can use those skills in video prompting too. 🧠
+
+<aside>
+💡
+
+🎬  **Community Video Prompting Tips for Better Results**
+
+- Often the answer will be: Break the request into multiple shorter clips and stitch in post.
+- Use dense concrete action words (verbs) in your prompt.  What’s valid? Ask yourself, “What does it look like?” Want to use film jargon? [See below.](https://www.notion.so/Video-Prompting-Guide-29e024c0a17e80749f9ed9357fe207f7?pvs=21)
+- Provide supportive details to help the model imagine how things are moving, i.e. `He picks up the apple with his left hand` rather than just `He picks up the apple`.
+- Describe **how** the thing moves (verbs + adverbs), skip what the thing looks like (adjectives). Unless they’ve been added to the scene by the model and the model got the style wrong. Then add style words.
+- Midjourney hasn’t documented a formal timeline grammar, so treat `then` and `suddenly`as a soft nudge, not deterministic control. If you need frame‑accurate beats, cut into separate clips.
+- Be prepared to maintain object permanence yourself, in the prompt. Modern diffusion video models **lack an explicit memory** of objects across frames. The prompt tactic is to re-mention the object. Prompt the returning prop again (`the **same jade teacup** floats back into view`) or keep a sliver, shadow, or reflection of it onscreen while it’s “gone.” Both these techniques re‑anchor the object so the model is more likely to bring it back correctly.
+- Stick to the stuff already in your starting frame, or be prepared to prompt harder. See meteor example above. 😆
+</aside>
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: Does word order in video prompts matter? Does the length of the prompt matter?
+
+</aside>
+
+No. We’re pretty sure *order* doesn’t matter, and *length* doesn’t matter, but the *content* of the prompt does matter. Whether the prompt is for the initial clip or an extension, consider:
+
+| Prompt Ingredient (any order) | Why It Matters |
+| --- | --- |
+| **Choose The Right Starting Frame**
+ *Not (yet) applicable for extension prompts.* | Anything absent must be hallucinated later, right? So the best Starting Frame anticipates everything it’s going to need for the action. You *can* add new stuff, but you’ll have to prompt smart. |
+| **Primary Action (Strong Verb + Direction)** | Verbs outrank adjectives. Focus on motion. |
+| **Camera Motion (if any)** | Diffusion engines will use the most common camera patterns implied by your content, like tense slow zooms for ominous scenes, right? You can lean into that, but if you’re trying to do something unexpected you’ll need to direct the camera yourself.  Keep it simple: *pan*, *tilt*, *dolly*, *orbit*, *locked camera*. None of these words necessarily work. On the other hand, sometimes they do. |
+| **Speed / Timing Cue (coarse adverb)** | Basic words like *slowly*, *suddenly*.  Skip poetic adverbs like “languidly” or “fluidly”.  (Or experiment with them and tell us we’re wrong. We like that!) Stay concrete. Ask yourself, “What does it look like?” |
+| **Secondary Beat (this is your “then…”)**
+*Don’t go crazy. You only have 5s and natural motion takes a long time to set up. Maybe save it for the extension.* | If you need a second action, maybe re‑mention returning objects so the model remembers them. Also consider if it’s better suited to an extension. |
+| `--raw` | We actually say *don’t* use it unless the clip just isn’t forming up the way you want. If you need to, you can take off the gloves and handle the model directly by using `--raw`. That will avoid the otherwise helpful LLM layer that’s assisting behind the scenes.  |
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: Should I use camera terms? Filmmaking jargon? Cinematography terms? AfterEffects expressions?
+
+</aside>
+
+Sure! But they don’t always work. 
+
+The success of any motion prompt, up to and including those with cinematography or camera terms,  depends heavily on the subject and even the trope suggested by your Starting Frame. 
+
+If your Starting Frame shows motion-in-progress or a mood or genre trope that suggests a certain type of motion (like a horror movie loves slow zooms), the model may want to give it that motion, and your prompt may be “fighting” that tendency. 
+
+The opposite may also be true: If your Staring Frame shows something sedate (a rose in a vase, say) then the model’s tendency may be for low motion. If your prompt then asks for motion, it’s possible it will be incoherent motion (the vase jitters across the table) as the model resists doing something unexpected. 
+
+The model will always want to do the most archetypal thing.
+
+ **A Glossary of Common Film Camera Movements**
+
+Here is a table detailing the most common terms you'll hear on a film set. Notice how the prompts use the term but also *reinforce* what’s happening to the elements in the frame. 
+
+| Term | Description | Prompt Example |
+| --- | --- | --- |
+| **Pan** | The horizontal movement of the camera from a fixed position, either from left to right or right to left. | `The camera **pans** slowly leftward across the vast desert landscape, revealing a city on the horizon.` [Example below.] |
+| **Tilt** | The vertical movement of the camera from a fixed position, either up or down. | `To convey the skyscraper's immense height, the camera **tilts** up from the street-level entrance to the top floor.` [Example below.] |
+| **Zoom** | A change in the camera's lens to make the subject appear closer or farther away without physically moving the camera. | `As the character reads the shocking letter, the camera **zooms** in on their face to capture their expression.`  [Example below.] |
+| **Dolly** | The physical movement of the entire camera forward (dolly in) or backward (dolly out) on a wheeled platform or track. | `The camera **dollies** backward, making the character appear smaller and more isolated.`[Example below.] |
+| **Track (or Trucking)** | The physical movement of the entire camera horizontally to the left or right, often on a track. | `To create a sense of forward momentum, the camera **tracks** alongside the train as it speeds down the railway.` [Example below.] |
+| **Crane (or Jib)** | The movement of the camera up or down through space, often using a crane or a jib arm. | `In the final shot, the camera **cranes** high into the air, showing the hero standing alone amidst the battlefield.` [Example below.] |
+| **Pedestal** | The vertical movement of the camera on a fixed axis, moving straight up or down. | `The camera **pedestals** up from behind the couch, revealing the monster that was hiding from the audience's view.` * |
+| **Steadicam** | A camera stabilization system that allows for smooth, handheld-like shots without the jerkiness. | `A **Steadicam** follows the detective in one fluid shot as he navigates the chaotic crime scene.` * |
+| **Handheld** | The camera is held by the operator, resulting in a less stable, often shaky image. | `To create a sense of documentary-style realism, the scene is shot with a **handheld** camera.` * |
+| **Rack Focus** | A change in the lens's focus from one subject to another within the same shot. | `The shot **racks focus** from the whiskey glass in the foreground to the shadowy figure entering the room behind it.` [Example below.] |
+
+In these examples, we are using the video defaults of `--motion low` (default) and no `--raw`:
+
+[Pan - first  roll.](https://cdn.midjourney.com/video/6e90203b-476f-485d-9b99-e4f765766353/3.mp4)
+
+Pan - first  roll.
+
+[Dollies backward - first roll.](https://cdn.midjourney.com/video/0ce4a25d-9265-47c9-8bed-e606d6fe7233/3.mp4)
+
+Dollies backward - first roll.
+
+[Rack Focus - in three rolls.](https://cdn.midjourney.com/video/51fe459a-cf2a-4b29-9a13-b48bf182aa05/0.mp4)
+
+Rack Focus - in three rolls.
+
+[Tilt - first roll.](https://cdn.midjourney.com/video/1a669658-a383-428e-80cb-d4ade19a1e3e/0.mp4)
+
+Tilt - first roll.
+
+[Track - first roll.](https://cdn.midjourney.com/video/9189d667-6294-4cc7-b84f-76c4915740c5/2.mp4)
+
+Track - first roll.
+
+** Note: At time of writing, unable to produce working examples of pedestal, Steadicam, handheld.*
+
+[Zoom - first roll.](https://cdn.midjourney.com/video/26eb4bdd-05fb-4909-8a26-e8ffc88be4e1/1.mp4)
+
+Zoom - first roll.
+
+[Cranes - first roll.](https://cdn.midjourney.com/video/20cb0da8-53f2-451b-b56c-65ab23052a09/0.mp4)
+
+Cranes - first roll.
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: How do I get a video where neither the subject nor the camera moves?
+
+</aside>
+
+Contrive a way to mention that the subject AND the background are both motionless. Here are some terms to explore. At the bottom you’ll see some example prompts to try.
+
+![image.png](attachment:be854bcd-892e-49d8-8f25-3d15c9321639:image.png)
+
+1. **Subject doesn’t move (camera may)**
+
+The links included here will offer a deeper dive into the term.
+
+| Term | **What the crew means** | **Quick usage example**
+(and a deep dive link) |
+| --- | --- | --- |
+| **Tableau / Tableau vivant** | A posed, unmoving arrangement of performers or objects, framed like a living painting. | “Hold it—let’s make this a tableau for the reveal.” [artsandculture.google.com](https://artsandculture.google.com/story/the-cinematic-tableau-museum-of-art-photography/sAUBLfe52K426g?hl=en&utm_source=chatgpt.com) |
+| **Freeze-frame** | Editor halts the action by repeating a single frame; subject is literally frozen. | “We’ll go to a freeze-frame on the high-five.” [en.wikipedia.org](https://en.wikipedia.org/wiki/Freeze-frame_shot?utm_source=chatgpt.com) |
+| **Pillow shot** | Ozu-inspired static cutaway (often no people) that lingers, letting the audience breathe. | “Drop in a pillow shot of the empty hallway before the argument.” [bfi.org.uk](https://www.bfi.org.uk/features/enigmatic-pillow-shots-yasujiro-ozu?utm_source=chatgpt.com) |
+
+1. **Camera doesn’t move (subject may)**
+
+The links included here will offer a deeper dive into the term.
+
+| Term | What it signals | Shorthand you’ll hear on set
+(also the deep dive link) |
+| --- | --- | --- |
+| **Static shot / static camera / still camera / immobile shot** | Tripod locked, no pan/tilt/zoom. | “We’re static on the master.” [studiobinder.com](https://www.studiobinder.com/blog/what-is-a-static-shot-definition/?utm_source=chatgpt.com) |
+| **Locked-off shot / locked-off camera** | Same as static, emphasizing zero chance of nudging the sticks—often for VFX plates or split-screen. | “Lock it off; we need a clean composite.” [vpglossary.com](https://vpglossary.com/vesglossary/locked-off-camera/?utm_source=chatgpt.com) |
+| **Locked-down shot** | Variant of locked-off; stresses that pan/tilt levers are literally clamped. | “It’s a locked-down dolly—do NOT breathe on it.” [filmconnection.com](https://www.filmconnection.com/glossary-film-terms/?utm_source=chatgpt.com) |
+| **Fixed-camera / tripod shot** | Plain-language way to say the same thing; tripod legs stay planted. | “Just a fixed-camera interview.” [filmmakersacademy.com](https://www.filmmakersacademy.com/glossary/static-shot-static-camera/?utm_source=chatgpt.com) |
+| **Clean plate / background plate** | Empty frame captured with the camera locked so VFX can composite later. | “Grab a clean plate before we strike set.” [slrlounge.com](https://www.slrlounge.com/glossary/plate-shot-definition/?utm_source=chatgpt.com) |
+
+1. **Both subject *and* camera stay still**
+
+The links included here will offer a deeper dive into the term.
+
+| Term | Nuance | Why crews pick it 
+(plus deep dive link) |
+| --- | --- | --- |
+| **Static shot** (umbrella term)  | Covers both camera and, effectively, everything in frame staying put. | Fast, nobody asks follow-ups. [studiobinder.com](https://www.studiobinder.com/blog/what-is-a-static-shot-definition/?utm_source=chatgpt.com) |
+| **Locked-off static** | Adds belt-and-suspenders clarity for VFX or continuity. | When the producer really doesn’t trust interns. [vpglossary.com](https://vpglossary.com/vesglossary/locked-off-camera/?utm_source=chatgpt.com) |
+| **Tableau shot** | Highlights the painterly composition; implies performer stasis. | Directors who own too many Criterion discs love this. [artsandculture.google.com](https://artsandculture.google.com/story/the-cinematic-tableau-museum-of-art-photography/sAUBLfe52K426g?hl=en&utm_source=chatgpt.com) |
+| **Pillow shot** | Empty, unmoving frame used as tonal punctuation. | Quietly sets mood without motion. [bfi.org.uk](https://www.bfi.org.uk/features/enigmatic-pillow-shots-yasujiro-ozu?utm_source=chatgpt.com) |
+| **Clean plate** | Literally nothing moves because nothing is there. | VFX supervisor’s best friend. [slrlounge.com](https://www.slrlounge.com/glossary/plate-shot-definition/?utm_source=chatgpt.com) |
+
+1. **Example Midjourney Video Prompts**
+
+None of these work all the time. It depends on the subject: the more the subject of the image appears to be in motion, the more Midjourney will struggle to make that implied motion go away. As always, we recommend you find a way to mention that the subject AND the background are both motionless. Here are some prompts to explore:
+
+| Jargon term… | Promptlet to explore… |
+| --- | --- |
+| **Tableau vivant** | *locked-off wide shot, [subject is] frozen in a tableau vivant pose, painterly composition, zero camera movement* |
+| **Freeze-frame** | *freeze-frame effect [subject], single static frame look, no camera motion* |
+| **Pillow shot** | *static tripod cutaway of [background], hushed ambience, absolutely no motion anywhere* |
+| **Static shot / static camera** | *static shot, tripod fixed, [subject] silent and motionless, camera immobile* |
+| **Locked-off shot / locked-down** | *camera locked-down on sticks, [subject] stands perfectly still and silent, motionless background* |
+| **Fixed-camera / tripod shot** | *tripod-mounted fixed camera, [subject] silent, lens and body remain still*  |
+| **Clean plate** | *locked-off clean plate of [environment] set, empty frame, no movement, consistent lighting* |
+| **Locked-off static** | *locked-off static shot, [subject] statuesque, camera immobile, tension through stillness* |
+| **Tableau shot** | *wide tableau shot, arranged like a Renaissance painting, [all talent] frozen, camera rock-solid* |
+
+[tripod-mounted fixed camera, subject is silent, lens and body remain still --ar 77:58 --motion low --video 1](https://cdn.midjourney.com/video/fcef7c3e-c5f8-4d20-b471-d24a2b820e45/3.mp4)
+
+tripod-mounted fixed camera, subject is silent, lens and body remain still --ar 77:58 --motion low --video 1
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: Can I start from scratch? Do I have to use an existing image as a starting frame?
+
+</aside>
+
+You do need a starting frame, but you can experiment with starting from an “empty” transparent image as a sort of clumsy hack. 
+
+<aside>
+<img src="/icons/help-alternate_green.svg" alt="/icons/help-alternate_green.svg" width="40px" />
+
+### 🎬 Q: What are the technical specifications of the videos Midjourney produces?
+
+</aside>
+
+For the base generations, we know it's 125 frames (24FPS, slightly over 5 seconds).
+
+We think Midjourney video *for social media* is encoded using the **H.264 - MPEG-4 AVC (part 10) (avc1)** codec with a Planar 4:2:0 YUV color format.
+
+This is a widely supported compression format, suitable for smooth playback across platforms. The color format (YUV 4:2:0) is standard for web and streaming video, balancing visual fidelity with efficient compression.

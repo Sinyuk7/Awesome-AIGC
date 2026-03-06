@@ -1,0 +1,204 @@
+Thank you, from the very bottom of our hearts, for creating this model. We are truly overwhelmed by your generosity, your brilliance, and the time you’ve invested to help the community. Your contribution means more to us than words could ever express. Our gratitude toward you is immense, sincere, and beyond measure.
+
+Could you please share prompting guide. Does the model accept negative prompts? Guide to train lora?
+
+Cxxs
+Tongyi-MAI org
+Nov 27, 2025
+
+Thanks for your support!
+
+About prompting
+Z-Image-Turbo works best with long and detailed prompts. You may consider first manually writing the prompt and then feeding it to an LLM to enhance it. Our Prompt Enhancing (PE) template is available at https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py
+
+About negative prompt
+First, note that this is a few-step distilled model that does not rely on classifier-free guidance during inference. In other words, unlike traditional diffusion models, this model does not use negative prompts at all.
+
+About lora
+We are actively working on this, and we will update our progress ASAP.
+
+gemstonebro
+Nov 27, 2025
+
+I want to add my input: even if i put nice prompt of 600-1000words, there is almost no variation between rendering same prompt. So if i want an alien ship interior with stuff in there it will render very very similar. I try using day night cycle or something but overall the renders are very similar. Awesome quality - and fast, yes. I increase cfg i decrease cfg and same issue. Basically it forces to create new insanely detailed prompt for each render.. hmmm
+
+vodll
+Nov 27, 2025
+
+Guys absolutely breathtaking model you got here, you totally stole the show away from Flux 2, nobody's talking about anything but z-image-turbo now XD
+
+Can't wait for the lora scripts to come out, it's going to go ballistic. Finally a true spiritual successor to SDXL.
+
+Thank you once again, can't wait to start training on it.
+
+QJerry
+Tongyi-MAI org
+Nov 28, 2025
+•
+edited Nov 28, 2025
+
+I want to add my input: even if i put nice prompt of 600-1000words, there is almost no variation between rendering same prompt. So if i want an alien ship interior with stuff in there it will render very very similar. I try using day night cycle or something but overall the renders are very similar. Awesome quality - and fast, yes. I increase cfg i decrease cfg and same issue. Basically it forces to create new insanely detailed prompt for each render.. hmmm
+
+Due to better performance in online demo in concern of speed, we set text maximum length as 512 tokens, 600-1000 words may results in 800-1333 tokens roughly (0.75 word per token generally, more detailly you may calculate your prompt with the tokenizer of Qwen3-4B yourself), or set max_sequence_lengthin pipeline calling to 1024 when running the code locally, we've handled this case in our pipeline.
+
+image = pipe(
+    prompt=prompt,
+    height=1024,
+    width=1024,
+    num_inference_steps=9, 
+    guidance_scale=0.0,
+    generator=torch.Generator("cuda").manual_seed(42),
+    max_sequence_length=1024              ##  please add this line, the default is 512
+).images[0]
+
+image.save("example.png")
+
+RKAAI
+Nov 28, 2025
+
+"Finally a true spiritual successor to SDXL"
+
+Nailed it! -- THIS alone is the reason why Z-Image is the most exciting development in Image Gen to date!
+
+Yamstapiardolo
+Nov 28, 2025
+
+Due to better performance in online demo in concern of speed, we set text maximum length as 512 tokens, 600-1000 words may results in 800-1333 tokens roughly (0.75 word per token generally, more detailly you may calculate your prompt with the tokenizer of Qwen3-4B yourself), or set max_sequence_lengthin pipeline calling to 1024 when running the code locally, we've handled this case in our pipeline.
+
+Thanks for this explanation!
+
+Is there a way to do this with a node in ComfyUI? Or where should I change the "Max_sequence_lenght" line of code?
+
+Thanks again, this model is brilliant.
+
+erosdiffusion
+Nov 28, 2025
+
+this model is great, you have done a wonderful job !
+
+DorotaL
+Nov 28, 2025
+
+Is there a way to do this with a node in ComfyUI? Or where should I change the "Max_sequence_lenght" line of code?
+
+https://github.com/ClownsharkBatwing/RES4LYF has a node called "ConditioningTruncate"
+https://github.com/pamparamm/ComfyUI-ppm has a node called "CLIPTokenCounter"
+
+YJuu
+Nov 28, 2025
+•
+edited Nov 28, 2025
+
+Is it possible to use reasoning in ComfyUI? It seems there isn't a similar node.
+
+I tried using Qwen3-4B-Thinking-2507.safetensors（using safetensors to merge weights） as a text encoder in the ComfyUI workflow, but I still couldn't reproduce the result:
+
+image
+
+nispa
+Nov 29, 2025
+
+Is it possible to use reasoning in ComfyUI? It seems there isn't a similar node.
+
+I tried using Qwen3-4B-Thinking-2507.safetensors（using safetensors to merge weights） as a text encoder in the ComfyUI workflow, but I still couldn't reproduce the result:
+
+image
+
+They told you to use the prompt enhancer (PE: https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py) to use reasoning outside of the workflow, because they don't have the reasoning ready yet. Just create a GEM in google and copy and past the content of that file. :-) The CLIP is only a translator.
+
+QJerry pinned discussion Nov 30, 2025
+MrlG
+Dec 1, 2025
+
+Does anyone have a copy of the file from the following link? https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py it’s giving a 404 error.
+
+urtuuuu
+Dec 1, 2025
+•
+edited Dec 1, 2025
+
+It's really good, but not perfect still. If you try example promts from qwen-image blog, it performs worse, in terms of details and especially text accuracy. But who knows, maybe qwen was trained to work well with that type of promt. The promt is:
+
+宫崎骏的动漫风格。平视角拍摄，阳光下的古街热闹非凡。一个穿着青衫、手里拿着写着“阿里云”卡片的逍遥派弟子站在中间。旁边两个小孩惊讶的看着他。左边有一家店铺挂着“云存储”的牌子，里面摆放着发光的服务器机箱，门口两个侍卫守护者。右边有两家店铺，其中一家挂着“云计算”的牌子，一个穿着旗袍的美丽女子正看着里面闪闪发光的电脑屏幕；另一家店铺挂着“云模型”的牌子，门口放着一个大酒缸，上面写着“千问”，一位老板娘正在往里面倒发光的代码溶液。
+
+Update: Actually... After i used their promt enhancer pe.py in gemini 3, it created a new version of this promt but in english (for some reason), and the result was much better. Maybe it just prefers english promt 😀 Enhanced promt much more detailed:
+
+A scene rendered in the distinctive hand-drawn animation style of Hayao Miyazaki, characterized by vibrant colors, lush details, and soft, natural lighting. An eye-level shot captures a bustling ancient Chinese street bathed in bright, warm sunlight. In the center of the composition, a disciple of the Xiaoyao Sect, dressed in a flowing cyan robe, stands holding a rectangular card that clearly displays the Chinese text "阿里云". Flanking him are two small children in traditional attire, looking up at him with exaggerated expressions of astonishment. To the left side of the street, a wooden shop features a hanging signboard with the text "云存储". Through the open front of this shop, rows of high-tech server racks emitting a cool blue glow are visible, contrasting with the ancient architecture, while two armored guards stand sentry at the entrance. On the right side of the street, there are two adjacent storefronts. The first shop features a sign reading "云计算", inside of which a beautiful woman wearing a patterned Qipao is gazing at a sparkling computer monitor screen. The shop next to it displays a signboard with the text "云模型". In front of this shop sits a large, brown ceramic wine vat with a red paper square pasted on the side containing the bold calligraphy text "千问". A proprietress is in the act of pouring a luminous, viscous liquid composed of glowing digital code symbols from a pitcher into the vat.
+
+redenbacher
+Dec 1, 2025
+
+Does anyone have a copy of the file from the following link? https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py it’s giving a 404 error.
+
+https://web.archive.org/web/20251127201114/https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py
+
+YJuu
+Dec 1, 2025
+
+Is it possible to use reasoning in ComfyUI? It seems there isn't a similar node.
+
+I tried using Qwen3-4B-Thinking-2507.safetensors（using safetensors to merge weights） as a text encoder in the ComfyUI workflow, but I still couldn't reproduce the result:
+
+image
+
+They told you to use the prompt enhancer (PE: https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py) to use reasoning outside of the workflow, because they don't have the reasoning ready yet. Just create a GEM in google and copy and past the content of that file. :-) The CLIP is only a translator.
+
+Thanks~
+I discovered that enhanced prompts can be generated by calling the LLM API based on nodes in comfyui_LLM_party:
+
+image
+
+pikkaa
+Dec 3, 2025
+
+Is it possible to use reasoning in ComfyUI? It seems there isn't a similar node.
+
+I tried using Qwen3-4B-Thinking-2507.safetensors（using safetensors to merge weights） as a text encoder in the ComfyUI workflow, but I still couldn't reproduce the result:
+
+image
+
+They told you to use the prompt enhancer (PE: https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py) to use reasoning outside of the workflow, because they don't have the reasoning ready yet. Just create a GEM in google and copy and past the content of that file. :-) The CLIP is only a translator.
+
+Thanks~
+I discovered that enhanced prompts can be generated by calling the LLM API based on nodes in comfyui_LLM_party:
+
+image
+
+tell me how to use it with reasoning totally offline without api ? also is reasoning here with z-image just the prompting style ?
+
+Able2
+Dec 3, 2025
+
+Is it possible to use reasoning in ComfyUI? It seems there isn't a similar node.
+
+I tried using Qwen3-4B-Thinking-2507.safetensors（using safetensors to merge weights） as a text encoder in the ComfyUI workflow, but I still couldn't reproduce the result:
+
+image
+
+They told you to use the prompt enhancer (PE: https://huggingface.co/spaces/Tongyi-MAI/Z-Image-Turbo/blob/main/pe.py) to use reasoning outside of the workflow, because they don't have the reasoning ready yet. Just create a GEM in google and copy and past the content of that file. :-) The CLIP is only a translator.
+
+Thanks~
+I discovered that enhanced prompts can be generated by calling the LLM API based on nodes in comfyui_LLM_party:
+
+image
+
+tell me how to use it with reasoning totally offline without api ? also is reasoning here with z-image just the prompting style ?
+
+I believe the easiest way to achieve the same result would be to use ComfyUI-Ollama nodes for offline llm inference. With that (and ollama of course) you can run a wide variety of local models with many customization abilities. Alternatively there are specialty nodes made for specific models or use cases, for that you may need to look them up based on your needs.
+
+Z-Image
+Dec 9, 2025
+
+Tons of Z-Image-powered inspiration awaits—copy any prompt you like in one click.
+
+NerdyRodent
+Dec 15, 2025
+
+Yes, I use ComfyUI-Ollama in my Z-Image-Turbo workflow
+
+Screenshot from 2025-12-15 00-06-29
+
+That way you can use a variety of models :)
+
+If you want to see it in action, there are some examples in this video - https://youtu.be/5TQulYkuiw8
+
