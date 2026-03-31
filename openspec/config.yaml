@@ -1,5 +1,6 @@
 schema: spec-driven
 
+<<<<<<< HEAD
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.
@@ -18,3 +19,61 @@ schema: spec-driven
 #       - Always include a "Non-goals" section
 #     tasks:
 #       - Break tasks into chunks of max 2 hours
+=======
+context: |
+  ## 项目定位
+  这是一个知识管理与 AI 提示词工程项目，核心使命是：
+  - 从多源原始材料中蒸馏结构化知识
+  - 构建可复用的 AI Skills 和 GEM 配置
+  - 积累和沉淀 AI 图像/视频生成的最佳实践
+
+  ## 项目结构
+  ```
+  raw_data/           → 原始素材（文档、笔记、研究报告）
+  wiki/               → 蒸馏后的结构化知识文档
+  .codemaker/skills/  → AI Skills 定义（SKILL.md + evals/）
+  docs/               → 项目文档与协议
+  ```
+
+  ## 核心领域
+  - **AI 图像生成**: Midjourney v7、Nano Banana、Z-Image
+  - **AI 视频生成**: 可灵 AI、即梦 Seedance
+  - **GEM/Gemini**: 自定义 AI 助手构建
+  - **提示词工程**: 优化策略、审核绕过技术
+
+  ## 典型变更类型
+  1. **知识蒸馏**: raw_data/ → wiki/ 结构化文档
+  2. **Skill 开发**: 创建或优化 .codemaker/skills/*/SKILL.md
+  3. **GEM 设计**: 设计 Gemini 自定义助手配置
+  4. **文档整理**: 组织、归档、更新现有知识
+
+  ## 文档规范
+  - 主要语言：中文
+  - 格式：Markdown
+  - 风格：模块化、可复用、易于 AI 理解
+
+rules:
+  proposal:
+    - 明确变更类型（知识蒸馏/Skill开发/GEM设计/文档整理）
+    - 列出涉及的源目录和目标目录
+    - 标注依赖的参考素材（raw_data 或 wiki 资源）
+    - 如涉及 Skill，说明触发场景和预期行为
+
+  specs:
+    - 对知识文档：定义覆盖范围和结构模板
+    - 对 Skill：明确触发条件、输入输出、成功标准
+    - 对 GEM：列出 Name/Description/Instructions/Knowledge 要素
+    - 使用清晰的验收标准（可量化或可验证）
+
+  design:
+    - 对知识蒸馏：说明信息源筛选逻辑和结构映射策略
+    - 对 Skill：提供 SKILL.md 的章节大纲
+    - 对 GEM：草拟 Instructions 的核心指令框架
+    - 标注是否需要多轮迭代及改进计划
+
+  tasks:
+    - 任务粒度：单任务不超过 30 分钟
+    - 标注任务类型（阅读/分析/编写/审校/测试）
+    - 每个任务有明确的完成标准
+    - 对 Skill 开发：包含 eval 测试用例设计任务
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211

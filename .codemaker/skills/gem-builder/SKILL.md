@@ -1,9 +1,20 @@
 ---
 name: gem-builder
+<<<<<<< HEAD
 description: |
   GEM 构造器 - 帮助用户设计和生成 Gemini GEM 的完整配置（Name、Description、Instructions、Knowledge）。
   当用户想要创建一个 GEM、定制 Gemini 助手、构建专属 AI 角色、或提到"GEM"、"Gem"、"gem"时，应该使用这个 skill。
   也适用于用户描述一个重复性任务希望让 AI 自动化处理的场景，即使他们没有明确说"GEM"。
+=======
+description: GEM 构造器 - 帮助用户设计和生成 Gemini GEM 的完整配置（Name、Description、Instructions、Knowledge）。当用户想要创建一个 GEM、定制 Gemini 助手、构建专属 AI 角色、或提到"GEM"、"Gem"、"gem"时，应该使用这个 skill。也适用于用户描述一个重复性任务希望让 AI 自动化处理的场景，即使他们没有明确说"GEM"。
+argument-hint: 描述你想创建的 GEM 的功能和用途
+license: MIT
+metadata:
+  version: "1.0"
+  author: Sinyuk
+  email: 80998062@qq.com
+  output: GEM config (Name, Description, Instructions, Knowledge)
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
 ---
 
 # GEM 构造器
@@ -93,8 +104,11 @@ Instructions 内容**必须使用英文**，即使用户用中文沟通。
 
 ### 结构模板
 
+<<<<<<< HEAD
 **标准模板（适用于大多数 GEM）：**
 
+=======
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
 ```
 Persona:
 - [Role definition]
@@ -114,6 +128,7 @@ Context:
 Format:
 - [Output structure]
 - [Specific formatting requirements]
+<<<<<<< HEAD
 - [从用户需求/知识库中提取的格式约束，如长度、结构等]
 - [Examples if helpful]
 ```
@@ -158,12 +173,18 @@ Format:
 - 最后一步专门定义输出
 - Context 和 Never 保持精简，避免与 Task 步骤内容重复
 
+=======
+- [Examples if helpful]
+```
+
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
 ### 关键原则
 
 1. **负面约束优先**：明确写出 GEM 不应该做什么，使用 "Never" 或 "Do not"
 2. **具体胜过模糊**：与其说"be helpful"，不如说具体如何帮助
 3. **文件引用正确**：如果用户提到具体文件名，在 Instructions 中使用相同的文件名引用
 4. **长度适中**：避免过长的指令稀释重点，详细内容应放入知识库
+<<<<<<< HEAD
 5. **无重复冗余**：同一概念不应在 Persona、Task、Context、Format 中重复出现
 
 ### 知识库文件处理策略
@@ -176,6 +197,8 @@ Format:
    - Instructions = 工作流程 + 核心约束（精简）
    - Knowledge = 详细规则 + 参考数据（完整）
 4. **文件名一致性**：使用用户提供的原始文件名
+=======
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
 
 ### 文件引用处理
 
@@ -194,11 +217,17 @@ Format:
 - [ ] 角色定位清晰
 - [ ] 核心任务明确
 - [ ] 边界和约束已定义（有 "Never" 或 "Do not" 语句）
+<<<<<<< HEAD
 - [ ] 输出格式有具体要求（包含从用户需求/知识库中提取的格式约束）
 - [ ] 文件引用使用正确的文件名
 - [ ] **无重复内容**：同一概念不在 Persona/Task/Context/Format 中重复出现
 - [ ] **无冗余步骤**：每个 Step 都有独立价值，不与其他步骤重叠
 - [ ] **精简度**：Instructions 总长度适中（建议 200-400 词），知识库承载详细内容
+=======
+- [ ] 输出格式有具体要求
+- [ ] 文件引用使用正确的文件名
+- [ ] 指令长度适中，没有冗余内容
+>>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
 
 ## 参考资源
 

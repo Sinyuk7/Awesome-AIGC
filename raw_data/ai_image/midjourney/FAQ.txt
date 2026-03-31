@@ -1,0 +1,91 @@
+# Improve Coherency (Faces, Hands)
+
+# FAQ: How can I fix messed up faces and hands?
+
+### Why does Midjourney produce incoherent faces and hands and blur or smear any number of other details?
+
+ In diffusion models like Midjourney, image generation progresses through denoising steps that iteratively refine the image. If the process is truncated, the model doesn’t finish fully conditioning the image on the prompt (fancy AI-talk for saying “making the image and the prompt agree”). The result is an image with unresolved noise, vague features, or incorrect details. If the prompt is abstract, contradictory, or vague, the model may “run out of time” trying to resolve the contradictions.  So, it's possible that changing your prompt can help correct faces and hands. There are other ways to give Midjourney more time, too. Read on for several methods that may help.
+
+## Method #1: Subtle Variation or Creative Upscale
+
+Create a subtle variation of the image. It might fix itself.
+
+Run it through Creative Upscale. It might fix itself.
+
+## Method #2: The Editor
+
+With the Editor, you can develop just the area of the canvas that needs help, but you'll probably need to rewrite the prompt per the methods in this FAQ.
+
+1. Use [Editor] on the canvas that needs development.
+2. Select the area you plan to develop.
+3. Modify the prompt. Describe the whole canvas as you would for a new image. Be descriptive or use the invoke/archetype method.
+4. See what you get. Troubleshoot and repeat.
+
+## Method #3: Don’t mention it at all.
+
+Take the mention of the problem out of the prompt: remove the mention of hands, fingers, smiles, etc and let Midjourney use the archetype to finish out those details.
+
+## Method #4: Mention it with even more detail.
+
+Add phrases to your prompt that guide Midjourney to what "correct" roughly looks like.
+
+For example:
+
+❌  We tried this, but it didn't turn out well: `A cowboy leans on a fence`
+✅ So we were more descriptive, and it worked great: `A relaxed cowboy stands near the corral, ranch environment, bright spring morning atmosphere, in the style of Frederic Remington --ar 2:3`
+
+<aside>
+<img src="/icons/magic-wand_gray.svg" alt="/icons/magic-wand_gray.svg" width="40px" />
+
+*By giving the subject a particular attitude, emotion, activity, and/or aesthetic, you are suggesting to Midjourney how faces and hands might be composed, which may increase correctness.*
+
+</aside>
+
+Explore adding *two or more* details like these:
+
+- Aesthetic: `portrait, glamour shot, stock photography, artist name`
+- Emotion: `worried, laughing, smiling, surprised, curious, expressive`
+- Attitude: `charismatic, bold, fierce, shy, serene, patrician`
+- Activity: `arguing with friends, serving coffee, relaxing on a bench`
+
+See visuals below. 🔻
+
+## Method #5: Increase `--exp` and/or `--s`
+
+Increase `--exp and/or --stylize` which brings in more heavy hitting rules for coherency.
+
+Fix your prompt to be more specific and clear, per the FAQ below.
+
+## Method #6: Use the invoke/archetype method.
+
+Sometimes, descriptive doesn't work well. Midjourney just doesn't have enough information in its AI brain to know how to render all the specifics, so the result is chaotic/incoherent.  When being descriptive is not playing well, try using the invoke method instead. The invoke method gets us well-meaning promptcrafters **out of Midjourney's way** and allows Midjourney to make its **own** decisions about how to render the image.
+
+❌ `A worried woman cradles a mug of steaming coffee, alone in a cafe, cinematic still shot, directed by Jean-Pierre Jeunet`
+
+Walk-through...
+
+- "Cradles a mug" is idiomatic and may confuse Midjourney. Let's drop it.
+- "Alone in a cafe" probably won't be necessary with a such a dominant subject like a worried woman. Let's drop it.
+- We can try the archetypal phrase of `having coffee` or `has coffee` which implies holding a mug of coffee. Some phrases encapsulate whole scenes. That's the core of the invoke/archetype method.
+- I see that Jean-Pierre Jeunet's style just bulldozes the scene we want to create. <:sus:1099865200003391611> Let's drop him.
+
+:check: `A worried woman has a cup of coffee, cinematic still shot`
+
+Boom, perfect hands and faces. 🔻Check out the samples below.
+Go deeper:  <#1024347588792684584>
+
+## If you’re using V6, explore these strategies:
+
+In V6, you may notice muddy or incoherent details if your prompts are quite complex. If you're making that assessment based on a thumbnail in a grid, remember that the images in the grid are *unfinished*. You might want to upscale it before you can properly judge its quality.
+
+> Go deeper regarding unfinished thumbnails and upscales: [link TBD]
+> 
+
+If you've upscaled, but smeared or muddy coherency still haunts you, here are three strategies to explore. (But hey, before despairing of coherency, examine your grid for successful results. Remember that having 1 or 2 usable images in the grid means you have a good prompt!)
+
+- **Most reliably, remove details.** Coherency issues are sometimes correlated to running out of memory with the prompt. So, go through the prompt and rewrite it to remove unnecessary details.
+- **Sometimes, add key details.** Sometimes adding specificity helps with coherency. Give janky hands and arms something to do, like hands on hips, or hands holding a coffee mug. Give janky faces an emotion, like laughing or looking serene. Doing this plus the above is stronger.
+- **If you have the GPU minutes, chase coherency.** Find the image in the grid that is most coherent, upscale it multiple times until you find one that has the coherency you want. Doing all three of these together is the strongest approach.
+- * ⭐ 01/03/2024 UPDATE: We heard in office hours that the issue with smeared/muddy *faces* is known and the devs are striving to address it, so maybe we'll see some improvement soon.
+
+
