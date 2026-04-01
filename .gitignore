@@ -18,6 +18,8 @@
 *.temp
 # Skill testing workspace
 .codemaker/skills/*-workspace/
+<<<<<<< HEAD
+=======
 
 docs/openspec
 

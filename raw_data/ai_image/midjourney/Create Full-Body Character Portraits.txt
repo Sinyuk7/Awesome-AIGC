@@ -1,49 +1,3 @@
-# Control Poses
-
-[Last Updated: 07/14/2023]
-
-## ❓ Q - Can I control how my model poses? (i.e. look down, face the camera, look up, look to side)
-
- (i.e. model, posture, profile shot, look down, face the camera, look up, face away)
-
-### There are portrait photography terms that may help:
-
-- `profile shot`
-- `three-quarter shot`
-- `head-tilt pose`
-- `hands-on-hips pose`
-- `leaning pose`
-- `S-curve pose`
-- `crossed-arms pose`
-- `hands-in-pockets pose`
-- `sitting pose`
-- `reclining pose`
-
-If they don't work or are not what you  want, do both of these things together:
-
-### 1️⃣ Give the model an emotion, attitude, or even an activity that is correlated to the position you want to see.
-
-Here are example words:
-
-- bashful, shy, embarrassed, awkward
-- sleepy, relaxed, distracted
-- intense, fierce, angry
-- etc etc.
-
-**AND** (do both!)
-
-### 2️⃣ Add descriptive details of the face.
-
-- bright eyes, intense gaze, fierce gaze
-- straight nose, pronounced nose
-- frowning, blushing, laughing
-<<<<<<< HEAD
-- symmetrical face, expressive face
-=======
-- symmetrical face, expressive face
-
-
-
 # Create Full-Body Character Portraits
 
 <aside>
@@ -123,4 +77,3 @@ Photograph of full-length 30-year-old woman wearing a T-shirt, jeans, and sandal
 ![image.png](attachment:e33d093d-1651-4a96-b5b6-81a42cb52aa2:image.png)
 
 ---
->>>>>>> e66b05a560ece06ac738113d23305c30f0cd2211
