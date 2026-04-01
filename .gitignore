@@ -20,3 +20,31 @@
 .codemaker/skills/*-workspace/
 
 docs/openspec
+
+# MCP Server local files
+tools/mcp/.venv/
+tools/mcp/.knowledge_index/
+tools/mcp/__pycache__/
+tools/mcp/*.egg-info/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg

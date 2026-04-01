@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aigc-knowledge": {
+      "command": "bash",
+      "args": ["-c", "source tools/mcp/.venv/bin/activate && python tools/mcp/server.py"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
